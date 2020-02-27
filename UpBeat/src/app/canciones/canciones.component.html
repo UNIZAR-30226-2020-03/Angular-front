@@ -1,0 +1,50 @@
+<mat-card>
+    <mat-card-title>Canciones</mat-card-title>
+    <mat-card-subtitle>Lista de canciones reproducidas recientemente</mat-card-subtitle>
+    <mat-list>
+      <mat-action-list>
+        <button mat-list-item (click)="play('Amador Rivas - Mandanga Style')">
+          Amador Rivas - Mandanga Style
+          <button mat-icon-button color="warn">
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </button>
+      </mat-action-list>
+      <mat-divider></mat-divider>
+      <mat-action-list>
+        <button mat-list-item (click)="play('Eiffel 65 - Blue (Da Ba Dee)')">
+          Eiffel 65 - Blue (Da Ba Dee)
+          <button mat-icon-button disabled color="warn">
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </button>
+      </mat-action-list>
+      <mat-divider></mat-divider>
+      <mat-action-list>
+        <button mat-list-item (click)="play('KAROL G, Nicki Minaj - Tusa')">
+          KAROL G, Nicki Minaj - Tusa
+          <button mat-icon-button color="warn">
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </button>
+      </mat-action-list>
+      <mat-divider></mat-divider>
+      <mat-action-list>
+        <button mat-list-item (click)="play('DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B')">
+          DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B
+          <button mat-icon-button disabled color="warn">
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </button>
+      </mat-action-list>
+      <mat-divider></mat-divider>
+      <mat-action-list>
+        <button mat-list-item (click)="play('Myke Towers - Diosa')">
+          Myke Towers - Diosa
+          <button mat-icon-button color="warn">
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </button>
+      </mat-action-list>
+     </mat-list>
+  </mat-card>

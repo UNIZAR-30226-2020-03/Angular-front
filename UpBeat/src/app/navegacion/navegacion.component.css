@@ -1,0 +1,45 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+
+.logo{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+mat-slider {
+  width: 150px;
+}
+
+.barrainferior{
+  position: sticky;
+  bottom: 0;
+}
+
+.play-pause{
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.cancionActual{
+  margin-left: auto;
+  margin-right: auto;
+  font-size: large;
+}
