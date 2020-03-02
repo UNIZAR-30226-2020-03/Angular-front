@@ -5,11 +5,11 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menú</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#"><mat-icon aria-hidden="false">home</mat-icon> Inicio</a>
-      <a mat-list-item href="#"><mat-icon aria-hidden="false" >favorites</mat-icon> Favoritos</a>
-      <a mat-list-item href="#"><mat-icon aria-hidden="false">list</mat-icon> Playlists</a>
-      <a mat-list-item href="#"><mat-icon aria-hidden="false">search</mat-icon> Buscar</a>
-      <a mat-list-item href="#"><mat-icon aria-hidden="false">person</mat-icon> Cuenta</a>
+      <a mat-list-item routerLink="/"><mat-icon aria-hidden="false">home</mat-icon> Inicio</a>
+      <a mat-list-item routerLink="/favoritos"><mat-icon aria-hidden="false" >favorites</mat-icon> Favoritos</a>
+      <a mat-list-item routerLink="/playlists"><mat-icon aria-hidden="false">list</mat-icon> Playlists</a>
+      <a mat-list-item routerLink="/buscar"><mat-icon aria-hidden="false">search</mat-icon> Buscar</a>
+      <a mat-list-item routerLink="/cuenta"><mat-icon aria-hidden="false">person</mat-icon> Cuenta</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -26,25 +26,6 @@
         <img width="190" src="../../assets/logoDefinitivo3.png">
       </div>
     </mat-toolbar>
-    <app-canciones #selector (cancionActual)="actualizarCancionActual($event)" (reproduciendoCancion)="actualizarReproduccion($event)" (volumenAudio)="cambiarVolumen($event)"></app-canciones>
-    <mat-divider></mat-divider>
-    <app-playlists></app-playlists>
-    <mat-toolbar color="primary" class="barrainferior">
-      <mat-toolbar-row>
-        <button *ngIf="!volumenMin" mat-icon-button (click)="volumenAnterior=volumenActual;volumenActual=0;selector.modificarVolumen(volumenActual)">
-          <mat-icon>volume_up</mat-icon>
-        </button>
-        <button *ngIf="volumenMin" mat-icon-button (click)="volumenActual=volumenAnterior;selector.modificarVolumen(volumenActual)">
-          <mat-icon>volume_off</mat-icon>
-        </button>
-        <mat-slider [(ngModel)]="volumenActual" thumbLabel (change)="selector.modificarVolumen(volumenActual)" min="0" max="100" step="1" value="50" color="primary"></mat-slider>
-        {{volumen}}
-        <span class="cancionActual">Reproduciendo: {{cancionActual}}</span>
-        <div class="play-pause">
-          <button *ngIf="reproduciendo" mat-raised-button color="primary" (click)="selector.pause()"><mat-icon>pause</mat-icon></button>
-          <button *ngIf="!reproduciendo" mat-raised-button color="primary" (click)="selector.reanudar()"><mat-icon>play_arrow</mat-icon></button>
-        </div>
-      </mat-toolbar-row>
-    </mat-toolbar>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

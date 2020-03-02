@@ -23,23 +23,3 @@
   margin-top: auto;
   margin-bottom: auto;
 }
-
-mat-slider {
-  width: 150px;
-}
-
-.barrainferior{
-  position: sticky;
-  bottom: 0;
-}
-
-.play-pause{
-  margin-left: auto;
-  margin-right: 0;
-}
-
-.cancionActual{
-  margin-left: auto;
-  margin-right: auto;
-  font-size: large;
-}

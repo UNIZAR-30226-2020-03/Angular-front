@@ -21,6 +21,9 @@ import { ReproductorComponent } from './reproductor/reproductor.component';
 import { CancionActualComponent } from './cancion-actual/cancion-actual.component';
 
 import { FormsModule } from '@angular/forms';
+import { InicioComponent } from './inicio/inicio.component';
+import { BarraInferiorComponent } from './barra-inferior/barra-inferior.component';
+import { FavoritosComponent } from './favoritos/favoritos.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { FormsModule } from '@angular/forms';
     CancionesComponent,
     PlaylistsComponent,
     ReproductorComponent,
-    CancionActualComponent
+    CancionActualComponent,
+    InicioComponent,
+    BarraInferiorComponent,
+    FavoritosComponent
   ],
   imports: [
     BrowserModule,
