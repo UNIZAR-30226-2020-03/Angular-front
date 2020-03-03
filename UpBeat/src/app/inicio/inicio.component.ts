@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-inicio',
@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
+  @Output() cancionActual = new EventEmitter<string>();
+
   constructor() { }
+
+  actualizarCancionActual(nombre: string){
+    this.cancionActual.emit(nombre);
+  }
 
   ngOnInit(): void {
   }

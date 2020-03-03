@@ -42,10 +42,7 @@ export class BarraInferiorComponent implements OnInit {
 
   actualizarCancionActual(nombre: string){
     this.cancionActual=nombre;
-  }
-
-  actualizarReproduccion(estado: boolean){
-    this.reproduciendo = estado;
+    this.reproduciendo = true;
   }
 
   ngOnInit(): void {

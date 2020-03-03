@@ -5,11 +5,11 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menú</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/"><mat-icon aria-hidden="false">home</mat-icon> Inicio</a>
-      <a mat-list-item routerLink="/favoritos"><mat-icon aria-hidden="false" >favorites</mat-icon> Favoritos</a>
-      <a mat-list-item routerLink="/playlists"><mat-icon aria-hidden="false">list</mat-icon> Playlists</a>
-      <a mat-list-item routerLink="/buscar"><mat-icon aria-hidden="false">search</mat-icon> Buscar</a>
-      <a mat-list-item routerLink="/cuenta"><mat-icon aria-hidden="false">person</mat-icon> Cuenta</a>
+      <a mat-list-item routerLink="/" (click)="actualizarRuta('/')"><mat-icon aria-hidden="false">home</mat-icon> Inicio</a>
+      <a mat-list-item routerLink="/favoritos" (click)="actualizarRuta('/favoritos')"><mat-icon aria-hidden="false" >favorites</mat-icon> Favoritos</a>
+      <a mat-list-item routerLink="/playlists" (click)="actualizarRuta('/playlists')"><mat-icon aria-hidden="false">list</mat-icon> Playlists</a>
+      <a mat-list-item routerLink="/buscar" (click)="actualizarRuta('/buscar')"><mat-icon aria-hidden="false">search</mat-icon> Buscar</a>
+      <a mat-list-item routerLink="/cuenta" (click)="actualizarRuta('/cuenta')"><mat-icon aria-hidden="false">person</mat-icon> Cuenta</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -26,6 +26,10 @@
         <img width="190" src="../../assets/logoDefinitivo3.png">
       </div>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <!--<router-outlet></router-outlet>-->
+    <div *ngIf="href=='/'"><app-inicio (cancionActual)="selector1.actualizarCancionActual($event);selector2.play($event)"></app-inicio></div>
+    <div><app-favoritos *ngIf="href=='/favoritos'"></app-favoritos></div>
+    <app-barra-inferior #selector1 (volumenBarra)="selector2.modificarVolumen($event)" (cancionEnReproduccion)="selector2.pauseplay($event)"></app-barra-inferior>
+    <app-reproductor #selector2></app-reproductor>
   </mat-sidenav-content>
 </mat-sidenav-container>

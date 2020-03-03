@@ -1,5 +1,3 @@
-<app-canciones (cancion)="selector1.actualizarCancionActual($event);selector2.play($event);selector1.actualizarReproduccion(true)"></app-canciones>
+<app-canciones (cancion)="actualizarCancionActual($event)"></app-canciones>
 <mat-divider></mat-divider>
 <app-playlists></app-playlists>
-<app-barra-inferior #selector1 (volumenBarra)="selector2.modificarVolumen($event)" (cancionEnReproduccion)="selector2.pauseplay($event)"></app-barra-inferior>
-<app-reproductor #selector2></app-reproductor>
