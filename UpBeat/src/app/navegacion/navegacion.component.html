@@ -27,8 +27,11 @@
       </div>
     </mat-toolbar>
     <!--<router-outlet></router-outlet>-->
-    <div *ngIf="href=='/'"><app-inicio (cancionActual)="selector1.actualizarCancionActual($event);selector2.play($event)"></app-inicio></div>
-    <div><app-favoritos *ngIf="href=='/favoritos'"></app-favoritos></div>
+    <app-inicio *ngIf="href=='/'" (cancionActual)="selector1.actualizarCancionActual($event);selector2.play($event)"></app-inicio>
+    <app-favoritos *ngIf="href=='/favoritos'"></app-favoritos>
+    <app-playlists-menu *ngIf="href=='/playlists'"></app-playlists-menu>
+    <app-buscar *ngIf="href=='/buscar'"></app-buscar>
+    <app-cuenta *ngIf="href=='/cuenta'"></app-cuenta>
     <app-barra-inferior #selector1 (volumenBarra)="selector2.modificarVolumen($event)" (cancionEnReproduccion)="selector2.pauseplay($event)"></app-barra-inferior>
     <app-reproductor #selector2></app-reproductor>
   </mat-sidenav-content>

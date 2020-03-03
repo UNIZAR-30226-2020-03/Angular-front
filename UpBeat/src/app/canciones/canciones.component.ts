@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class CancionesComponent implements OnInit {
   
   @Output() cancion = new EventEmitter<string>();
+  favoritos=[false,false,false,false,false];
   
   constructor() { }
 
@@ -16,6 +17,15 @@ export class CancionesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  actualizarFavorito(num){
+    if(this.favoritos[num]){
+      this.favoritos[num] = false;
+    }
+    else{
+      this.favoritos[num] = true;
+    }
   }
 
 }

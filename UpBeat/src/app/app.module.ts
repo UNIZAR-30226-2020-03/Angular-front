@@ -24,6 +24,9 @@ import { FormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
 import { BarraInferiorComponent } from './barra-inferior/barra-inferior.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
+import { PlaylistsMenuComponent } from './playlists-menu/playlists-menu.component';
+import { BuscarComponent } from './buscar/buscar.component';
+import { CuentaComponent } from './cuenta/cuenta.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
     CancionActualComponent,
     InicioComponent,
     BarraInferiorComponent,
-    FavoritosComponent
+    FavoritosComponent,
+    PlaylistsMenuComponent,
+    BuscarComponent,
+    CuentaComponent
   ],
   imports: [
     BrowserModule,

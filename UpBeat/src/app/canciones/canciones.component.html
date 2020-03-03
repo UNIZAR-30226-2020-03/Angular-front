@@ -41,7 +41,7 @@
       <mat-action-list>
         <button mat-list-item (click)="play('Myke Towers - Diosa')">
           Myke Towers - Diosa
-          <button mat-icon-button color="warn">
+          <button *ngIf="favoritos[5]" mat-icon-button color="warn">
             <mat-icon>favorite</mat-icon>
           </button>
         </button>
