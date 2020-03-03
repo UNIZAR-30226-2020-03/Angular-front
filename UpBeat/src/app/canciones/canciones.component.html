@@ -5,7 +5,10 @@
       <mat-action-list>
         <button mat-list-item (click)="play('Amador Rivas - Mandanga Style')">
           Amador Rivas - Mandanga Style
-          <button mat-icon-button color="warn">
+          <button *ngIf="favoritos[0]" mat-icon-button color="warn" (click)="actualizarFavorito(0)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="!favoritos[0]" mat-icon-button color="black" (click)="actualizarFavorito(0)">
             <mat-icon>favorite</mat-icon>
           </button>
         </button>
@@ -14,7 +17,10 @@
       <mat-action-list>
         <button mat-list-item (click)="play('Eiffel 65 - Blue (Da Ba Dee)')">
           Eiffel 65 - Blue (Da Ba Dee)
-          <button mat-icon-button disabled color="warn">
+          <button *ngIf="favoritos[1]" mat-icon-button color="warn" (click)="actualizarFavorito(1)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="!favoritos[1]" mat-icon-button color="black" (click)="actualizarFavorito(1)">
             <mat-icon>favorite</mat-icon>
           </button>
         </button>
@@ -23,7 +29,10 @@
       <mat-action-list>
         <button mat-list-item (click)="play('KAROL G, Nicki Minaj - Tusa')">
           KAROL G, Nicki Minaj - Tusa
-          <button mat-icon-button color="warn">
+          <button *ngIf="favoritos[2]" mat-icon-button color="warn" (click)="actualizarFavorito(2)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="!favoritos[2]" mat-icon-button color="black" (click)="actualizarFavorito(2)">
             <mat-icon>favorite</mat-icon>
           </button>
         </button>
@@ -32,7 +41,10 @@
       <mat-action-list>
         <button mat-list-item (click)="play('DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B')">
           DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B
-          <button mat-icon-button disabled color="warn">
+          <button *ngIf="favoritos[3]" mat-icon-button color="warn" (click)="actualizarFavorito(3)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="!favoritos[3]" mat-icon-button color="black" (click)="actualizarFavorito(3)">
             <mat-icon>favorite</mat-icon>
           </button>
         </button>
@@ -41,7 +53,10 @@
       <mat-action-list>
         <button mat-list-item (click)="play('Myke Towers - Diosa')">
           Myke Towers - Diosa
-          <button *ngIf="favoritos[5]" mat-icon-button color="warn">
+          <button *ngIf="favoritos[4]" mat-icon-button color="warn" (click)="actualizarFavorito(4)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="!favoritos[4]" mat-icon-button color="black" (click)="actualizarFavorito(4)">
             <mat-icon>favorite</mat-icon>
           </button>
         </button>
