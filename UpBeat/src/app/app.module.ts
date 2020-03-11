@@ -27,6 +27,7 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
 import { PlaylistsMenuComponent } from './playlists-menu/playlists-menu.component';
 import { BuscarComponent } from './buscar/buscar.component';
 import { CuentaComponent } from './cuenta/cuenta.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CuentaComponent } from './cuenta/cuenta.component';
     FavoritosComponent,
     PlaylistsMenuComponent,
     BuscarComponent,
-    CuentaComponent
+    CuentaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,7 @@ import { CuentaComponent } from './cuenta/cuenta.component';
     MatListModule,
     MatCardModule,
     MatButtonToggleModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

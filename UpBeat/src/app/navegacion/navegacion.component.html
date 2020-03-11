@@ -29,7 +29,6 @@
         </div>
       </div>
     </mat-toolbar>
-    <!--<router-outlet></router-outlet>-->
     <app-inicio *ngIf="href=='/'" (cancionActual)="selector1.actualizarCancionActual($event);selector2.play($event)"></app-inicio>
     <app-favoritos *ngIf="href=='/favoritos'"></app-favoritos>
     <app-playlists-menu *ngIf="href=='/playlists'"></app-playlists-menu>
