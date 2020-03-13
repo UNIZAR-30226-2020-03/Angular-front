@@ -10,7 +10,7 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class NavegacionComponent {
 
-  href: string = "/";
+  href: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -21,6 +21,7 @@ export class NavegacionComponent {
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(){
+    this.href = "/inicio"
   }
 
   actualizarRuta(ruta: string){

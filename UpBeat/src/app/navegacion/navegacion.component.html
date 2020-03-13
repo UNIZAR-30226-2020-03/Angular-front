@@ -5,7 +5,7 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menú</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/" (click)="actualizarRuta('/')"><mat-icon aria-hidden="false">home</mat-icon> Inicio</a>
+      <a mat-list-item routerLink="/inicio" (click)="actualizarRuta('/inicio')"><mat-icon aria-hidden="false">home</mat-icon> Inicio</a>
       <a mat-list-item routerLink="/favoritos" (click)="actualizarRuta('/favoritos')"><mat-icon aria-hidden="false" >favorites</mat-icon> Favoritos</a>
       <a mat-list-item routerLink="/playlists" (click)="actualizarRuta('/playlists')"><mat-icon aria-hidden="false">list</mat-icon> Playlists</a>
       <a mat-list-item routerLink="/buscar" (click)="actualizarRuta('/buscar')"><mat-icon aria-hidden="false">search</mat-icon> Buscar</a>
@@ -25,11 +25,10 @@
       <div class="container">
         <div class="div-img hidden" >
           <img class="img" src="../../assets/logoDefinitivo3.png">
-          <div class="text">klk</div>
         </div>
       </div>
     </mat-toolbar>
-    <app-inicio *ngIf="href=='/'" (cancionActual)="selector1.actualizarCancionActual($event);selector2.play($event)"></app-inicio>
+    <app-inicio *ngIf="href=='/inicio'" (cancionActual)="selector1.actualizarCancionActual($event);selector2.play($event)"></app-inicio>
     <app-favoritos *ngIf="href=='/favoritos'"></app-favoritos>
     <app-playlists-menu *ngIf="href=='/playlists'"></app-playlists-menu>
     <app-buscar *ngIf="href=='/buscar'"></app-buscar>

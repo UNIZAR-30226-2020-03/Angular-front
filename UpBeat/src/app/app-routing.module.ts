@@ -5,7 +5,7 @@ import { NavegacionComponent } from './navegacion/navegacion.component';
 
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
+  {path: '', component: LoginComponent},
   {path: '**', component: NavegacionComponent},
 ];
 
