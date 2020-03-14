@@ -27,6 +27,7 @@ import { CuentaComponent } from './cuenta/cuenta.component';
 import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { RegistroComponent } from './registro/registro.component';
+import { RegistroVipComponent } from './registro-vip/registro-vip.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { RegistroComponent } from './registro/registro.component';
     BuscarComponent,
     CuentaComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    RegistroVipComponent
   ],
   imports: [
     BrowserModule,
