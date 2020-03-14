@@ -26,6 +26,7 @@ import { BuscarComponent } from './buscar/buscar.component';
 import { CuentaComponent } from './cuenta/cuenta.component';
 import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
+import { RegistroComponent } from './registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatInputModule } from '@angular/material/input';
     PlaylistsMenuComponent,
     BuscarComponent,
     CuentaComponent,
-    LoginComponent
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
