@@ -9,6 +9,13 @@ export class CancionesComponent implements OnInit {
   
   @Output() cancion = new EventEmitter<string>();
   favoritos=[true,false,true,false,true];
+  canciones: string[]=[
+  "Amador Rivas - Mandanga Style",
+  "Eiffel 65 - Blue (Da Ba Dee)",
+  "KAROL G, Nicki Minaj - Tusa",
+  "DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B",
+  "Myke Towers - Diosa"
+  ];
   
   constructor() { }
 
