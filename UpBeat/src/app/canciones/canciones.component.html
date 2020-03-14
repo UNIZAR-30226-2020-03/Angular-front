@@ -1,65 +1,77 @@
 <mat-card>
     <mat-card-title>Canciones</mat-card-title>
     <mat-card-subtitle>Lista de canciones reproducidas recientemente</mat-card-subtitle>
-    <mat-list>
-      <mat-action-list>
-        <button mat-list-item (click)="play('Amador Rivas - Mandanga Style')">
-          Amador Rivas - Mandanga Style
+    <div class="cancion">
+      <mat-list>
+        <mat-action-list>
           <button *ngIf="favoritos[0]" mat-icon-button color="warn" (click)="actualizarFavorito(0)">
             <mat-icon>favorite</mat-icon>
           </button>
           <button *ngIf="!favoritos[0]" mat-icon-button color="black" (click)="actualizarFavorito(0)">
             <mat-icon>favorite</mat-icon>
           </button>
-        </button>
-      </mat-action-list>
-      <mat-divider></mat-divider>
-      <mat-action-list>
-        <button mat-list-item (click)="play('Eiffel 65 - Blue (Da Ba Dee)')">
-          Eiffel 65 - Blue (Da Ba Dee)
+          <div class="favorito">
+            <button mat-list-item (click)="play('Amador Rivas - Mandanga Style')">
+              Amador Rivas - Mandanga Style
+            </button>
+          </div>
+        </mat-action-list>
+        <mat-divider></mat-divider>
+        <mat-action-list>
           <button *ngIf="favoritos[1]" mat-icon-button color="warn" (click)="actualizarFavorito(1)">
             <mat-icon>favorite</mat-icon>
           </button>
           <button *ngIf="!favoritos[1]" mat-icon-button color="black" (click)="actualizarFavorito(1)">
             <mat-icon>favorite</mat-icon>
           </button>
-        </button>
-      </mat-action-list>
-      <mat-divider></mat-divider>
-      <mat-action-list>
-        <button mat-list-item (click)="play('KAROL G, Nicki Minaj - Tusa')">
-          KAROL G, Nicki Minaj - Tusa
+          <div class="favorito">
+            <button mat-list-item (click)="play('Eiffel 65 - Blue (Da Ba Dee)')">
+              Eiffel 65 - Blue (Da Ba Dee)
+            </button>
+          </div>
+        </mat-action-list>
+        <mat-divider></mat-divider>
+        <mat-action-list>
           <button *ngIf="favoritos[2]" mat-icon-button color="warn" (click)="actualizarFavorito(2)">
             <mat-icon>favorite</mat-icon>
           </button>
           <button *ngIf="!favoritos[2]" mat-icon-button color="black" (click)="actualizarFavorito(2)">
             <mat-icon>favorite</mat-icon>
           </button>
-        </button>
-      </mat-action-list>
-      <mat-divider></mat-divider>
-      <mat-action-list>
-        <button mat-list-item (click)="play('DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B')">
-          DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B
+          <div class="favorito">
+            <button mat-list-item (click)="play('KAROL G, Nicki Minaj - Tusa')">
+              KAROL G, Nicki Minaj - Tusa
+            </button>
+          </div>
+        </mat-action-list>
+        <mat-divider></mat-divider>
+        <mat-action-list>
           <button *ngIf="favoritos[3]" mat-icon-button color="warn" (click)="actualizarFavorito(3)">
             <mat-icon>favorite</mat-icon>
           </button>
           <button *ngIf="!favoritos[3]" mat-icon-button color="black" (click)="actualizarFavorito(3)">
             <mat-icon>favorite</mat-icon>
           </button>
-        </button>
-      </mat-action-list>
-      <mat-divider></mat-divider>
-      <mat-action-list>
-        <button mat-list-item (click)="play('Myke Towers - Diosa')">
-          Myke Towers - Diosa
+          <div class="favorito">
+            <button mat-list-item (click)="play('DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B')">
+              DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B
+            </button>
+          </div>
+        </mat-action-list>
+        <mat-divider></mat-divider>
+        <mat-action-list>
           <button *ngIf="favoritos[4]" mat-icon-button color="warn" (click)="actualizarFavorito(4)">
             <mat-icon>favorite</mat-icon>
           </button>
           <button *ngIf="!favoritos[4]" mat-icon-button color="black" (click)="actualizarFavorito(4)">
             <mat-icon>favorite</mat-icon>
           </button>
-        </button>
-      </mat-action-list>
-     </mat-list>
+          <div class="favorito">
+            <button mat-list-item (click)="play('Myke Towers - Diosa')">
+              Myke Towers - Diosa
+            </button>
+          </div>
+        </mat-action-list>
+      </mat-list>
+    </div>
 </mat-card>
