@@ -28,6 +28,7 @@ import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { RegistroComponent } from './registro/registro.component';
 import { RegistroVipComponent } from './registro-vip/registro-vip.component';
+import { RecuperacionPasswordComponent } from './recuperacion-password/recuperacion-password.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RegistroVipComponent } from './registro-vip/registro-vip.component';
     CuentaComponent,
     LoginComponent,
     RegistroComponent,
-    RegistroVipComponent
+    RegistroVipComponent,
+    RecuperacionPasswordComponent
   ],
   imports: [
     BrowserModule,
