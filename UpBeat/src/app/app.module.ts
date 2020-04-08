@@ -31,6 +31,7 @@ import { RegistroVipComponent } from './registro-vip/registro-vip.component';
 import { RecuperacionPasswordComponent } from './recuperacion-password/recuperacion-password.component';
 import { ServiceService }from '../app/Service/service.service'
 import { HttpClientModule } from'@angular/common/http';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { HttpClientModule } from'@angular/common/http';
     MatButtonToggleModule,
     FormsModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectCountryModule
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent]
