@@ -5,7 +5,7 @@
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     width: 400px;
-    height: 400px;
+    height: 600px;
 }
 
 .fondo{
@@ -60,6 +60,7 @@
     display: table-cell;
     width: 700px;
     text-align: right;
+    margin-bottom: 40 px;
 }
 
 .iniciar{

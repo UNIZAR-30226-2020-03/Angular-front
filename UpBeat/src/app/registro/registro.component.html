@@ -5,22 +5,34 @@
       </div>
       <h1 align="center">Regístrate gratis</h1>
       <form class="example-form">
-          <mat-form-field class="example-full-width">
-              <mat-label>Nombre</mat-label>
-              <input matInput placeholder="Pepito">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-              <mat-label>Correo electrónico</mat-label>
-              <input matInput placeholder="pepito@cojonesgordos.com">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-              <mat-label>Contraseña</mat-label>
-              <input matInput placeholder="pizzaConPiña">
-          </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput placeholder="mail@example.com">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Apellidos</mat-label>
+            <input matInput placeholder="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre de usuario</mat-label>
+            <input matInput placeholder="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput placeholder="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Repetir contraseña</mat-label>
+            <input matInput placeholder="">
+        </mat-form-field>
       </form>
       <div class="container2">
           <div class="iniciar">
-              <button mat-raised-button color="primary" routerLink="/inicio">Registrarse</button>
+              <button mat-raised-button color="primary" routerLink="/inicio" (click)=Registro(usuario)>Registrarse</button>
           </div>
       </div>
       <a routerLink="/registroVip">¿Eres un creador o sello discográfico?</a>

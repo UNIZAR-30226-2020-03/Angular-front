@@ -29,6 +29,8 @@ import { MatInputModule } from '@angular/material/input';
 import { RegistroComponent } from './registro/registro.component';
 import { RegistroVipComponent } from './registro-vip/registro-vip.component';
 import { RecuperacionPasswordComponent } from './recuperacion-password/recuperacion-password.component';
+import { ServiceService }from '../app/Service/service.service'
+import { HttpClientModule } from'@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -63,9 +65,10 @@ import { RecuperacionPasswordComponent } from './recuperacion-password/recuperac
     MatCardModule,
     MatButtonToggleModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
