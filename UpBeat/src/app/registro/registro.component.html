@@ -7,23 +7,23 @@
       <form class="example-form">
         <mat-form-field class="example-full-width">
             <mat-label>Correo electrónico</mat-label>
-            <input matInput placeholder="mail@example.com"  #email type="text" class="form-control">
+            <input matInput [(ngModel)]="usuario.correo" placeholder="mail@example.com" name="email" type="text" class="form-control">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>Nombre</mat-label>
-            <input matInput placeholder=""  #nombre type="text" class="form-control">
+            <input matInput [(ngModel)]="usuario.nombre" placeholder="" name="nombre" type="text" class="form-control">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>Apellidos</mat-label>
-            <input matInput placeholder=""  #apellidos type="text" class="form-control">
+            <input matInput [(ngModel)]="usuario.apellidos" placeholder="" name="apellidos" type="text" class="form-control">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>Nombre de usuario</mat-label>
-            <input matInput placeholder=""  #user type="text" class="form-control">
+            <input matInput [(ngModel)]="usuario.username" placeholder="" name="user" type="text" class="form-control">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>Contraseña</mat-label>
-            <input matInput placeholder="" type="password" #password class="form-control">
+            <input matInput [(ngModel)]="usuario.contrasenya" placeholder="" name="password" type="password" class="form-control">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>Repetir contraseña</mat-label>
@@ -31,13 +31,21 @@
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>País</mat-label>
-            <input matInput placeholder="" type="text" #pais class="form-control">
+            <input matInput [(ngModel)]="usuario.pais" placeholder="" name="pais" type="text" class="form-control">
         </mat-form-field>
+        <button mat-raised-button color="primary" (click)=registrarUsuario()>Registrarse</button>
+        <div class="container2">
+            <div class="iniciar">
+                <button mat-raised-button color="primary" (click)=registrarUsuario()>Registrarse</button>
+            </div>
+        </div>
       </form>
-      <div class="container2">
-          <div class="iniciar">
-              <button mat-raised-button color="primary" (click)=Registro(nombre,apellidos,email,user,password,pais)>Registrarse</button>
-          </div>
+      <div>
+          <p>
+              Hola
+              {{usuario.username}}
+              {{usuario.correo}}
+          </p>
       </div>
       <a routerLink="/registroVip">¿Eres un creador o sello discográfico?</a>
   </div>
