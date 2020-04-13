@@ -12,7 +12,7 @@ export class ServiceService {
 
   constructor(private http:HttpClient) { }
   
-  Url='http://upbeatproyect.herokuapp.com/cliente/save';
+  Url='https://upbeatproyect.herokuapp.com/cliente/save';
 
   registrarUsuario(usuario:Usuario){
     return this.http.post<Usuario>(this.Url,usuario);
