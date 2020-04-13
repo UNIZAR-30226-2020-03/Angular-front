@@ -20,10 +20,9 @@ export class RegistroComponent {
   }
   
   registrarUsuario(): void{
-    this.service.registrarUsuario(this.usuario)
-    .subscribe( data=>{
-      alert("Se agrego con Exito..");
-    });
+    this.service.registrarUsuario(this.usuario).subscribe({
+      error: error => console.error('There was an error!', error)
+  })
   }
 
 }

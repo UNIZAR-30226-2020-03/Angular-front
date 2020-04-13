@@ -33,20 +33,12 @@
             <mat-label>País</mat-label>
             <input matInput [(ngModel)]="usuario.pais" placeholder="" name="pais" type="text" class="form-control">
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)=registrarUsuario()>Registrarse</button>
         <div class="container2">
             <div class="iniciar">
                 <button mat-raised-button color="primary" (click)=registrarUsuario()>Registrarse</button>
             </div>
         </div>
       </form>
-      <div>
-          <p>
-              Hola
-              {{usuario.username}}
-              {{usuario.correo}}
-          </p>
-      </div>
       <a routerLink="/registroVip">¿Eres un creador o sello discográfico?</a>
   </div>
 </div>
