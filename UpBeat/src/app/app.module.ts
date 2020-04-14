@@ -32,6 +32,7 @@ import { RecuperacionPasswordComponent } from './recuperacion-password/recuperac
 import { ServiceService }from '../app/Service/service.service'
 import { HttpClientModule } from'@angular/common/http';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
     FormsModule,
     MatInputModule,
     HttpClientModule,
-    MatSelectCountryModule
+    MatSelectCountryModule,
+    MatStepperModule
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent]

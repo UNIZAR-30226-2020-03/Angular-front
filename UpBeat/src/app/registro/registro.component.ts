@@ -9,7 +9,7 @@ import { Usuario } from '../MODELO/Usuario';
   styleUrls: ['./registro.component.css']
 })
 
-export class RegistroComponent {
+export class RegistroComponent implements OnInit{
   
   usuario: Usuario = new Usuario();
 

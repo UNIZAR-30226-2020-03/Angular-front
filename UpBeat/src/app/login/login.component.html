@@ -7,18 +7,19 @@
         <form class="example-form">
             <mat-form-field class="example-full-width">
                 <mat-label>Correo electrónico</mat-label>
-                <input matInput placeholder="email@example.com">
+                <input matInput [(ngModel)]="correo" placeholder="email@example.com" name="correo">
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
-                <input matInput placeholder="Introduzca su contraseña">
+                <input matInput [(ngModel)]="password" placeholder="Introduzca su contraseña" name="password">
             </mat-form-field>
-        </form>
-        <div class="container2">
-            <div class="iniciar">
-                <button mat-raised-button color="primary" routerLink="/inicio">Identificarse</button>
+            <div class="container2">
+                <div class="iniciar">
+                    <button mat-raised-button color="primary" (click)=loginUsuario()>Identificarse</button>
+                </div>
             </div>
-        </div>
+        </form>
         <a routerLink="/recuperacion">¿Ha olvidado la contraseña?</a>
+        {{usuario.nombre}}
     </div>
 </div>
