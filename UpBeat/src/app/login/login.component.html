@@ -15,11 +15,10 @@
             </mat-form-field>
             <div class="container2">
                 <div class="iniciar">
-                    <button mat-raised-button color="primary" (click)=loginUsuario()>Identificarse</button>
+                    <button mat-raised-button color="primary" (click)=loginUsuario() routerLink="/inicio">Identificarse</button>
                 </div>
             </div>
         </form>
         <a routerLink="/recuperacion">¿Ha olvidado la contraseña?</a>
-        {{usuario.nombre}}
     </div>
 </div>
