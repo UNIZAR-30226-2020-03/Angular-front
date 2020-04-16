@@ -11,6 +11,7 @@ import { Usuario } from '../MODELO/Usuario';
 
 export class RegistroComponent implements OnInit{
   
+  stepForm = 1;
   usuario: Usuario = new Usuario();
 
   constructor(private router:Router, private service:ServiceService) {}

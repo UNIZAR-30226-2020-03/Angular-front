@@ -25,12 +25,16 @@ export class NavegacionComponent implements OnInit{
   constructor(private breakpointObserver: BreakpointObserver, private router:Router, private service:ServiceService) {}
 
   ngOnInit(){
-    this.href = "/inicio"
-    this.usuario = this.service.getUserLoggedIn();
+    this.href = "/inicio";
   }
 
   actualizarRuta(ruta: string){
     this.href = ruta;
+  }
+
+  getNombreUsuario(){
+    this.usuario = this.service.getUserLoggedIn();
+    return this.usuario.nombre;
   }
 
 }

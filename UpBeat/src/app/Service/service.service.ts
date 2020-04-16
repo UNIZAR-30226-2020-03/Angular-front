@@ -24,7 +24,6 @@ export class ServiceService {
 
   registrarUsuario(usuario: Usuario):Observable<any>{
     var myString = JSON.stringify(usuario);
-    alert(myString);
     return this.http.post<any>(this.UrlReg,myString,httpOptions);
   }
 

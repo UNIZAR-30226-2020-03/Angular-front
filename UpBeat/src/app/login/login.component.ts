@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   loginUsuario(): void{
     this.service.loginUsuario(this.correo,this.password).subscribe(data => {
-      this.usuario = JSON.parse(data);
+      this.usuario = data;
       this.service.setUserLoggedIn(this.usuario);
   })
   }
