@@ -17,7 +17,7 @@ export class BarraInferiorComponent implements OnInit {
   volumenActual=50;
   volumenAnterior=50;
   volumenMin: boolean = false;
-  cancionActual: string;
+  cancionActual: string = "No hay nada reproduciendo";
 
   modificarVolumen(vol){
     this.volumen = vol;

@@ -5,14 +5,16 @@
   
 .play-pause{
     bottom: 15px;
-    right: 15px;
+    right: 35px;
     position: fixed;
 }
   
 .cancionActual{
     margin-left: auto;
     margin-right: auto;
+    right: 150px;
     font-size: large;
+    position: relative;
 }
 
 mat-slider {
