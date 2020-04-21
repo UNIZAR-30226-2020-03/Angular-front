@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
     this.service.loginUsuario(this.correo,this.password).subscribe(data => {
       this.usuario = data;
       this.service.setUserLoggedIn(this.usuario);
+      this.router.navigate(['/inicio']);
+      error: error => alert("Se ha producido un error en la identificación");
   })
   }
 
