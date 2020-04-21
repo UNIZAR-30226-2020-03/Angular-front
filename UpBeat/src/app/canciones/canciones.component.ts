@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-canciones',
@@ -16,14 +17,21 @@ export class CancionesComponent implements OnInit {
   "DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B",
   "Myke Towers - Diosa"
   ];
+  modoVisualizacion: String = "recientes";
   
-  constructor() { }
+  constructor(private router:Router) { }
 
   play(nombre: string){
     this.cancion.emit(nombre);
   }
 
   ngOnInit(): void {
+    if(this.router.url === '/inicio'){
+      this.modoComponente(0);
+    }
+    else if (this.router.url === '/favoritos'){
+      this.modoComponente(1);
+    }
   }
 
   actualizarFavorito(num){
@@ -32,6 +40,15 @@ export class CancionesComponent implements OnInit {
     }
     else{
       this.favoritos[num] = true;
+    }
+  }
+
+  modoComponente(mode){
+    if(mode == 0){
+      this.modoVisualizacion = "recientes";
+    }
+    else if (mode == 1){
+      this.modoVisualizacion = "favoritos";
     }
   }
 

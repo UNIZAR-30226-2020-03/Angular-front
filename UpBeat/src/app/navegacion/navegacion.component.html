@@ -29,7 +29,7 @@
       </div>
     </mat-toolbar>
     <app-inicio *ngIf="href=='/inicio'" (cancionActual)="selector1.actualizarCancionActual($event);selector2.play($event)"></app-inicio>
-    <app-favoritos *ngIf="href=='/favoritos'"></app-favoritos>
+    <app-favoritos *ngIf="href=='/favoritos'" (cancionActual)="selector1.actualizarCancionActual($event);selector2.play($event)"></app-favoritos>
     <app-playlists-menu *ngIf="href=='/playlists'"></app-playlists-menu>
     <app-buscar *ngIf="href=='/buscar'"></app-buscar>
     <app-cuenta *ngIf="href=='/cuenta'"></app-cuenta>
