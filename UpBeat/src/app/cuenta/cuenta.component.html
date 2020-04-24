@@ -1,1 +1,45 @@
-<p>cuenta works!</p>
+<div class = "cabecera">
+    <img class="img" src="../../assets/84025-foto_de_perfil_por_defecto.png"> 
+    <mat-card-title align="center">{{getNombreUsuario()}}</mat-card-title>
+    <button class="cerrarSesion" (click)="actualizarRuta('/')" mat-raised-button color="Warn">Cerrar sesión</button>
+</div>
+<mat-divider></mat-divider>
+<div class = "cambiarContrasenya">
+    <h1>Cambiar contraseña</h1>
+    <form class="formulario">
+        <mat-form-field appearance="standard" class="repCont">
+            <mat-label>Nueva contraseña</mat-label>
+            <input matInput [(ngModel)]="usuario.contrasenya" placeholder="" name="password" type="password">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Debe tener más de 8 caracteres</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="repCont">
+            <mat-label>Repetir nueva contraseña</mat-label>
+            <input matInput placeholder="" type="password">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Debe tener más de 8 caracteres</mat-hint>
+        </mat-form-field>
+        <button mat-raised-button class="boton1"> Confirmar contraseña</button>
+    </form>
+</div>
+<div class = "editarDatos">
+    <h2>Cambiar datos de usuario</h2>
+    <form class="formulario2">
+        <mat-form-field class="formEstandar" appearance="standard">
+            <mat-label>Nombre de usuario</mat-label>
+            <input matInput [(ngModel)]="usuario.username" placeholder="" name="username" type="text">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field class="apellidos" appearance="standard">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="usuario.nombre" placeholder="" name="nombre" type="text">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field class="apellidos" appearance="standard">
+            <mat-label>Apellidos</mat-label>
+            <input matInput [(ngModel)]="usuario.apellidos" placeholder="" name="apellidos" type="text">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+        <button mat-raised-button class="boton2"> Confirmar</button>
+    </form> 
+</div>
