@@ -20,7 +20,7 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
   
-  UrlReg='http://upbeatproyect.herokuapp.com/cliente/save';
+  UrlReg='https://upbeatproyect.herokuapp.com/cliente/save';
 
   registrarUsuario(usuario: Usuario):Observable<any>{
     var myString = JSON.stringify(usuario);
@@ -28,7 +28,7 @@ export class ServiceService {
   }
 
   loginUsuario(correo,contrasenya):Observable<any>{
-    var UrlLog = "http://upbeatproyect.herokuapp.com/cliente/get/"+contrasenya+"/"+correo;
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/get/"+contrasenya+"/"+correo;
     return this.http.get(UrlLog,httpOptions);
   }
 
