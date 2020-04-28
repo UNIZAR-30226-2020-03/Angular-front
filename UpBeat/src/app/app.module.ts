@@ -33,6 +33,7 @@ import { ServiceService }from '../app/Service/service.service'
 import { HttpClientModule } from'@angular/common/http';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { MatStepperModule } from '@angular/material/stepper';
+import { EcualizadorComponent } from './ecualizador/ecualizador.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     LoginComponent,
     RegistroComponent,
     RegistroVipComponent,
-    RecuperacionPasswordComponent
+    RecuperacionPasswordComponent,
+    EcualizadorComponent
   ],
   imports: [
     BrowserModule,
