@@ -10,6 +10,7 @@
       <a mat-list-item routerLink="/playlists" (click)="actualizarRuta('/playlists')"><mat-icon aria-hidden="false">list</mat-icon> Playlists</a>
       <a mat-list-item routerLink="/buscar" (click)="actualizarRuta('/buscar')"><mat-icon aria-hidden="false">search</mat-icon> Buscar</a>
       <a mat-list-item routerLink="/cuenta" (click)="actualizarRuta('/cuenta')"><mat-icon aria-hidden="false">person</mat-icon> Cuenta</a>
+      <div class="equalizer"><a mat-list-item routerLink="/ecualizador" (click)="actualizarRuta('/ecualizador')"><mat-icon aria-hidden="false">equalizer</mat-icon> Ecualizador</a></div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -33,6 +34,7 @@
     <app-playlists-menu *ngIf="href=='/playlists'"></app-playlists-menu>
     <app-buscar *ngIf="href=='/buscar'"></app-buscar>
     <app-cuenta *ngIf="href=='/cuenta'"></app-cuenta>
+    <app-ecualizador *ngIf="href=='/ecualizador'"></app-ecualizador>
     <app-barra-inferior #selector1 (volumenBarra)="selector2.modificarVolumen($event)" (cancionEnReproduccion)="selector2.pauseplay($event)"></app-barra-inferior>
     <app-reproductor #selector2></app-reproductor>
   </mat-sidenav-content>

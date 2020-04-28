@@ -56,3 +56,9 @@
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
+
+.equalizer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
