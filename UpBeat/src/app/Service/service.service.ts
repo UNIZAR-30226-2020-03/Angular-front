@@ -20,11 +20,17 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
   
-  UrlReg='https://upbeatproyect.herokuapp.com/cliente/save';
+  UrlReg='https://upbeatproyect.herokuapp.com/usuario/save';
+  UrlRegArtista='https://upbeatproyect.herokuapp.com/artista/save';
 
   registrarUsuario(usuario: Usuario):Observable<any>{
     var myString = JSON.stringify(usuario);
     return this.http.post<any>(this.UrlReg,myString,httpOptions);
+  }
+
+  registrarArtista(usuario: Usuario):Observable<any>{
+    var myString = JSON.stringify(usuario);
+    return this.http.post<any>(this.UrlRegArtista,myString,httpOptions);
   }
 
   loginUsuario(correo,contrasenya):Observable<any>{

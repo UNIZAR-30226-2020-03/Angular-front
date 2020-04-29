@@ -5,24 +5,71 @@
         </div>
         <h1 align="center">Registro para creadores</h1>
         <form class="example-form">
-            <mat-form-field class="example-full-width">
-                <mat-label>Nombre artístico o discográfica</mat-label>
-                <input matInput placeholder="Pepito">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Correo electrónico</mat-label>
-                <input matInput placeholder="pepito@cojonesgordos.com">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Contraseña</mat-label>
-                <input matInput placeholder="pizzaConPiña">
-            </mat-form-field>
+          <div *ngIf="stepForm==1">
+              <mat-form-field class="example-full-width">
+                  <mat-label>Correo electrónico</mat-label>
+                  <input matInput [(ngModel)]="artista.correo" placeholder="mail@example.com" name="email" type="text" class="form-control">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Nombre</mat-label>
+                  <input matInput [(ngModel)]="artista.nombre" placeholder="" name="nombre" type="text" class="form-control">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Apellidos</mat-label>
+                  <input matInput [(ngModel)]="artista.apellidos" placeholder="" name="apellidos" type="text" class="form-control">
+              </mat-form-field>
+              <div class="container2">
+                  <div class="iniciar">
+                      <button mat-raised-button color="primary" (click)="stepForm=2">Siguiente</button>
+                  </div>
+              </div>
+          </div>
+          <div *ngIf="stepForm==2">
+              <mat-form-field class="example-full-width">
+                  <mat-label>Nombre de artista</mat-label>
+                  <input matInput [(ngModel)]="artista.nombre_artista" placeholder="" name="nombre_artista" type="text" class="form-control">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Descripción</mat-label>
+                  <input matInput [(ngModel)]="artista.descripcion" placeholder="" name="descripcion" type="text" class="form-control">
+              </mat-form-field>
+              <div class="container2">
+                  <div class="iniciar">
+                      <button mat-raised-button color="primary" (click)="stepForm=3">Siguiente</button>
+                  </div>
+              </div>
+          </div>
+          <div *ngIf="stepForm==3">
+              <mat-form-field class="example-full-width">
+                  <mat-label>Nombre de usuario</mat-label>
+                  <input matInput [(ngModel)]="artista.username" placeholder="" name="user" type="text" class="form-control">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Contraseña</mat-label>
+                  <input matInput [(ngModel)]="artista.contrasenya" placeholder="" name="password" type="password" class="form-control">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Repetir contraseña</mat-label>
+                  <input matInput placeholder="" type="password">
+              </mat-form-field>
+              <div class="container2">
+                  <div class="iniciar">
+                      <button mat-raised-button color="primary" (click)="stepForm=4">Siguiente</button>
+                  </div>
+              </div>
+          </div>
+          <div *ngIf="stepForm==4">
+              <mat-form-field class="example-full-width">
+                  <mat-label>País</mat-label>
+                  <input matInput [(ngModel)]="artista.pais" placeholder="" name="pais" type="text" class="form-control">
+              </mat-form-field>
+              <div class="container2">
+                  <div class="iniciar">
+                      <button mat-raised-button color="primary" (click)=registrarArtista()>Registrarse</button>
+                  </div>
+              </div>
+          </div>
         </form>
-        <div class="container2">
-            <div class="iniciar">
-                <button mat-raised-button color="primary" routerLink="/inicio">Registrarse</button>
-            </div>
-        </div>
     </div>
 </div>
   
