@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../Service/message.service';
+import { Router } from '@angular/router';
+import { ServiceService } from '../Service/service.service';
 
 @Component({
   selector: 'app-recuperacion-password',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecuperacionPasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router, private service:ServiceService, public _MessageService: MessageService) { }
 
   ngOnInit(): void {
   }
 
+  recuperarUsuario(form): void{
+    this.service.recuperarUsuario(form.email).subscribe(data => {
+      this._MessageService.sendMessage(data).subscribe(() => {
+        alert('Mensaje enviado correctamente');
+      });
+      error: error => alert("Se ha producido un error");
+  })
+  }
 }

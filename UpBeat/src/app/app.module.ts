@@ -29,11 +29,12 @@ import { MatInputModule } from '@angular/material/input';
 import { RegistroComponent } from './registro/registro.component';
 import { RegistroVipComponent } from './registro-vip/registro-vip.component';
 import { RecuperacionPasswordComponent } from './recuperacion-password/recuperacion-password.component';
-import { ServiceService }from '../app/Service/service.service'
+import { ServiceService }from './Service/service.service'
 import { HttpClientModule } from'@angular/common/http';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { MatStepperModule } from '@angular/material/stepper';
 import { EcualizadorComponent } from './ecualizador/ecualizador.component';
+import { MessageService } from './Service/message.service';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,7 @@ import { EcualizadorComponent } from './ecualizador/ecualizador.component';
     MatSelectCountryModule,
     MatStepperModule
   ],
-  providers: [ServiceService],
+  providers: [ServiceService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

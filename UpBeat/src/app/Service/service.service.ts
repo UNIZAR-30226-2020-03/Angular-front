@@ -38,6 +38,11 @@ export class ServiceService {
     return this.http.get(UrlLog,httpOptions);
   }
 
+  recuperarUsuario(correo):Observable<any>{
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/get/"+correo;
+    return this.http.get(UrlLog,httpOptions);
+  }
+
   setUserLoggedIn(user: Usuario) {
     this.isUserLoggedIn = true;
     this.usserLogged = user;
