@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CuentaComponent implements OnInit {
 
+  nombre: String;
   usuario: Usuario = new Usuario();
   constructor(private breakpointObserver: BreakpointObserver, private router:Router, private service:ServiceService) { }
 
@@ -32,8 +33,13 @@ export class CuentaComponent implements OnInit {
     return this.usuario.nombre;
   }
 
-  actualizarUsuario(user:Usuario): void{
+  onChange(newValue){
+    this.usuario.nombre = newValue;
     console.log(this.usuario.nombre);
+  }
+
+  actualizarUsuario(nombre): void{
+    this.usuario.nombre = nombre;
     this.service.actualizarUsuario(this.usuario).subscribe(data=>{
       error: error => alert("Se ha producido un error al actualizar datos"); 
     })
