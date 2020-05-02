@@ -32,7 +32,8 @@ export class CuentaComponent implements OnInit {
     return this.usuario.nombre;
   }
 
-  actualizarUsuario(): void{
+  actualizarUsuario(user:Usuario): void{
+    console.log(this.usuario.nombre);
     this.service.actualizarUsuario(this.usuario).subscribe(data=>{
       error: error => alert("Se ha producido un error al actualizar datos"); 
     })

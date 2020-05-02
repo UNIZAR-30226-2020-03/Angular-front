@@ -19,7 +19,7 @@
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             <mat-hint>Debe tener más de 8 caracteres</mat-hint>
         </mat-form-field>
-        <button mat-raised-button class="boton1" (click)="actualizarUsuario()"> Confirmar contraseña</button>
+        <button mat-raised-button class="boton1" (click)="actualizarUsuario(usuario)"> Confirmar contraseña</button>
     </form>
 </div>
 <div class = "editarDatos">
@@ -40,6 +40,6 @@
             <input matInput [(ngModel)]="usuario.apellidos" placeholder="" name="apellidos" type="text">
             <mat-hint></mat-hint>
         </mat-form-field>
-        <button mat-raised-button class="boton2" (click)="actualizarUsuario()"> Confirmar</button>
+        <button mat-raised-button class="boton2" (click)="actualizarUsuario(usuario)"> Confirmar</button>
     </form> 
 </div>
