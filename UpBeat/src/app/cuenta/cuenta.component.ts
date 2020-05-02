@@ -23,11 +23,18 @@ export class CuentaComponent implements OnInit {
     var r = confirm("¿Estás seguro de que quieres cerrar sesión?");
     if (r == true) {
       location.href="http://localhost:4200/" //Aquí habrá que poner la web definitiva
+      localStorage.clear();
     } 
   }
 
   getNombreUsuario(){
     this.usuario = this.service.getUserLoggedIn();
     return this.usuario.nombre;
+  }
+
+  actualizarUsuario(): void{
+    this.service.actualizarUsuario(this.usuario).subscribe(data=>{
+      error: error => alert("Se ha producido un error al actualizar datos"); 
+    })
   }
 }

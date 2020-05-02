@@ -49,6 +49,13 @@ export class ServiceService {
     localStorage.setItem('currentUser', JSON.stringify(user));
   }
 
+  actualizarUsuario(user: Usuario){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/update/"+user.correo;
+    var myString = JSON.stringify(user);
+    this.setUserLoggedIn(user);
+    return this.http.put(UrlLog,myString,httpOptions);
+  }
+
   getUserLoggedIn() {
   	return JSON.parse(localStorage.getItem('currentUser'));
   }
