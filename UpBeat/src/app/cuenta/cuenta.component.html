@@ -9,17 +9,17 @@
     <form class="formulario">
         <mat-form-field appearance="standard" class="repCont">
             <mat-label>Nueva contraseña</mat-label>
-            <input matInput [(ngModel)]="usuario.contrasenya" placeholder="" name="password" type="password">
+            <input matInput [(ngModel)]="contrasenya" placeholder="" name="password" type="password">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             <mat-hint>Debe tener más de 8 caracteres</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="standard" class="repCont">
             <mat-label>Repetir nueva contraseña</mat-label>
-            <input matInput placeholder="" type="password">
+            <input matInput [(ngModel)]="repContrasenya" placeholder="" name="repPassword" type="password">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             <mat-hint>Debe tener más de 8 caracteres</mat-hint>
         </mat-form-field>
-        <button mat-raised-button class="boton1" (click)="actualizarUsuario(nombre)"> Confirmar contraseña</button>
+        <button mat-raised-button class="boton1" (click)="actualizarContrasenya(contrasenya,repContrasenya)"> Confirmar contraseña</button>
     </form>
 </div>
 <div class = "editarDatos">
@@ -27,19 +27,19 @@
     <form class="formulario2">
         <mat-form-field class="formEstandar" appearance="standard">
             <mat-label>Nombre de usuario</mat-label>
-            <input matInput [(ngModel)]="usuario.username" placeholder="" name="username" type="text">
+            <input matInput [(ngModel)]="username" placeholder="{{usuario.username}}" name="username" type="text">
             <mat-hint></mat-hint>
         </mat-form-field>
         <mat-form-field class="apellidos" appearance="standard">
             <mat-label>Nombre</mat-label>
-            <input matInput [(ngModel)]="nombre" placeholder="" name="nombre" type="text">
+            <input matInput [(ngModel)]="nombre" placeholder="{{usuario.nombre}}" name="nombre" type="text">
             <mat-hint></mat-hint>
         </mat-form-field>
         <mat-form-field class="apellidos" appearance="standard">
             <mat-label>Apellidos</mat-label>
-            <input matInput [(ngModel)]="usuario.apellidos" placeholder="" name="apellidos" type="text">
+            <input matInput [(ngModel)]="apellidos" placeholder="{{usuario.apellidos}}" name="apellidos" type="text">
             <mat-hint></mat-hint>
         </mat-form-field>
-        <button mat-raised-button class="boton2" (click)="actualizarUsuario(nombre)"> Confirmar</button>
+        <button mat-raised-button class="boton2" (click)="actualizarUsuario(nombre,apellidos,username)"> Confirmar</button>
     </form> 
 </div>

@@ -50,7 +50,7 @@ export class ServiceService {
   }
 
   actualizarUsuario(user: Usuario){
-    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/update/"+user.correo;
+    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/updateUser/"+user.correo;
     var myString = JSON.stringify(user);
     this.setUserLoggedIn(user);
     return this.http.put(UrlLog,myString,httpOptions);
