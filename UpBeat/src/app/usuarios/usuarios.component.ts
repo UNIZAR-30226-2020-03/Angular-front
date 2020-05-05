@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ServiceService } from '../Service/service.service';
+import { Usuario } from '../MODELO/Usuario';
 
 @Component({
   selector: 'app-usuarios',
@@ -8,17 +11,12 @@ import { Component, OnInit } from '@angular/core';
 export class UsuariosComponent implements OnInit {
 
   esAmigo=[true,false,true,false,true];
-  usuarios: string[]=[
-  "Amador Rivas - Mandanga Style",
-  "Eiffel 65 - Blue (Da Ba Dee)",
-  "KAROL G, Nicki Minaj - Tusa",
-  "DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B",
-  "Myke Towers - Diosa"
-  ];
+  usuarios: Usuario[];
 
-  constructor() { }
+  constructor(private router:Router, private service:ServiceService) { }
 
   ngOnInit(): void {
+    this.listarUsuarios();
   }
 
   actualizarUsuario(num){
@@ -28,6 +26,14 @@ export class UsuariosComponent implements OnInit {
     else{
       this.esAmigo[num] = true;
     }
+  }
+
+  listarUsuarios(): void{
+    this.service.listarUsuarios().subscribe(data => {
+      this.usuarios = data;
+      alert(data);
+      error: error => alert("Se ha producido un error");
+  })
   }
 
 }
