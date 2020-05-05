@@ -34,7 +34,9 @@ import { HttpClientModule } from'@angular/common/http';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { MatStepperModule } from '@angular/material/stepper';
 import { EcualizadorComponent } from './ecualizador/ecualizador.component';
-import { MessageService } from './Service/message.service';
+import { MessageService } from './Service/message.service';7
+import { MatRadioModule } from '@angular/material/radio';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { MessageService } from './Service/message.service';
     RegistroComponent,
     RegistroVipComponent,
     RecuperacionPasswordComponent,
-    EcualizadorComponent
+    EcualizadorComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { MessageService } from './Service/message.service';
     MatInputModule,
     HttpClientModule,
     MatSelectCountryModule,
-    MatStepperModule
+    MatStepperModule,
+    MatRadioModule
   ],
   providers: [ServiceService,MessageService],
   bootstrap: [AppComponent]

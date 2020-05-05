@@ -1,0 +1,7 @@
+.cancion{
+    display: table-cell;
+}
+
+.favorito{
+    display: inline-block;
+}

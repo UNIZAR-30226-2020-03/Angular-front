@@ -1,13 +1,16 @@
 <mat-toolbar color="primary" class="barrainferior">
     <mat-toolbar-row>
-       <button *ngIf="!volumenMin" mat-icon-button (click)="volumenAnterior=volumenActual;volumenActual=0;modificarVolumen(volumenActual)">
-           <mat-icon>volume_up</mat-icon>
-       </button>
-        <button *ngIf="volumenMin" mat-icon-button (click)="volumenActual=volumenAnterior;modificarVolumen(volumenActual)">
-           <mat-icon>volume_off</mat-icon>
-        </button>
-        <mat-slider [(ngModel)]="volumenActual" thumbLabel (change)="modificarVolumen(volumenActual)" min="0" max="100" step="1" value="50" color="primary"></mat-slider>
-        {{volumen}}
+        <div (mouseenter)="enter(1)" (mouseleave)="enter(0)">
+            <button *ngIf="!volumenMin" mat-icon-button (click)="volumenAnterior=volumenActual;volumenActual=0;modificarVolumen(volumenActual)">
+                <mat-icon>volume_up</mat-icon>
+             </button>
+             <button *ngIf="volumenMin" mat-icon-button (click)="volumenActual=volumenAnterior;modificarVolumen(volumenActual)">
+                <mat-icon>volume_off</mat-icon>
+             </button>
+             <div *ngIf="plus==1" class="vol2">
+                 <mat-slider [(ngModel)]="volumenActual" thumbLabel (change)="modificarVolumen(volumenActual)" min="0" max="100" step="1" value="50" color="primary"></mat-slider>
+             </div>
+        </div>
         <span class="cancionActual">Reproduciendo: {{cancionActual}}</span>
         <div class="play-pause">
             <button *ngIf="reproduciendo" mat-raised-button color="primary" (click)="pause()"><mat-icon>pause</mat-icon></button>

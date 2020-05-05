@@ -1,0 +1,30 @@
+.example-button-container {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    bottom: 95px;
+    right: 40px;
+}
+
+.container{
+    width: auto;
+    height: auto;
+}
+
+.buscar{
+    display: table-cell;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.boton{
+    left: 20px;
+    bottom: 4px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}

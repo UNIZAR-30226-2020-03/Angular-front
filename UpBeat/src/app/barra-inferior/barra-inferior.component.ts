@@ -18,6 +18,7 @@ export class BarraInferiorComponent implements OnInit {
   volumenAnterior=50;
   volumenMin: boolean = false;
   cancionActual: string = "No hay nada reproduciendo";
+  plus: number = 0;
 
   modificarVolumen(vol){
     this.volumen = vol;
@@ -46,6 +47,10 @@ export class BarraInferiorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  enter(n){
+    this.plus = n;
   }
 
 }

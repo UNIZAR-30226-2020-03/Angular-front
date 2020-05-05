@@ -1,1 +1,29 @@
-<p>buscar works!</p>
+<div *ngIf="modoVisualizacion==0" class="container">
+    <div class="buscar">
+        <mat-form-field appearance="outline">
+            <mat-label>¿Qué quieres buscar?</mat-label>
+            <input matInput placeholder="Mandanga Style">
+        </mat-form-field>
+        <button class="boton" mat-flat-button color="primary" (click)=cambiarModo(1)>Buscar</button>
+        <div>
+            <form>
+                <mat-radio-group [(ngModel)]="tipo" name="tipo">
+                    <mat-radio-button value="1">Usuarios</mat-radio-button>
+                    <mat-radio-button value="2">Canciones</mat-radio-button>
+                </mat-radio-group>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="modoVisualizacion==1" class="container">
+    <app-usuarios *ngIf="tipo==1"></app-usuarios>
+    <app-canciones *ngIf="tipo==2"></app-canciones>
+
+    <div class="example-button-container">
+        <button mat-fab color="primary" (click)=cambiarModo(0)>
+          <mat-icon>search</mat-icon>
+        </button>
+    </div>
+</div>
+
