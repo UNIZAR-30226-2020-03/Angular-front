@@ -75,4 +75,9 @@ export class ServiceService {
     return this.http.put(UrlLog,httpOptions);
   }
 
+  dejarDeSeguirUsuario(miCorreo, suCorreo):Observable<any>{
+    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/unfollow/"+miCorreo+"/"+suCorreo;
+    return this.http.put(UrlLog,httpOptions);
+  }
+
 }

@@ -20,15 +20,6 @@ export class UsuariosComponent implements OnInit {
     this.listarUsuarios();
   }
 
-  actualizarUsuario(num){
-    if(this.esAmigo[num]){
-      this.esAmigo[num] = false;
-    }
-    else{
-      this.esAmigo[num] = true;
-    }
-  }
-
   listarUsuarios(): void{
     this.service.listarUsuarios().subscribe(data => {
       this.usuarios = data;
@@ -52,6 +43,24 @@ export class UsuariosComponent implements OnInit {
         this.esAmigo[i] = false;
       }
     })
+  }
+
+  seguirUsuario(i,usuario): void{
+    this.service.seguirUsuario(this.usuarioActual,usuario).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      if(data == 0){
+        this.esAmigo[i] = true;
+      }
+  })
+  }
+
+  dejarDeSeguirUsuario(i,usuario): void{
+    this.service.dejarDeSeguirUsuario(this.usuarioActual,usuario).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      if(data == 0){
+        this.esAmigo[i] = false;
+      }
+  })
   }
 
 }

@@ -4,10 +4,10 @@
       <div class="cancion">
         <mat-list>
           <mat-action-list *ngFor="let usuario of usuarios; let indice=index">
-            <button *ngIf="esAmigo[indice]" mat-icon-button color="warn" (click)="actualizarUsuario(indice)">
+            <button *ngIf="esAmigo[indice]" mat-icon-button color="warn" (click)="dejarDeSeguirUsuario(indice,usuario.correo)">
               <mat-icon>group</mat-icon>
             </button>
-            <button *ngIf="!esAmigo[indice]" mat-icon-button color="black" (click)="actualizarUsuario(indice)">
+            <button *ngIf="!esAmigo[indice]" mat-icon-button color="black" (click)="seguirUsuario(indice,usuario.correo)">
               <mat-icon>person_add</mat-icon>
             </button>
             <div class="favorito">
