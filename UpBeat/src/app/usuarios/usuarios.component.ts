@@ -10,8 +10,9 @@ import { Usuario } from '../MODELO/Usuario';
 })
 export class UsuariosComponent implements OnInit {
 
-  esAmigo=[true,false,true,false,true];
+  esAmigo=[];
   usuarios: Usuario[];
+  usuarioActual: Usuario;
 
   constructor(private router:Router, private service:ServiceService) { }
 
@@ -31,9 +32,26 @@ export class UsuariosComponent implements OnInit {
   listarUsuarios(): void{
     this.service.listarUsuarios().subscribe(data => {
       this.usuarios = data;
-      alert(data);
       error: error => alert("Se ha producido un error");
+      var i = 0;
+      this.usuarioActual = this.service.getUserLoggedIn();
+      while(this.usuarios[i]!=null){
+        this.esMiAmigo(i,this.usuarioActual.correo,this.usuarios[i].correo);
+        i++;
+      }
   })
+  }
+
+  esMiAmigo(i,miCorreo,suCorreo): void{
+    this.service.esAmigo(miCorreo,suCorreo).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      if(data == 0){
+        this.esAmigo[i] = true;
+      }
+      else{   //data == 1 OR 2
+        this.esAmigo[i] = false;
+      }
+    })
   }
 
 }

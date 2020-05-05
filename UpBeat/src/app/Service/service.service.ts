@@ -44,7 +44,7 @@ export class ServiceService {
   }
 
   listarUsuarios():Observable<any>{
-    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/allUsuarios/";
+    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/allUsuarios";
     return this.http.get(UrlLog,httpOptions);
   }
 
@@ -63,6 +63,16 @@ export class ServiceService {
 
   getUserLoggedIn() {
   	return JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  esAmigo(miCorreo, suCorreo):Observable<any>{
+    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/following/"+miCorreo+"/"+suCorreo;
+    return this.http.get(UrlLog,httpOptions);
+  }
+
+  seguirUsuario(miCorreo, suCorreo):Observable<any>{
+    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/follow/"+miCorreo+"/"+suCorreo;
+    return this.http.put(UrlLog,httpOptions);
   }
 
 }

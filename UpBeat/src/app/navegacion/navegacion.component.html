@@ -32,7 +32,7 @@
     <app-inicio *ngIf="href=='/inicio'" (cancionActual)="selector1.actualizarCancionActual($event);selector2.play($event)"></app-inicio>
     <app-favoritos *ngIf="href=='/favoritos'" (cancionActual)="selector1.actualizarCancionActual($event);selector2.play($event)"></app-favoritos>
     <app-playlists-menu *ngIf="href=='/playlists'"></app-playlists-menu>
-    <app-buscar *ngIf="href=='/buscar'"></app-buscar>
+    <app-buscar *ngIf="href=='/buscar'" (cancionActual)="selector1.actualizarCancionActual($event);selector2.play($event)"></app-buscar>
     <app-cuenta *ngIf="href=='/cuenta'"></app-cuenta>
     <app-ecualizador *ngIf="href=='/ecualizador'"></app-ecualizador>
     <app-barra-inferior #selector1 (volumenBarra)="selector2.modificarVolumen($event)" (cancionEnReproduccion)="selector2.pauseplay($event)"></app-barra-inferior>

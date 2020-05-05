@@ -18,7 +18,7 @@
 
 <div *ngIf="modoVisualizacion==1" class="container">
     <app-usuarios *ngIf="tipo==1"></app-usuarios>
-    <app-canciones *ngIf="tipo==2"></app-canciones>
+    <app-canciones *ngIf="tipo==2" (cancion)="actualizarCancionActual($event)"></app-canciones>
 
     <div class="example-button-container">
         <button mat-fab color="primary" (click)=cambiarModo(0)>

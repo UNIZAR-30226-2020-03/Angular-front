@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-buscar',
@@ -9,6 +9,7 @@ export class BuscarComponent implements OnInit {
 
   modoVisualizacion = 0;
   tipo: number;
+  @Output() cancionActual = new EventEmitter<string>();
 
   constructor() { }
 
@@ -22,6 +23,10 @@ export class BuscarComponent implements OnInit {
     else if(modo == 0){
       this.modoVisualizacion = 0;
     }
+  }
+
+  actualizarCancionActual(nombre: string){
+    this.cancionActual.emit(nombre);
   }
 
 }

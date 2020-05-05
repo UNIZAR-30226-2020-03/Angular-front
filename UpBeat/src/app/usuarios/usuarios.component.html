@@ -5,14 +5,14 @@
         <mat-list>
           <mat-action-list *ngFor="let usuario of usuarios; let indice=index">
             <button *ngIf="esAmigo[indice]" mat-icon-button color="warn" (click)="actualizarUsuario(indice)">
-              <mat-icon>person_add</mat-icon>
+              <mat-icon>group</mat-icon>
             </button>
             <button *ngIf="!esAmigo[indice]" mat-icon-button color="black" (click)="actualizarUsuario(indice)">
               <mat-icon>person_add</mat-icon>
             </button>
             <div class="favorito">
               <button mat-list-item>
-                {{usuario.nombre}}
+                {{usuario.nombre}} {{usuario.apellidos}}
               </button>
             </div>
           </mat-action-list>
