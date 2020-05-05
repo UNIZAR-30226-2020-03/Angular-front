@@ -37,6 +37,7 @@ import { EcualizadorComponent } from './ecualizador/ecualizador.component';
 import { MessageService } from './Service/message.service';7
 import { MatRadioModule } from '@angular/material/radio';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     HttpClientModule,
     MatSelectCountryModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule
   ],
   providers: [ServiceService,MessageService],
   bootstrap: [AppComponent]
