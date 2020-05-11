@@ -57,8 +57,13 @@
   border-radius: 10px;
 }
 
-.equalizer {
+.subir_cancion {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+mat-icon{
+  margin-right:10px;
+  margin-bottom:2px;
 }

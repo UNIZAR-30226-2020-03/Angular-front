@@ -9,10 +9,8 @@ export class ReproductorComponent implements OnInit {
 
   constructor() { }
 
+  @Output() estado = new EventEmitter<string>();
   audio = new Audio();
-  @Output() cancionActual = new EventEmitter<string>();
-  @Output() reproduciendoCancion = new EventEmitter<boolean>();
-  @Output() volumenAudio = new EventEmitter();
 
   play(nombre: string){
     if(nombre == 'Amador Rivas - Mandanga Style'){
@@ -45,25 +43,33 @@ export class ReproductorComponent implements OnInit {
       this.audio.load();
       this.audio.play();
     }
-    this.cancionActual.emit(nombre);
-    this.reproduciendoCancion.emit(true);
+    this.audio.addEventListener('ended', function () {
+      this.play();
+    }, false);
+  }
+
+  playURL(URL: string){
+    this.audio.pause();
+    this.audio.src = URL;
+    this.audio.load();
+    this.audio.play();
+    this.audio.addEventListener('ended', function () {
+      this.play();
+    }, false);
   }
 
   pauseplay(b: boolean){
     if(b){
       this.audio.play();
-      this.reproduciendoCancion.emit(true);
     }
     else{
       this.audio.pause();
-      this.reproduciendoCancion.emit(false);
     }
   }
 
   modificarVolumen(volumen){
     volumen = volumen/100;
     this.audio.volume = volumen;
-    this.volumenAudio.emit(volumen);
   }
 
   ngOnInit(): void {

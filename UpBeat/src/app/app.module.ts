@@ -33,11 +33,15 @@ import { ServiceService }from './Service/service.service'
 import { HttpClientModule } from'@angular/common/http';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { MatStepperModule } from '@angular/material/stepper';
-import { EcualizadorComponent } from './ecualizador/ecualizador.component';
+import { UploadComponent } from './upload/upload.component';
 import { MessageService } from './Service/message.service';7
 import { MatRadioModule } from '@angular/material/radio';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from '../environments/environment';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -57,7 +61,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     RegistroComponent,
     RegistroVipComponent,
     RecuperacionPasswordComponent,
-    EcualizadorComponent,
+    UploadComponent,
     UsuariosComponent
   ],
   imports: [
@@ -79,7 +83,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectCountryModule,
     MatStepperModule,
     MatRadioModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+    ReactiveFormsModule
   ],
   providers: [ServiceService,MessageService],
   bootstrap: [AppComponent]
