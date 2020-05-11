@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay, isEmpty } from 'rxjs/operators';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Usuario } from '../MODELO/Usuario';
 import { ServiceService } from '../Service/service.service';
 import { Router } from '@angular/router';

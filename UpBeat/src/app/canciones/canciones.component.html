@@ -4,7 +4,7 @@
     <mat-card-subtitle>Lista de canciones reproducidas recientemente</mat-card-subtitle>
     <div class="cancion">
       <mat-list>
-        <mat-action-list *ngFor="let nombre of canciones; let indice=index">
+        <mat-action-list *ngFor="let cancion of cancionesBD; let indice=index">
           <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="actualizarFavorito(indice)">
             <mat-icon>favorite</mat-icon>
           </button>
@@ -12,8 +12,8 @@
             <mat-icon>favorite</mat-icon>
           </button>
           <div class="favorito">
-            <button mat-list-item (click)="play(nombre)">
-              {{nombre}}
+            <button mat-list-item (click)="play(indice)">
+              {{cancion.nombre}}
             </button>
           </div>
         </mat-action-list>
@@ -26,14 +26,14 @@
     <mat-card-subtitle>Lista de tus canciones favoritas</mat-card-subtitle>
     <div class="cancion">
       <mat-list>
-        <div *ngFor="let nombre of canciones; let indice=index">
+        <div *ngFor="let cancion of cancionesBD; let indice=index">
           <mat-action-list *ngIf="favoritos[indice]">
             <button mat-icon-button color="warn" (click)="actualizarFavorito(indice)">
               <mat-icon>favorite</mat-icon>
             </button>
             <div class="favorito">
-              <button mat-list-item (click)="play(nombre)">
-                {{nombre}}
+              <button mat-list-item (click)="play(indice)">
+                {{cancion.nombre}}
               </button>
             </div>
           </mat-action-list>

@@ -11,42 +11,6 @@ export class ReproductorComponent implements OnInit {
 
   audio = new Audio();
 
-  play(nombre: string){
-    if(nombre == 'Amador Rivas - Mandanga Style'){
-      this.audio.pause();
-      this.audio.src = "../../assets/audio/mandangaStyle.mp3";
-      this.audio.load();
-      this.audio.play();
-    }
-    else if(nombre == 'Eiffel 65 - Blue (Da Ba Dee)'){
-      this.audio.pause();
-      this.audio.src = "../../assets/audio/bluedabadee.mp3";
-      this.audio.load();
-      this.audio.play();
-    }
-    else if(nombre == 'KAROL G, Nicki Minaj - Tusa'){
-      this.audio.pause();
-      this.audio.src = "../../assets/audio/tusa.mp3";
-      this.audio.load();
-      this.audio.play();
-    }
-    else if(nombre == 'DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B'){
-      this.audio.pause();
-      this.audio.src = "../../assets/audio/takitaki.mp3";
-      this.audio.load();
-      this.audio.play();
-    }
-    else if(nombre == 'Myke Towers - Diosa'){
-      this.audio.pause();
-      this.audio.src = "../../assets/audio/diosa.mp3";
-      this.audio.load();
-      this.audio.play();
-    }
-    this.audio.addEventListener('ended', function () {
-      this.play();
-    }, false);
-  }
-
   playURL(URL: string){
     this.audio.pause();
     this.audio.src = URL;

@@ -69,7 +69,7 @@ export class UsuariosComponent implements OnInit {
       if(data == 0){
         this.esAmigo[i] = false;
         var mensaje = "Ya no eres amigo de "+usuario;
-          this.openSnackBar(mensaje, "OK");
+        this.openSnackBar(mensaje, "OK");
       }
   })
   }

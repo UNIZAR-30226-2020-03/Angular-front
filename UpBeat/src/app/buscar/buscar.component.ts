@@ -10,6 +10,7 @@ export class BuscarComponent implements OnInit {
   modoVisualizacion = 0;
   tipo: number;
   @Output() cancionActual = new EventEmitter<string>();
+  @Output() URL = new EventEmitter<string>();
 
   constructor() { }
 
@@ -27,6 +28,10 @@ export class BuscarComponent implements OnInit {
 
   actualizarCancionActual(nombre: string){
     this.cancionActual.emit(nombre);
+  }
+
+  play(URL: string){
+    this.URL.emit(URL);
   }
 
 }

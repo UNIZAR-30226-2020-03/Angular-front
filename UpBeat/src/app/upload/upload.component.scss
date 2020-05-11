@@ -8,6 +8,21 @@
     .contenedor-formulario {
       width: 400px;
     }
+
+    .boton{
+      background: #00bcd4;
+      height: 40px;
+    }
+
+    .boton:hover{
+      background: #1081ff;
+    }
+
+    .input{
+      height: 10px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
   
     .download {
       background: #1081ff;

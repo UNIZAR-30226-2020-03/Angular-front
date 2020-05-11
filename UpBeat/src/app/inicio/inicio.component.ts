@@ -8,11 +8,16 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class InicioComponent implements OnInit {
 
   @Output() cancionActual = new EventEmitter<string>();
+  @Output() URL = new EventEmitter<string>();
 
   constructor() { }
 
   actualizarCancionActual(nombre: string){
     this.cancionActual.emit(nombre);
+  }
+
+  play(URL: string){
+    this.URL.emit(URL);
   }
 
   ngOnInit(): void {

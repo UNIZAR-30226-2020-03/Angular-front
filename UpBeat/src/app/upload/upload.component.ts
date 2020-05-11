@@ -2,13 +2,24 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FirebaseStorageService } from '../firebase-storage.service';
 import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { StreamingService } from '../Service/streaming.service';
+import { Cancion } from '../MODELO/Cancion';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Usuario } from '../MODELO/Usuario';
+import { ServiceService } from '../Service/service.service';
 
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss']
+  styleUrls: ['./upload.component.scss','../../../node_modules/bulma/css/bulma.min.css']
 })
 export class UploadComponent{
+
+  nombre: string;
+  usuario: Usuario = new Usuario();
+
+  archivo: Cancion = new Cancion();
 
   @Output() cancion = new EventEmitter<string>();
   @Output() URL = new EventEmitter<string>();
@@ -25,7 +36,10 @@ export class UploadComponent{
   public finalizado = false;
 
   constructor (
-    private firebaseStorage: FirebaseStorageService
+    private firebaseStorage: FirebaseStorageService,
+    private router:Router, private serviceStreaming:StreamingService,
+    private _snackBar: MatSnackBar,
+    private serviceUsuario:ServiceService
   ) {}
 
   //Evento que se gatilla cuando el input de tipo archivo cambia
@@ -65,6 +79,7 @@ export class UploadComponent{
     let referencia = this.firebaseStorage.referenciaCloudStorage(this.nombreArchivo);
     referencia.getDownloadURL().subscribe((URL) => {
       this.URLPublica = URL;
+      this.crearArchivo();
     });
   }
 
@@ -72,6 +87,30 @@ export class UploadComponent{
     this.URL.emit(this.URLPublica);
     var cadena = this.nombreArchivo.split(".mp3");
     this.cancion.emit(cadena[0]);
+  }
+
+  crearArchivo(){
+    this.usuario = this.serviceUsuario.getUserLoggedIn();
+
+    this.archivo.nombre = this.nombre;
+    this.archivo.autor = this.usuario.correo;
+    this.archivo.path = this.URLPublica;
+    var myString = JSON.stringify(this.archivo);
+    this.subirCancionBD(this.archivo);
+  }
+
+  subirCancionBD(archivo: Cancion): void{
+    this.serviceStreaming.subirCancion(archivo).subscribe(data => {
+      error: error => alert("Se ha producido un error en el registro");
+      var mensaje = "El archivo ha sido subido correctamente";
+      this.openSnackBar(mensaje, "OK");
+  })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

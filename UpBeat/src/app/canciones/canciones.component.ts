@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { Cancion } from '../MODELO/Cancion';
+import { StreamingService } from '../Service/streaming.service';
 
 @Component({
   selector: 'app-canciones',
@@ -9,29 +11,36 @@ import { Router } from '@angular/router';
 export class CancionesComponent implements OnInit {
   
   @Output() cancion = new EventEmitter<string>();
+  @Output() URL = new EventEmitter<string>();
+
   favoritos=[true,false,true,false,true];
-  canciones: string[]=[
-  "Amador Rivas - Mandanga Style",
-  "Eiffel 65 - Blue (Da Ba Dee)",
-  "KAROL G, Nicki Minaj - Tusa",
-  "DJ Snake - Taki Taki ft. Selena Gomez, Ozuna, Cardi B",
-  "Myke Towers - Diosa"
-  ];
   modoVisualizacion: String = "recientes";
   
-  constructor(private router:Router) { }
+  cancionesBD: Cancion[];
 
-  play(nombre: string){
-    this.cancion.emit(nombre);
+  constructor(private router:Router, private service:StreamingService) { }
+
+  play(i: number){
+    this.URL.emit(this.cancionesBD[i].path);
+    this.cancion.emit(this.cancionesBD[i].nombre);
   }
 
   ngOnInit(): void {
+    this.listarCanciones();
+
     if(this.router.url === '/inicio'){
       this.modoComponente(0);
     }
     else if (this.router.url === '/favoritos'){
       this.modoComponente(1);
     }
+  }
+
+  listarCanciones(): void{
+    this.service.listarCanciones().subscribe(data => {
+      this.cancionesBD = data;
+      error: error => alert("Se ha producido un error en la identificación");
+  })
   }
 
   actualizarFavorito(num){
