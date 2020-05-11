@@ -9,7 +9,6 @@ export class ReproductorComponent implements OnInit {
 
   constructor() { }
 
-  @Output() estado = new EventEmitter<string>();
   audio = new Audio();
 
   play(nombre: string){
