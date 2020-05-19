@@ -1,6 +1,8 @@
 <mat-card>
-    <mat-card-title>Usuarios</mat-card-title>
-      <mat-card-subtitle>Lista de usuarios que coinciden con la búsqueda</mat-card-subtitle>
+    <mat-card-title *ngIf="modoVisualizacion=='buscar'">Usuarios</mat-card-title>
+    <mat-card-title *ngIf="modoVisualizacion=='amigos'">Mis amigos</mat-card-title>
+      <mat-card-subtitle *ngIf="modoVisualizacion=='buscar'">Lista de usuarios que coinciden con la búsqueda</mat-card-subtitle>
+      <mat-card-subtitle *ngIf="modoVisualizacion=='amigos'">Lista de usuarios que sigues</mat-card-subtitle>
       <div class="cancion">
         <mat-list>
           <mat-action-list *ngFor="let usuario of usuarios; let indice=index">

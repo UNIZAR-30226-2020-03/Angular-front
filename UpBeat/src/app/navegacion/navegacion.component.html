@@ -10,7 +10,10 @@
       <a mat-list-item routerLink="/playlists" (click)="actualizarRuta('/playlists')"><mat-icon aria-hidden="false">list</mat-icon>Playlists</a>
       <a mat-list-item routerLink="/buscar" (click)="actualizarRuta('/buscar')"><mat-icon aria-hidden="false">search</mat-icon>Buscar</a>
       <a mat-list-item routerLink="/cuenta" (click)="actualizarRuta('/cuenta')"><mat-icon aria-hidden="false">person</mat-icon>Cuenta</a>
-      <div class="subir_cancion"><a mat-list-item routerLink="/subirArchivo" (click)="actualizarRuta('/subirArchivo')"><mat-icon aria-hidden="false">cloud_upload</mat-icon>Subir archivo</a></div>
+      <div class="subir_cancion">
+        <a mat-list-item routerLink="/amigos" (click)="actualizarRuta('/amigos')"><mat-icon aria-hidden="false">people</mat-icon>Mis amigos</a>
+        <a mat-list-item routerLink="/subirArchivo" (click)="actualizarRuta('/subirArchivo')"><mat-icon aria-hidden="false">cloud_upload</mat-icon>Subir archivo</a>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -34,6 +37,7 @@
     <app-playlists-menu *ngIf="href=='/playlists'"></app-playlists-menu>
     <app-buscar *ngIf="href=='/buscar'" (cancionActual)="selector1.actualizarCancionActual($event)" (URL)="selector2.playURL($event)"></app-buscar>
     <app-cuenta *ngIf="href=='/cuenta'"></app-cuenta>
+    <app-amigos *ngIf="href=='/amigos'"></app-amigos>
     <app-upload *ngIf="href=='/subirArchivo'" (cancion)="selector1.actualizarCancionActual($event)" (URL)="selector2.playURL($event)"></app-upload>
     <app-barra-inferior #selector1 (volumenBarra)="selector2.modificarVolumen($event)" (cancionEnReproduccion)="selector2.pauseplay($event)"></app-barra-inferior>
     <app-reproductor #selector2></app-reproductor>

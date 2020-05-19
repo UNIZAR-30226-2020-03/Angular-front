@@ -43,6 +43,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AmigosComponent } from './amigos/amigos.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     RegistroVipComponent,
     RecuperacionPasswordComponent,
     UploadComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    AmigosComponent
   ],
   imports: [
     BrowserModule,

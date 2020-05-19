@@ -15,15 +15,45 @@ export class UsuariosComponent implements OnInit {
   usuarios: Usuario[];
   usuarioActual: Usuario;
 
+  modoVisualizacion: String;
+
   constructor(private router:Router, private service:ServiceService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.listarUsuarios();
     this.usuarioActual = this.service.getUserLoggedIn();
+    if(this.router.url === '/buscar'){
+      this.modoComponente(0);
+    }
+    else if (this.router.url === '/amigos'){
+      this.modoComponente(1);
+    }
+  }
+
+  modoComponente(mode){
+    if(mode == 0){
+      this.modoVisualizacion = "buscar";
+      this.listarUsuarios();
+    }
+    else if (mode == 1){
+      this.modoVisualizacion = "amigos";
+      this.listarUsuariosSiguiendo();
+    }
   }
 
   listarUsuarios(): void{
     this.service.listarUsuarios().subscribe(data => {
+      this.usuarios = data;
+      error: error => alert("Se ha producido un error");
+      var i = 0;
+      while(this.usuarios[i]!=null){
+        this.esMiAmigo(i,this.usuarioActual.correo,this.usuarios[i].correo);
+        i++;
+      }
+  })
+  }
+
+  listarUsuariosSiguiendo(): void{
+    this.service.listarUsuariosSiguiendo(this.usuarioActual.correo).subscribe(data => {
       this.usuarios = data;
       error: error => alert("Se ha producido un error");
       var i = 0;

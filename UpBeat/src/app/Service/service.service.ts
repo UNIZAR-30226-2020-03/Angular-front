@@ -44,7 +44,12 @@ export class ServiceService {
   }
 
   listarUsuarios():Observable<any>{
-    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/allUsuarios";
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/allClientes";
+    return this.http.get(UrlLog,httpOptions);
+  }
+
+  listarUsuariosSiguiendo(miCorreo):Observable<any>{
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/followingList/"+miCorreo;
     return this.http.get(UrlLog,httpOptions);
   }
 
@@ -66,17 +71,17 @@ export class ServiceService {
   }
 
   esAmigo(miCorreo, suCorreo):Observable<any>{
-    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/following/"+miCorreo+"/"+suCorreo;
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/following/"+miCorreo+"/"+suCorreo;
     return this.http.get(UrlLog,httpOptions);
   }
 
   seguirUsuario(miCorreo, suCorreo):Observable<any>{
-    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/follow/"+miCorreo+"/"+suCorreo;
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/follow/"+miCorreo+"/"+suCorreo;
     return this.http.put(UrlLog,httpOptions);
   }
 
   dejarDeSeguirUsuario(miCorreo, suCorreo):Observable<any>{
-    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/unfollow/"+miCorreo+"/"+suCorreo;
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/unfollow/"+miCorreo+"/"+suCorreo;
     return this.http.put(UrlLog,httpOptions);
   }
 
