@@ -2,7 +2,7 @@
     <div class="buscar">
         <mat-form-field appearance="outline">
             <mat-label>¿Qué quieres buscar?</mat-label>
-            <input matInput placeholder="Mandanga Style">
+            <input matInput [(ngModel)]="cadena" placeholder="Mandanga Style" name="cadena">
         </mat-form-field>
         <button class="boton" mat-flat-button color="primary" (click)=cambiarModo(1)>Buscar</button>
         <div>
@@ -17,8 +17,8 @@
 </div>
 
 <div *ngIf="modoVisualizacion==1" class="container">
-    <app-usuarios *ngIf="tipo==1"></app-usuarios>
-    <app-canciones *ngIf="tipo==2" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
+    <app-usuarios *ngIf="tipo==1" [cadenaBusqueda]="cadena"></app-usuarios>
+    <app-canciones *ngIf="tipo==2" [cadenaBusqueda]="cadena" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
 
     <div class="example-button-container">
         <button mat-fab color="primary" (click)=cambiarModo(0)>

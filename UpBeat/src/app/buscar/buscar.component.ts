@@ -11,6 +11,7 @@ export class BuscarComponent implements OnInit {
   tipo: number;
   @Output() cancionActual = new EventEmitter<string>();
   @Output() URL = new EventEmitter<string>();
+  cadena: String = "";
 
   constructor() { }
 

@@ -41,4 +41,26 @@
       </mat-list>
     </div>
   </div>
+
+  <div *ngIf="modoVisualizacion=='buscar'">
+    <mat-card-title>Canciones</mat-card-title>
+    <mat-card-subtitle>Lista de canciones que coinciden con la búsqueda</mat-card-subtitle>
+    <div class="cancion">
+      <mat-list>
+        <mat-action-list *ngFor="let cancion of cancionesBD; let indice=index">
+          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="actualizarFavorito(indice)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="actualizarFavorito(indice)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <div class="favorito">
+            <button mat-list-item (click)="play(indice)">
+              {{cancion.nombre}}
+            </button>
+          </div>
+        </mat-action-list>
+      </mat-list>
+    </div>
+  </div>
 </mat-card>

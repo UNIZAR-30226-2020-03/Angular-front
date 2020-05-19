@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cancion } from '../MODELO/Cancion';
 import { StreamingService } from '../Service/streaming.service';
@@ -18,6 +18,8 @@ export class CancionesComponent implements OnInit {
   
   cancionesBD: Cancion[];
 
+  @Input() cadenaBusqueda: string;
+
   constructor(private router:Router, private service:StreamingService) { }
 
   play(i: number){
@@ -26,20 +28,26 @@ export class CancionesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listarCanciones();
-
     if(this.router.url === '/inicio'){
       this.modoComponente(0);
     }
     else if (this.router.url === '/favoritos'){
       this.modoComponente(1);
     }
+    else if (this.router.url === '/buscar'){
+      this.modoComponente(2);
+    }
+
+    this.listarCanciones();
   }
 
   listarCanciones(): void{
     this.service.listarCanciones().subscribe(data => {
       this.cancionesBD = data;
-      error: error => alert("Se ha producido un error en la identificación");
+      if(this.modoVisualizacion == "buscar"){
+        this.buscar();
+      }
+      error: error => alert("Se ha producido un error");
   })
   }
 
@@ -58,6 +66,22 @@ export class CancionesComponent implements OnInit {
     }
     else if (mode == 1){
       this.modoVisualizacion = "favoritos";
+    }
+    else if (mode == 2){
+      this.modoVisualizacion = "buscar";
+    }
+  }
+
+  buscar(){
+    var cadenaBusqueda = this.cadenaBusqueda.toLowerCase();
+    var i = 0;
+    while(this.cancionesBD[i]!=null){
+      var cancionTitulo = this.cancionesBD[i].nombre;
+      var cancionComprobacion = cancionTitulo.toLowerCase();
+      if (!cancionComprobacion.includes(cadenaBusqueda)){
+        this.cancionesBD.splice(i, 1);
+      }
+      else i++;
     }
   }
 

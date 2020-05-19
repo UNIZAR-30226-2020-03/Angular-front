@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceService } from '../Service/service.service';
 import { Usuario } from '../MODELO/Usuario';
@@ -16,6 +16,8 @@ export class UsuariosComponent implements OnInit {
   usuarioActual: Usuario;
 
   modoVisualizacion: String;
+
+  @Input() cadenaBusqueda: string;
 
   constructor(private router:Router, private service:ServiceService, private _snackBar: MatSnackBar) { }
 
@@ -45,6 +47,7 @@ export class UsuariosComponent implements OnInit {
       this.usuarios = data;
       error: error => alert("Se ha producido un error");
       var i = 0;
+      this.buscar();
       while(this.usuarios[i]!=null){
         this.esMiAmigo(i,this.usuarioActual.correo,this.usuarios[i].correo);
         i++;
@@ -102,6 +105,21 @@ export class UsuariosComponent implements OnInit {
         this.openSnackBar(mensaje, "OK");
       }
   })
+  }
+
+  buscar(){
+    var cadenaBusqueda = this.cadenaBusqueda.toLowerCase();
+    var i = 0;
+    while(this.usuarios[i]!=null){
+      var usuarioNombre = this.usuarios[i].nombre;
+      var usuarioApellidos = this.usuarios[i].apellidos;
+      var usuarioComprobacion = usuarioNombre.concat(" ",usuarioApellidos);
+      usuarioComprobacion = usuarioComprobacion.toLowerCase();
+      if (!usuarioComprobacion.includes(cadenaBusqueda)){
+        this.usuarios.splice(i, 1);
+      }
+      else i++;
+    }
   }
 
   openSnackBar(message: string, action: string) {
