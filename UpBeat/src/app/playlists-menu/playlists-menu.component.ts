@@ -51,5 +51,15 @@ export class PlaylistsMenuComponent implements OnInit {
 })
 export class popUp {
 
-    titulo : String;
+  constructor(private router:Router, private service:ServiceService,public dialog: MatDialog) { }
+
+
+  titulo : String;
+
+  crearPlaylist(titulo : String){
+
+  this.service.obtenerIdPlaylist(titulo).subscribe(data=>{
+      error: error => alert("Se ha producido un error al actualizar datos");
+    })
+  }
 }

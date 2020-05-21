@@ -85,4 +85,10 @@ export class ServiceService {
     return this.http.put(UrlLog,httpOptions);
   }
 
+  obtenerIdPlaylist(titulo){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/save/";
+    var myString = JSON.stringify(titulo);
+    return this.http.post(UrlLog,myString,httpOptions);
+  }
+
 }
