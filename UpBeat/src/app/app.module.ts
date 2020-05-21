@@ -21,7 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
 import { BarraInferiorComponent } from './barra-inferior/barra-inferior.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
-import { PlaylistsMenuComponent } from './playlists-menu/playlists-menu.component';
+import { PlaylistsMenuComponent, popUp } from './playlists-menu/playlists-menu.component';
 import { BuscarComponent } from './buscar/buscar.component';
 import { CuentaComponent } from './cuenta/cuenta.component';
 import { LoginComponent } from './login/login.component';
@@ -44,6 +44,8 @@ import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AmigosComponent } from './amigos/amigos.component';
+import {MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import { AmigosComponent } from './amigos/amigos.component';
     RecuperacionPasswordComponent,
     UploadComponent,
     UsuariosComponent,
-    AmigosComponent
+    AmigosComponent,
+    popUp,
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,8 @@ import { AmigosComponent } from './amigos/amigos.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     ReactiveFormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule
   ],
   providers: [ServiceService,MessageService],
   bootstrap: [AppComponent]

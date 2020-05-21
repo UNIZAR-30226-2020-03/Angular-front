@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Crear PlayList</h2>
+<mat-dialog-content class="mat-typography">
+  <form>
+    <mat-form-field class="formEstandar" appearance="standard">
+      <mat-label>Título</mat-label>
+      <input matInput [(ngModel)]="titulo" placeholder="Escriba el título de la PlayList" name="titulo" type="text">
+      <mat-hint></mat-hint>
+  </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Crear</button>
+</mat-dialog-actions>
