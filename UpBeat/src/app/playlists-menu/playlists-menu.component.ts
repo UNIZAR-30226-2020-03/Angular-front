@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Cancion } from '../MODELO/Cancion';
 import { StreamingService } from '../Service/streaming.service';
 import { MatDialog, MatDialogModule, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+import { Playlist } from '../MODELO/Playlist';
 
 @Component({
   selector: 'app-playlists-menu',
@@ -53,12 +54,11 @@ export class popUp {
 
   constructor(private router:Router, private service:ServiceService,public dialog: MatDialog) { }
 
+  playlist : Playlist = new Playlist();
 
-  titulo : String;
+  crearPlaylist(){
 
-  crearPlaylist(titulo : String){
-
-  this.service.obtenerIdPlaylist(titulo).subscribe(data=>{
+  this.service.crearPlaylist(this.playlist).subscribe(data=>{
       error: error => alert("Se ha producido un error al actualizar datos");
     })
   }

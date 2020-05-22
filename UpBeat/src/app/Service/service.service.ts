@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../MODELO/Usuario';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Playlist } from '../MODELO/Playlist';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -85,10 +86,15 @@ export class ServiceService {
     return this.http.put(UrlLog,httpOptions);
   }
 
-  obtenerIdPlaylist(titulo){
+  crearPlaylist(playlist : Playlist){
     var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/save/";
-    var myString = JSON.stringify(titulo);
-    return this.http.post(UrlLog,myString,httpOptions);
+    var myString = JSON.stringify(playlist);
+    console.log(myString);
+    var response = this.http.post(UrlLog,myString,httpOptions);
+    console.log(response);
+    return response;
+    
+    ///cliente/createPlaylist/miCorreo/idPlaylist
   }
 
 }
