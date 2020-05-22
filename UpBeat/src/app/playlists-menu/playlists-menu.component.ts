@@ -25,7 +25,7 @@ export class PlaylistsMenuComponent implements OnInit {
   }
 
   play(i: number){
-    this.URL.emit(this.cancionesBD[i].path);
+    this.URL.emit(this.cancionesBD[i].pathMp3);
     this.cancion.emit(this.cancionesBD[i].nombre);
   }
 

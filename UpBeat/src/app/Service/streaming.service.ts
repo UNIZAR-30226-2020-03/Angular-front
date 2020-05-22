@@ -25,7 +25,33 @@ export class StreamingService {
     return this.http.post<any>(this.UrlSubida,myString,httpOptions);
   }
 
+  subirAutor(autor: string, idCancion: number):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/artista/createSong/"+autor+"/"+idCancion;
+    return this.http.put<any>(url,httpOptions);
+  }
+
   listarCanciones():Observable<any>{
     return this.http.get(this.UrlAllSongs,httpOptions);
   }
+
+  marcarFavorito(autor: string, idCancion: number):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/favSong/"+autor+"/"+idCancion;
+    return this.http.put<any>(url,httpOptions);
+  }
+
+  listarFavoritos(correo: string):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/songsFavPlaylist/"+correo;
+    return this.http.get(url,httpOptions);
+  }
+
+  desmarcarFavorito(autor: string, idCancion: number):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/eliminateFavSong/"+autor+"/"+idCancion;
+    return this.http.put<any>(url,httpOptions);
+  }
+
+  esFavorito(autor: string, idCancion: number):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/markFavSong/"+autor+"/"+idCancion;
+    return this.http.get(url,httpOptions);
+  }
+  
 }

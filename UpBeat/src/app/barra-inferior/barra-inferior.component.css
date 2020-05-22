@@ -17,9 +17,13 @@
 }
 
 mat-slider {
-    width: 150px;
+    width: 200px;
 }
 
 .vol2{
     display: inline-block;
+}
+
+.barraVolumen{
+    margin-left: 50px;
 }

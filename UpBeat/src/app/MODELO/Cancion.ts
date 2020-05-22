@@ -1,6 +1,9 @@
 export class Cancion{
+    id: number;
     nombre: string;
-    autor: string;
-    path: string;
-    song: string = " ";
+    pathMp3: string;
+    pathImg: string;
+    duracion: number;
+    fecha: string;
+    reproducciones: number;
 }

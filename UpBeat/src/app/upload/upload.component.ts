@@ -90,18 +90,22 @@ export class UploadComponent{
   }
 
   crearArchivo(){
-    this.usuario = this.serviceUsuario.getUserLoggedIn();
-
     this.archivo.nombre = this.nombre;
-    this.archivo.autor = this.usuario.correo;
-    this.archivo.path = this.URLPublica;
-    var myString = JSON.stringify(this.archivo);
+    this.archivo.pathMp3 = this.URLPublica;
     this.subirCancionBD(this.archivo);
   }
 
   subirCancionBD(archivo: Cancion): void{
     this.serviceStreaming.subirCancion(archivo).subscribe(data => {
-      error: error => alert("Se ha producido un error en el registro");
+      error: error => alert("Se ha producido un error");
+      this.subirAutorBD(data);
+  })
+  }
+
+  subirAutorBD(archivo: Cancion): void{
+    this.usuario = this.serviceUsuario.getUserLoggedIn();
+    this.serviceStreaming.subirAutor(this.usuario.correo,archivo.id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
       var mensaje = "El archivo ha sido subido correctamente";
       this.openSnackBar(mensaje, "OK");
   })

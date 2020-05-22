@@ -5,10 +5,10 @@
     <div class="cancion">
       <mat-list>
         <mat-action-list *ngFor="let cancion of cancionesBD; let indice=index">
-          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="actualizarFavorito(indice)">
+          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)">
             <mat-icon>favorite</mat-icon>
           </button>
-          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="actualizarFavorito(indice)">
+          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)">
             <mat-icon>favorite</mat-icon>
           </button>
           <div class="favorito">
@@ -27,8 +27,11 @@
     <div class="cancion">
       <mat-list>
         <div *ngFor="let cancion of cancionesBD; let indice=index">
-          <mat-action-list *ngIf="favoritos[indice]">
-            <button mat-icon-button color="warn" (click)="actualizarFavorito(indice)">
+          <mat-action-list>
+            <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)">
+              <mat-icon>favorite</mat-icon>
+            </button>
+            <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)">
               <mat-icon>favorite</mat-icon>
             </button>
             <div class="favorito">
@@ -48,10 +51,10 @@
     <div class="cancion">
       <mat-list>
         <mat-action-list *ngFor="let cancion of cancionesBD; let indice=index">
-          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="actualizarFavorito(indice)">
+          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)">
             <mat-icon>favorite</mat-icon>
           </button>
-          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="actualizarFavorito(indice)">
+          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)">
             <mat-icon>favorite</mat-icon>
           </button>
           <div class="favorito">

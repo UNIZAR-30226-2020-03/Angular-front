@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-reproductor',
@@ -7,7 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReproductorComponent implements OnInit {
 
+  @Output() tiempoCancionRelativa = new EventEmitter();
+  @Output() tiempoCancionAbsoluta = new EventEmitter();
+
   constructor() { }
+
+  ngOnInit(): void {
+    this.audio.volume = 0.5;
+    setInterval(() => {
+      this.tiempoCancionRelativa.emit((this.audio.currentTime/this.audio.duration)*100);
+      this.tiempoCancionAbsoluta.emit(Math.trunc(this.audio.currentTime));
+    }, 1000);
+  }
 
   audio = new Audio();
 
@@ -35,8 +46,9 @@ export class ReproductorComponent implements OnInit {
     this.audio.volume = volumen;
   }
 
-  ngOnInit(): void {
-    this.audio.volume = 0.5;
+  modificarTiempo(tiempo){
+    tiempo = tiempo/100;
+    this.audio.currentTime = this.audio.duration * tiempo;
   }
 
 }
