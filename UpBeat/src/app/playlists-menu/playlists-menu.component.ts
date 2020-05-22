@@ -43,6 +43,13 @@ export class PlaylistsMenuComponent implements OnInit {
     });
   }
 
+  obtenerPlaylists(){
+
+    return this.service.misPlaylists(this.usuario.correo).subscribe(data=>{
+      error: error => alert("Se ha producido un error al actualizar datos");
+    });
+  }
+
 }
 
 
@@ -58,8 +65,6 @@ export class popUp {
 
   crearPlaylist(){
 
-  this.service.crearPlaylist(this.playlist).subscribe(data=>{
-      error: error => alert("Se ha producido un error al actualizar datos");
-    })
+  this.service.crearPlaylist(this.playlist);
   }
 }
