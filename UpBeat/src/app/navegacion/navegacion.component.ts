@@ -15,6 +15,7 @@ export class NavegacionComponent implements OnInit{
 
   href: string;
   usuario: Usuario = new Usuario();
+  artista: boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -26,6 +27,11 @@ export class NavegacionComponent implements OnInit{
 
   ngOnInit(){
     this.href = "/inicio";
+    this.usuario = this.service.getUserLoggedIn();
+    setTimeout(() => {
+      this.esArtista();
+    }, 1000);
+    
   }
 
   actualizarRuta(ruta: string){
@@ -33,8 +39,16 @@ export class NavegacionComponent implements OnInit{
   }
 
   getNombreUsuario(){
-    this.usuario = this.service.getUserLoggedIn();
     return this.usuario.nombre;
+  }
+
+  esArtista(): void{
+    this.service.esArtista(this.usuario.correo).subscribe(data => {
+      if(data != null){
+        this.artista = true;
+      }
+      error: error => alert("Se ha producido un error");
+  })
   }
 
 }

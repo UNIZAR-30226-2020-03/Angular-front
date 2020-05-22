@@ -10,6 +10,12 @@ const httpOptions = {
   })
 };
 
+const httpOptions2 = {
+  headers: new HttpHeaders({
+    'Content-Type': 'text/plain'
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -52,6 +58,11 @@ export class StreamingService {
   esFavorito(autor: string, idCancion: number):Observable<any>{
     var url = "https://upbeatproyect.herokuapp.com/cliente/markFavSong/"+autor+"/"+idCancion;
     return this.http.get(url,httpOptions);
+  }
+
+  reproducirCancionId(idCancion: number):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cancion/getStreamUrlMp3byId/"+idCancion;
+    return this.http.get(url,httpOptions2);
   }
   
 }

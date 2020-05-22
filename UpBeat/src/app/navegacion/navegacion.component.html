@@ -12,7 +12,7 @@
       <a mat-list-item routerLink="/cuenta" (click)="actualizarRuta('/cuenta')"><mat-icon aria-hidden="false">person</mat-icon>Cuenta</a>
       <div class="subir_cancion">
         <a mat-list-item routerLink="/amigos" (click)="actualizarRuta('/amigos')"><mat-icon aria-hidden="false">people</mat-icon>Mis amigos</a>
-        <a mat-list-item routerLink="/subirArchivo" (click)="actualizarRuta('/subirArchivo')"><mat-icon aria-hidden="false">cloud_upload</mat-icon>Subir archivo</a>
+        <a mat-list-item *ngIf="artista" routerLink="/subirArchivo" (click)="actualizarRuta('/subirArchivo')"><mat-icon aria-hidden="false">cloud_upload</mat-icon>Subir archivo</a>
       </div>
     </mat-nav-list>
   </mat-sidenav>

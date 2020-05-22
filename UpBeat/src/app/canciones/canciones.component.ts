@@ -28,6 +28,7 @@ export class CancionesComponent implements OnInit {
   constructor(private router:Router, private service:StreamingService, private serviceUser:ServiceService, private _snackBar: MatSnackBar) { }
 
   play(i: number){
+    this.reproducirCanconId(this.cancionesBD[i].id)
     this.URL.emit(this.cancionesBD[i].pathMp3);
     this.cancion.emit(this.cancionesBD[i].nombre);
   }
@@ -60,6 +61,12 @@ export class CancionesComponent implements OnInit {
     }
   }
 
+  reproducirCanconId(id: number): void{
+    this.service.reproducirCancionId(id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+    })
+  }
+
   listarCanciones(): void{
     this.service.listarCanciones().subscribe(data => {
       this.cancionesBD = data;
@@ -72,7 +79,7 @@ export class CancionesComponent implements OnInit {
         this.esFavorito(i,this.usuarioActual.correo,this.cancionesBD[i].id);
         i++;
       }
-  })
+    })
   }
 
   listarCancionesFavoritas(): void{
