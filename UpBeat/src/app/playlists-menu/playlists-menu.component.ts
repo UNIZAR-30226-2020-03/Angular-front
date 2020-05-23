@@ -48,7 +48,6 @@ export class PlaylistsMenuComponent implements OnInit {
 
     this.service.misPlaylists().subscribe(data => {
       this.playlistsBD = data;
-      console.log(this.playlistsBD);
       error: error => alert("Se ha producido un error");
     })
   }
@@ -57,7 +56,6 @@ export class PlaylistsMenuComponent implements OnInit {
 
     this.service.listarTodasPlaylists().subscribe(data => {
       this.allPlaylistsBD = data;
-      console.log(this.allPlaylistsBD);
       error: error => alert("Se ha producido un error");
     })
   }
@@ -74,13 +72,23 @@ export class popUp {
   constructor(private router:Router ,private service:ServiceService,public dialog: MatDialog) { }
 
   playlist : Playlist = new Playlist();
+  idPlaylist : String;
 
   crearPlaylist(){
     if (this.playlist.nombre != null){
-      this.service.crearPlaylist(this.playlist);
+      this.service.obtenerIdPlaylist(this.playlist).subscribe(data =>{
+        this.idPlaylist = data["id"];
+        this.crearPlaylistAux(this.idPlaylist);
+      });;
     }
     else{
       alert("El nombre de la playlist no puede ser vacío");
     }
+  }
+
+  crearPlaylistAux(idPlaylist){
+    this.service.crearPlaylist(idPlaylist).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+    })
   }
 }
