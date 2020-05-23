@@ -1,36 +1,26 @@
 <mat-card>
-    <mat-card-title>Playlists</mat-card-title>
-    <mat-card-subtitle>Puedes empezar con una de estas selecciones</mat-card-subtitle>
-
-    <mat-card class="example-card">
+  <mat-card-title class="cabecera">Playlists</mat-card-title>
+  <mat-card-subtitle>Puedes empezar por estas playlists creadas por otros usuarios</mat-card-subtitle>
+  <div class="cdk-virtual-scroll-data-source-example">
+    <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
+      <mat-card *cdkVirtualFor="let playlist of allPlaylistsBD" class="cardScroll">
         <mat-card-header>
-          <mat-card-title>DJ Torres & Like Party Vol.3</mat-card-title>
-          <mat-card-subtitle>Sergio Torres</mat-card-subtitle>
+          <mat-card-title>{{playlist.nombre}}</mat-card-title>
+          <mat-card-subtitle>Autor</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="../../assets/playlist1.PNG" alt="DJ Torres & Like Party Vol.3">
-        <mat-card-content>
+        <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
+        <mat-card-content class="descripcion">
           <p>
-            Tu lista del verano 2019
+            {{playlist.descripcion}}
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button>ESCUCHAR</button>
-        </mat-card-actions>
-    </mat-card>
-    <mat-card class="example-card">
-        <mat-card-header>
-          <mat-card-title>DJ Torres & Like Classic</mat-card-title>
-          <mat-card-subtitle>Sergio Torres</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="../../assets/playlist2.PNG" alt="DJ Torres & Like Party Vol.3">
-        <mat-card-content>
-          <p>
-            Tu lista de clásicos del Dance
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>ESCUCHAR</button>
-        </mat-card-actions>
-    </mat-card>
-
+          <button mat-button>
+            <mat-icon>favorite</mat-icon>
+          </button>
+         </mat-card-actions>
+      </mat-card>
+    </cdk-virtual-scroll-viewport>
+  </div>
   </mat-card>
+  <mat-divider></mat-divider>

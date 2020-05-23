@@ -14,10 +14,26 @@
 
 
 }
-.playlists {
+
+.card{
+    max-height: 300px;
     max-width: 200px;
     margin-bottom: 20px;
     margin-left: 10px;
     margin-top: 20px;
     display: inline-block;
+
+}
+
+.descripcion{
+    min-height: 20px;
+}
+
+.imagen{
+    background-size: cover;
+}
+
+.fondo{
+    margin-bottom: 120px;
+    margin-top: 20px;
 }
