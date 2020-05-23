@@ -94,21 +94,21 @@ export class ServiceService {
   idPlaylist : String;
   crearPlaylist(playlist : Playlist){
     
-    var UrlLog = "http://upbeatproyect.herokuapp.com/cliente/createPlaylist/";
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/createPlaylist/";
     this.usserLogged = this.getUserLoggedIn();
-
-    return this.obtenerIdPlaylist(playlist).subscribe(data =>{
-      this.idPlaylist = data["id"];
-      UrlLog = UrlLog+this.usserLogged.correo+"/"+this.idPlaylist;
-      console.log(UrlLog);
-      this.http.put(UrlLog,httpOptions);
-    });
+    this.obtenerIdPlaylist(playlist);
+    return this.http.put(UrlLog+this.usserLogged.correo+"/"+this.idPlaylist,httpOptions);
   }
 
   obtenerIdPlaylist(playlist : Playlist){
+
     var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/save/";
     var myString = JSON.stringify(playlist);
-    return this.http.post(UrlLog,myString,httpOptions);
+    return this.http.post(UrlLog,myString,httpOptions).subscribe(data =>{
+      this.idPlaylist = data["id"];
+      return this.idPlaylist;
+    });
+   
   }
 
   misPlaylists(){
@@ -120,7 +120,7 @@ export class ServiceService {
   }
 
   listarTodasPlaylists(){
-    var UrlLog = "http://upbeatproyect.herokuapp.com/playlist/allPlaylists";
+    var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/allPlaylists";
     return this.http.get<Playlist[]>(UrlLog,httpOptions);
   }
 
