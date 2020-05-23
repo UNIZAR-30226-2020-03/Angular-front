@@ -91,32 +91,37 @@ export class ServiceService {
     return this.http.put(UrlLog,httpOptions);
   }
 
+  idPlaylist : String;
   crearPlaylist(playlist : Playlist){
     
-    var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/save/";
-    var UrlLog2 = "http://upbeatproyect.herokuapp.com/cliente/createPlaylist";
-    var myString = JSON.stringify(playlist);
-    var idPlaylist;
+    var UrlLog = "http://upbeatproyect.herokuapp.com/cliente/createPlaylist/";
     this.usserLogged = this.getUserLoggedIn();
 
-    var response = this.http.post(UrlLog,myString,httpOptions).subscribe(data =>{
-      console.log(data);
-      idPlaylist = data["id"];
-      return idPlaylist;
+    return this.obtenerIdPlaylist(playlist).subscribe(data =>{
+      this.idPlaylist = data["id"];
+      UrlLog = UrlLog+this.usserLogged.correo+"/"+this.idPlaylist;
+      console.log(UrlLog);
+      this.http.put(UrlLog,httpOptions);
     });
-  
-    this.http.put(UrlLog2+this.usserLogged.correo+response,httpOptions);
-    
-   
-    return response;
-    
-    ///cliente/createPlaylist/miCorreo/idPlaylist
   }
 
-  misPlaylists(correo){
+  obtenerIdPlaylist(playlist : Playlist){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/save/";
+    var myString = JSON.stringify(playlist);
+    return this.http.post(UrlLog,myString,httpOptions);
+  }
 
-    var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/allPlaylists"
-    return this.http.get(UrlLog);
+  misPlaylists(){
+
+    this.usserLogged = this.getUserLoggedIn();
+    console.log(this.usserLogged);
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/myPlaylists/"+this.usserLogged.correo;
+    return this.http.get<Playlist[]>(UrlLog,httpOptions);
+  }
+
+  listarTodasPlaylists(){
+    var UrlLog = "http://upbeatproyect.herokuapp.com/playlist/allPlaylists";
+    return this.http.get<Playlist[]>(UrlLog,httpOptions);
   }
 
 }

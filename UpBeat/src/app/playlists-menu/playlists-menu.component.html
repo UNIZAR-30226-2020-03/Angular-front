@@ -3,7 +3,32 @@
       <button mat-raised-button class = "crear" (click)="openDialog()">Crear una playlist</button>
     </mat-card-title>
     <mat-divider></mat-divider>
-
+    <div class="playlist">
+      <mat-list>
+        <mat-action-list *ngFor="let playlist of playlistsBD; let indice=index">
+          <div>
+            <button mat-list-item>
+              {{playlist.nombre}}
+            </button>
+          </div>
+        </mat-action-list>
+      </mat-list>
+    </div>
+    <mat-card-title class="cabecera">Todas playlists</mat-card-title>
+    <mat-divider></mat-divider>
+    <div class="playlist">
+      <mat-list>
+        <mat-action-list *ngFor="let playlist of allPlaylistsBD; let indice=index">
+          <div>
+            <button mat-list-item>
+              {{playlist.nombre}}
+            </button>
+          </div>
+        </mat-action-list>
+      </mat-list>
+    </div>
+  </mat-card>
+  <mat-divider></mat-divider>
     <mat-card class="playlists">
         <mat-card-header>
           <mat-card-title>playlist1</mat-card-title>
@@ -25,7 +50,4 @@
       </mat-card-actions>
   </mat-card>
 
-</mat-card>
-  <mat-divider></mat-divider>
-
-  {{obtenerPlaylists()}}
+    

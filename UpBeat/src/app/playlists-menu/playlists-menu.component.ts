@@ -19,16 +19,17 @@ export class PlaylistsMenuComponent implements OnInit {
   @Output() URL = new EventEmitter<string>();
 
   usuario : Usuario = new Usuario();
-  cancionesBD: Cancion[];
+  playlistsBD: Playlist[];
+  allPlaylistsBD: Playlist[];
+
   constructor(private router:Router, private service:ServiceService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.obtenerPlaylists();
+    this.obtenerTodasPlaylists();
+
   }
 
-  play(i: number){
-    this.URL.emit(this.cancionesBD[i].pathMp3);
-    this.cancion.emit(this.cancionesBD[i].nombre);
-  }
 
   getNombreUsuario(){
     this.usuario = this.service.getUserLoggedIn();
@@ -45,9 +46,20 @@ export class PlaylistsMenuComponent implements OnInit {
 
   obtenerPlaylists(){
 
-    return this.service.misPlaylists(this.usuario.correo).subscribe(data=>{
-      error: error => alert("Se ha producido un error al actualizar datos");
-    });
+    this.service.misPlaylists().subscribe(data => {
+      this.playlistsBD = data;
+      console.log(this.playlistsBD);
+      error: error => alert("Se ha producido un error");
+    })
+  }
+
+  obtenerTodasPlaylists(){
+
+    this.service.listarTodasPlaylists().subscribe(data => {
+      this.allPlaylistsBD = data;
+      console.log(this.allPlaylistsBD);
+      error: error => alert("Se ha producido un error");
+    })
   }
 
 }
@@ -59,12 +71,16 @@ export class PlaylistsMenuComponent implements OnInit {
 })
 export class popUp {
 
-  constructor(private router:Router, private service:ServiceService,public dialog: MatDialog) { }
+  constructor(private router:Router ,private service:ServiceService,public dialog: MatDialog) { }
 
   playlist : Playlist = new Playlist();
 
   crearPlaylist(){
-
-  this.service.crearPlaylist(this.playlist);
+    if (this.playlist.nombre != null){
+      this.service.crearPlaylist(this.playlist);
+    }
+    else{
+      alert("El nombre de la playlist no puede ser vacío");
+    }
   }
 }
