@@ -7,6 +7,7 @@ import { Cancion } from '../MODELO/Cancion';
 import { StreamingService } from '../Service/streaming.service';
 import { MatDialog, MatDialogModule, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 import { Playlist } from '../MODELO/Playlist';
+import { CancionesComponent } from '../canciones/canciones.component';
 
 @Component({
   selector: 'app-playlists-menu',
@@ -22,13 +23,18 @@ export class PlaylistsMenuComponent implements OnInit {
   playlistsBD: Playlist[];
   allPlaylistsBD: Playlist[];
   allAutores : Usuario[];
-
+  cancionesPL : Cancion [];
+  playEnRepro : Playlist;
+  
   constructor(private router:Router, private service:ServiceService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.obtenerPlaylists();
   }
 
+  play(idSong){
+
+  }
 
   getNombreUsuario(){
     this.usuario = this.service.getUserLoggedIn();
@@ -73,6 +79,15 @@ export class PlaylistsMenuComponent implements OnInit {
     this.service.infoPlaylist(idPlaylist).subscribe(data => {
       var aux = data["creador"];
       console.log(data);
+      error: error => alert("Se ha producido un error");
+    })
+  }
+
+  listarCancionesPlaylist(playlist : Playlist){
+    this.playEnRepro = playlist;
+    this.service.listarCancionesPlaylist(playlist.id).subscribe(data => {
+      this.cancionesPL = data;
+
       error: error => alert("Se ha producido un error");
     })
   }

@@ -12,6 +12,7 @@
       <a mat-list-item routerLink="/cuenta" (click)="actualizarRuta('/cuenta')"><mat-icon aria-hidden="false">person</mat-icon>Cuenta</a>
       <div class="subir_cancion">
         <a mat-list-item routerLink="/amigos" (click)="actualizarRuta('/amigos')"><mat-icon aria-hidden="false">people</mat-icon>Mis amigos</a>
+        <a mat-list-item *ngIf="artista" routerLink="/albumes" (click)="actualizarRuta('/albumes')"><mat-icon aria-hidden="false">album</mat-icon>Crear álbum</a>
         <a mat-list-item *ngIf="artista" routerLink="/subirArchivo" (click)="actualizarRuta('/subirArchivo')"><mat-icon aria-hidden="false">cloud_upload</mat-icon>Subir archivo</a>
       </div>
     </mat-nav-list>
@@ -38,6 +39,7 @@
     <app-buscar *ngIf="href=='/buscar'" (cancionActual)="selector1.actualizarCancionActual($event)" (URL)="selector2.playURL($event)"></app-buscar>
     <app-cuenta *ngIf="href=='/cuenta'"></app-cuenta>
     <app-amigos *ngIf="href=='/amigos'"></app-amigos>
+    <app-albumes *ngIf="href=='/albumes'"></app-albumes>
     <app-upload *ngIf="href=='/subirArchivo'" (cancion)="selector1.actualizarCancionActual($event)" (URL)="selector2.playURL($event)"></app-upload>
     <app-barra-inferior #selector1 (volumenBarra)="selector2.modificarVolumen($event)" (cancionEnReproduccion)="selector2.pauseplay($event)" (tiempoCancion)="selector2.modificarTiempo($event)"></app-barra-inferior>
     <app-reproductor #selector2 (tiempoCancionRelativa)="selector1.actualizarTiempoBarra($event)" (tiempoCancionAbsoluta)="selector1.actualizarTiempoCancionAbs($event)"></app-reproductor>

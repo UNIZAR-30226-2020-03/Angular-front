@@ -4,6 +4,8 @@ import { Usuario } from '../MODELO/Usuario';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Playlist } from '../MODELO/Playlist';
+import { Cancion } from '../MODELO/Cancion';
+import { Album } from '../MODELO/Album';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -76,6 +78,9 @@ export class ServiceService {
   	return JSON.parse(localStorage.getItem('currentUser'));
   }
 
+  ////////////////////////
+  ///// RED SOCIAL //////
+  ///////////////////////
   esAmigo(miCorreo, suCorreo):Observable<any>{
     var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/following/"+miCorreo+"/"+suCorreo;
     return this.http.get(UrlLog,httpOptions);
@@ -91,22 +96,22 @@ export class ServiceService {
     return this.http.put(UrlLog,httpOptions);
   }
 
+  ///////////////////////
+  ///// PLAYLISTS  /////
+  //////////////////////
   obtenerIdPlaylist(playlist : Playlist){
-
     var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/save/";
     var myString = JSON.stringify(playlist);
     return this.http.post(UrlLog,myString,httpOptions); 
   }
 
   crearPlaylist(idPlaylist){
-    
     var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/createPlaylist/";
     this.usserLogged = this.getUserLoggedIn();
     return this.http.put(UrlLog+this.usserLogged.correo+"/"+idPlaylist,httpOptions);
   }
 
   misPlaylists(){
-
     this.usserLogged = this.getUserLoggedIn();
     var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/myPlaylists/"+this.usserLogged.correo;
     return this.http.get<Playlist[]>(UrlLog,httpOptions);
@@ -130,6 +135,33 @@ export class ServiceService {
   anyadirCancionPlaylist(idPlaylist, idSong){
     var UrlLog="https://upbeatproyect.herokuapp.com/playlist/addSong/"+idPlaylist+"/"+idSong;
     return this.http.put(UrlLog,null,httpOptions);
+  }
+
+  listarCancionesPlaylist(idPlaylist){
+    var UrlLog="https://upbeatproyect.herokuapp.com/playlist/songList/"+idPlaylist;
+    return this.http.get<Cancion[]>(UrlLog,httpOptions);
+  }
+
+  ////////////////////////
+  /////// ÁLBUMES ///////
+  ///////////////////////
+  lsitarAlbumes(){
+    this.usserLogged = this.getUserLoggedIn();
+    console.log(this.usserLogged);
+    var UrlLog="https://upbeatproyect.herokuapp.com/artista/myAlbums/"+this.usserLogged.correo;
+    return this.http.get<Album[]>(UrlLog,httpOptions);
+  }
+
+  obtenerIdAlbum(album : Album){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/album/save/";
+    var myString = JSON.stringify(album);
+    return this.http.post(UrlLog,myString,httpOptions); 
+  }
+
+  crearAlbum(idAlbum){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/artista/createAlbum/";
+    this.usserLogged = this.getUserLoggedIn();
+    return this.http.put(UrlLog+this.usserLogged.correo+"/"+idAlbum,httpOptions);
   }
 
 }

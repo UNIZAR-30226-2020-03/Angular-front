@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Crear Álbum</h2>
+<div mat-dialog-content class="mat-typography">
+  <form class="form">
+    <mat-form-field class="formEstandar" appearance="standard">
+      <mat-label>Título</mat-label>
+      <input matInput [(ngModel)]="album.nombre" placeholder="Escriba el título" name="nombre" type="text">
+      <mat-hint></mat-hint>
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="crearAlbum()">Crear</button>
+</mat-dialog-actions>

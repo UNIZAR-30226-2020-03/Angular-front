@@ -38,6 +38,7 @@ export class CancionesComponent implements OnInit {
   ngOnInit(): void {
     this.usuarioActual = this.serviceUser.getUserLoggedIn();
     this.obtenerPlaylists();
+    this.listarCanciones();
     if(this.router.url === '/inicio'){
       this.modoComponente(0);
     }

@@ -47,6 +47,8 @@ import { AmigosComponent } from './amigos/amigos.component';
 import {MatDialogModule } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import {MatMenuModule} from '@angular/material/menu';
+import { AlbumesComponent, popUp2 } from './albumes/albumes.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import {MatMenuModule} from '@angular/material/menu';
     UsuariosComponent,
     AmigosComponent,
     popUp,
+    AlbumesComponent,
+    popUp2
   ],
   imports: [
     BrowserModule,
@@ -97,7 +101,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatProgressBarModule,
     MatDialogModule,
     ScrollingModule,
-    MatMenuModule
+    MatMenuModule,
+    MatFormFieldModule,
   ],
   providers: [ServiceService,MessageService],
   bootstrap: [AppComponent]

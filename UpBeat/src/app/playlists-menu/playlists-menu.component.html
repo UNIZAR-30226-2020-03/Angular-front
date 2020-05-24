@@ -14,15 +14,27 @@
           {{playlist.descripcion}}
         </p>
       </mat-card-content>
-      <mat-card-actions>
+      <mat-card-actions class="acciones">
         <button mat-button>
           <mat-icon>favorite</mat-icon>
         </button>
         <button mat-icon-button>
           <mat-icon (click)="eliminarPlaylist(playlist.id)">delete</mat-icon>
         </button>
+        <button mat-button (click)="listarCancionesPlaylist(playlist)">ESCUCHAR</button>
       </mat-card-actions>
     </mat-card>
+</mat-card>
+<mat-card>
+
+    <mat-action-list *ngFor="let cancion of cancionesPL">
+      <button mat-list-item (click)="play(cancion.id)">
+        {{cancion.nombre}}
+      </button>
+    </mat-action-list>
+
+</mat-card>
+
     <mat-divider></mat-divider>
     <mat-card class="fondo"></mat-card>
 
