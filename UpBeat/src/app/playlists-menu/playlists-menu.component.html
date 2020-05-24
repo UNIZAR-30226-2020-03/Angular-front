@@ -6,7 +6,7 @@
     <mat-card *ngFor="let playlist of playlistsBD" style="margin-top:10px;" class="card">
       <mat-card-header>
         <mat-card-title>{{playlist.nombre}}</mat-card-title>
-        <mat-card-subtitle>Autor</mat-card-subtitle>
+        <mat-card-subtitle></mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
       <mat-card-content class="descripcion">
@@ -17,6 +17,9 @@
       <mat-card-actions>
         <button mat-button>
           <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon (click)="eliminarPlaylist(playlist.id)">delete</mat-icon>
         </button>
       </mat-card-actions>
     </mat-card>

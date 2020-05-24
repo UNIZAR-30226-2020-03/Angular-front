@@ -46,7 +46,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AmigosComponent } from './amigos/amigos.component';
 import {MatDialogModule } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -96,7 +96,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ReactiveFormsModule,
     MatProgressBarModule,
     MatDialogModule,
-    ScrollingModule
+    ScrollingModule,
+    MatMenuModule
   ],
   providers: [ServiceService,MessageService],
   bootstrap: [AppComponent]

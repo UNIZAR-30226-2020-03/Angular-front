@@ -117,4 +117,14 @@ export class ServiceService {
     return this.http.get<Playlist[]>(UrlLog,httpOptions);
   }
 
+  borrarPlaylist(idPlaylist){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/delete/"+idPlaylist;
+    return this.http.delete(UrlLog,httpOptions);
+  }
+
+  infoPlaylist(idPlaylist){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/get/"+idPlaylist;
+    return this.http.get(UrlLog,httpOptions);
+  }
+
 }

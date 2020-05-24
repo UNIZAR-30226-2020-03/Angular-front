@@ -21,13 +21,12 @@ export class PlaylistsMenuComponent implements OnInit {
   usuario : Usuario = new Usuario();
   playlistsBD: Playlist[];
   allPlaylistsBD: Playlist[];
+  allAutores : Usuario[];
 
   constructor(private router:Router, private service:ServiceService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.obtenerPlaylists();
-    this.obtenerTodasPlaylists();
-
   }
 
 
@@ -56,6 +55,24 @@ export class PlaylistsMenuComponent implements OnInit {
 
     this.service.listarTodasPlaylists().subscribe(data => {
       this.allPlaylistsBD = data;
+      error: error => alert("Se ha producido un error");
+    })
+  }
+
+  eliminarPlaylist(idPlaylist){
+    var r = confirm("¿Estás seguro de que quieres eliminar esta playlist?");
+    if (r == true) {
+      this.service.borrarPlaylist(idPlaylist).subscribe(data => {
+        error: error => alert("Se ha producido un error");
+      })
+    } 
+  }
+
+  obtenerAutorPlaylist(idPlaylist){
+    var autor;
+    this.service.infoPlaylist(idPlaylist).subscribe(data => {
+      var aux = data["creador"];
+      console.log(data);
       error: error => alert("Se ha producido un error");
     })
   }

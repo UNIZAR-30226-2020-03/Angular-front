@@ -5,6 +5,7 @@ import { StreamingService } from '../Service/streaming.service';
 import { ServiceService } from '../Service/service.service';
 import { Usuario } from '../MODELO/Usuario';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Playlist } from '../MODELO/Playlist';
 
 @Component({
   selector: 'app-canciones',
@@ -18,6 +19,7 @@ export class CancionesComponent implements OnInit {
 
   favoritos: boolean[] = [false];
   modoVisualizacion: String = "recientes";
+  misPlaylists : Playlist[];
   
   cancionesBD: Cancion[];
 
@@ -35,6 +37,7 @@ export class CancionesComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioActual = this.serviceUser.getUserLoggedIn();
+    this.obtenerPlaylists();
     if(this.router.url === '/inicio'){
       this.modoComponente(0);
     }
@@ -145,6 +148,14 @@ export class CancionesComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+
+  obtenerPlaylists(){
+
+    this.serviceUser.misPlaylists().subscribe(data => {
+      this.misPlaylists = data;
+      error: error => alert("Se ha producido un error");
+    })
   }
 
 }
