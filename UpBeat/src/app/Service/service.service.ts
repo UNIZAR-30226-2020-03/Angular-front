@@ -127,4 +127,9 @@ export class ServiceService {
     return this.http.get(UrlLog,httpOptions);
   }
 
+  anyadirCancionPlaylist(idPlaylist, idSong){
+    var UrlLog="https://upbeatproyect.herokuapp.com/playlist/addSong/"+idPlaylist+"/"+idSong;
+    return this.http.put(UrlLog,null,httpOptions);
+  }
+
 }

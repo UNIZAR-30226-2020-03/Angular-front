@@ -151,11 +151,17 @@ export class CancionesComponent implements OnInit {
   }
 
   obtenerPlaylists(){
-
     this.serviceUser.misPlaylists().subscribe(data => {
       this.misPlaylists = data;
       error: error => alert("Se ha producido un error");
     })
   }
+
+  anyadirCancionAPlaylist(idPlaylist, idSong){
+    this.serviceUser.anyadirCancionPlaylist(idPlaylist,idSong).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+    })
+  }
+
 
 }
