@@ -71,12 +71,12 @@ export class AlbumesComponent implements OnInit {
     this.nombreAlbumActual.emit(album.nombre);
   }
 
-  eliminarPlaylist(idAlbum){
-    var r = confirm("¿Estás seguro de que quieres eliminar esta playlist?");
+  eliminarAlbum(idAlbum){
+    var r = confirm("¿Estás seguro de que quieres eliminar este álbum?");
     if (r == true) {
-      this.service.borrarPlaylist(idAlbum).subscribe(data => {
+      this.service.borrarAlbum(idAlbum).subscribe(data => {
         error: error => alert("Se ha producido un error");
-        var mensaje = "La playlist se ha eliminado";
+        var mensaje = "El álbum se ha eliminado";
         this.openSnackBar(mensaje, "OK");
       })
     } 
