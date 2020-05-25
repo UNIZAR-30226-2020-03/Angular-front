@@ -40,6 +40,12 @@
             <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)">
               <mat-icon>favorite</mat-icon>
             </button>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="add_playlist">
+              <mat-icon>playlist_add</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+            </mat-menu>
             <div class="favorito">
               <button mat-list-item (click)="play(indice)">
                 {{cancion.nombre}}
@@ -63,6 +69,12 @@
           <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)">
             <mat-icon>favorite</mat-icon>
           </button>
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="add_playlist">
+            <mat-icon>playlist_add</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+          </mat-menu>
           <div class="favorito">
             <button mat-list-item (click)="play(indice)">
               {{cancion.nombre}}
