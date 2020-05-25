@@ -56,7 +56,7 @@ export class BarraInferiorComponent implements OnInit {
     this.reproduciendo = true;
   }
 
-  actualizarCancionActual(nombre: string){
+  actualizarCancionActual(nombre : string){
     this.cancionActual=nombre;
     this.reproduciendo = true;
   }

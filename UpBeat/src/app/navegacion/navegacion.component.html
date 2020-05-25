@@ -41,7 +41,7 @@
     <app-amigos *ngIf="href=='/amigos'"></app-amigos>
     <app-albumes-menu *ngIf="href=='/albumesArtista'"></app-albumes-menu>
     <app-upload *ngIf="href=='/subirArchivo'" (cancion)="selector1.actualizarCancionActual($event)" (URL)="selector2.playURL($event)"></app-upload>
-    <app-barra-inferior #selector1 (volumenBarra)="selector2.modificarVolumen($event)" (cancionEnReproduccion)="selector2.pauseplay($event)" (tiempoCancion)="selector2.modificarTiempo($event)"></app-barra-inferior>
-    <app-reproductor #selector2 (tiempoCancionRelativa)="selector1.actualizarTiempoBarra($event)" (tiempoCancionAbsoluta)="selector1.actualizarTiempoCancionAbs($event)"></app-reproductor>
+    <app-barra-inferior #selector1 (cancionActual)="selector1.actualizarCancionActual($event)" (volumenBarra)="selector2.modificarVolumen($event)" (cancionEnReproduccion)="selector2.pauseplay($event)" (tiempoCancion)="selector2.modificarTiempo($event)"></app-barra-inferior>
+    <app-reproductor #selector2 (cancionActual)="selector1.actualizarCancionActual($event)"  (tiempoCancionRelativa)="selector1.actualizarTiempoBarra($event)" (tiempoCancionAbsoluta)="selector1.actualizarTiempoCancionAbs($event)"></app-reproductor>
   </mat-sidenav-content>
 </mat-sidenav-container>

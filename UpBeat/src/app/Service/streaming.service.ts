@@ -92,5 +92,10 @@ export class StreamingService {
     return this.http.put(url,httpOptions);
   }
 
+  verCola(correo){
+    var url = "https://upbeatproyect.herokuapp.com/cliente/getCancionesCola/"+correo;
+    return this.http.get<Cancion[]>(url,httpOptions);
+  }
+
 
 }

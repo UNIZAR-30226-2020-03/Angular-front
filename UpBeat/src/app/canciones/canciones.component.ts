@@ -20,6 +20,7 @@ export class CancionesComponent implements OnInit {
   favoritos: boolean[] = [false];
   modoVisualizacion: String = "recientes";
   misPlaylists : Playlist[];
+  cola : Cancion[];
   
   cancionesBD: Cancion[];
 
@@ -41,6 +42,9 @@ export class CancionesComponent implements OnInit {
       this.primero = false;
       this.service.play(this.cancionesBD[i].id);
     }
+    else{
+      this.service.reproducirCancion(this.usuarioActual.correo, this.cancionesBD[i].id);
+    }
     this.URL.emit(this.cancionesBD[i].pathMp3);
     this.cancion.emit(this.cancionesBD[i].nombre);
   }
@@ -50,6 +54,10 @@ export class CancionesComponent implements OnInit {
       error: error => alert("Se ha producido un error");
       var mensaje = "La cancion se ha añadido a la cola de reproducción";
       this.openSnackBar(mensaje, "OK");
+      this.service.verCola(this.usuarioActual.correo).subscribe(data => {
+        console.log(data);
+        this.cola = data;
+      })
     })
   }
 

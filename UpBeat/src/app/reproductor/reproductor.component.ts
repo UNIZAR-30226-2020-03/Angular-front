@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { StreamingService } from '../Service/streaming.service';
+import { ServiceService } from '../Service/service.service';
+import { Usuario } from '../MODELO/Usuario';
 
 @Component({
   selector: 'app-reproductor',
@@ -10,10 +12,12 @@ export class ReproductorComponent implements OnInit {
 
   @Output() tiempoCancionRelativa = new EventEmitter();
   @Output() tiempoCancionAbsoluta = new EventEmitter();
+  @Output() cancionActual = new EventEmitter();
 
-  constructor(public service : StreamingService) { }
+  constructor(public service : StreamingService, public serviceUser: ServiceService) { }
 
   ngOnInit(): void {
+    this.usuario = this.serviceUser.getUserLoggedIn();
     this.audio.volume = 0.5;
     setInterval(() => {
       this.tiempoCancionRelativa.emit((this.audio.currentTime/this.audio.duration)*100);
@@ -21,6 +25,7 @@ export class ReproductorComponent implements OnInit {
     }, 1000);
   }
 
+  usuario: Usuario = new Usuario();
   audio = new Audio();
 
   playURL(URL: string){
@@ -29,7 +34,13 @@ export class ReproductorComponent implements OnInit {
     this.audio.load();
     this.audio.play();
     this.audio.addEventListener('ended', () => {
-      this.playURL(URL);
+      this.service.next(this.usuario.correo).subscribe(data =>{
+       var aux = data["cancion"];
+       this.audio.src = aux["pathMp3"];
+       var nombre = aux["nombre"].toString();
+       this.cancionActual.emit(nombre);
+       //this.playURL(this.audio.src);
+      })
     });
   }
 
