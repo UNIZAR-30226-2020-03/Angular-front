@@ -88,7 +88,7 @@ export class StreamingService {
   }
 
   anyadirCancionCola(correo,idSong){
-    var url = "https://upbeatproyect.herokuapp.com/cliente/"+correo+"/"+idSong;
+    var url = "https://upbeatproyect.herokuapp.com/cliente/addCancionCola"+correo+"/"+idSong;
     return this.http.put(url,httpOptions);
   }
 
