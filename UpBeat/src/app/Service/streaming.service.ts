@@ -83,6 +83,7 @@ export class StreamingService {
   }
   
   next(correo){
+    console.log("next");
     var url = "https://upbeatproyect.herokuapp.com/cliente/next/"+correo;
     return this.http.put(url,httpOptions);
   }

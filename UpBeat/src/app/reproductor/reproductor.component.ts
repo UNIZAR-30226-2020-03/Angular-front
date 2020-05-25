@@ -24,22 +24,22 @@ export class ReproductorComponent implements OnInit {
       this.tiempoCancionAbsoluta.emit(Math.trunc(this.audio.currentTime));
     }, 1000);
   }
-
+  
   usuario: Usuario = new Usuario();
   audio = new Audio();
-
   playURL(URL: string){
+    console.log("play");
     this.audio.pause();
     this.audio.src = URL;
     this.audio.load();
     this.audio.play();
     this.audio.addEventListener('ended', () => {
       this.service.next(this.usuario.correo).subscribe(data =>{
-       var aux = data["cancion"];
-       this.audio.src = aux["pathMp3"];
-       var nombre = aux["nombre"].toString();
-       this.cancionActual.emit(nombre);
-       //this.playURL(this.audio.src);
+        var aux = data["cancion"];
+        this.audio.src = aux["pathMp3"];
+        var nombre = aux["nombre"].toString();
+        this.cancionActual.emit(nombre);
+        //this.playURL(this.audio.src);
       })
     });
   }
