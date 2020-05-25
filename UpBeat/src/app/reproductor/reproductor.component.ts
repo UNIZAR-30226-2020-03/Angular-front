@@ -27,9 +27,9 @@ export class ReproductorComponent implements OnInit {
     this.audio.src = URL;
     this.audio.load();
     this.audio.play();
-    this.audio.addEventListener('ended', function () {
-      this.play();
-    }, false);
+    this.audio.addEventListener('ended', () => {
+      this.playURL(URL);
+    });
   }
 
   pauseplay(b: boolean){
