@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Artista } from '../MODELO/Artista';
 import { ServiceService } from '../Service/service.service';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Album } from '../MODELO/Album';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -13,64 +14,90 @@ import { Album } from '../MODELO/Album';
 })
 export class AlbumesComponent implements OnInit {
 
+  @Output() idPlaylistActual = new EventEmitter<number>();
+  @Output() nombrePlaylistActual = new EventEmitter<string>();
+
+  modoVisualizacion: String = "albumes";
+
   artista : Artista = new Artista();
   albumesBD : Album[];
-  constructor(private router:Router, private service:ServiceService,public dialog: MatDialog) { }
+
+  constructor(private router:Router, private service:ServiceService,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.obtenerAlbumes();
-  }
-
-  getNombreUsuario(){
     this.artista = this.service.getUserLoggedIn();
-    return this.artista.nombre;
+    this.obtenerMisAlbumesArtista();
+    if(this.router.url === '/inicio'){
+      this.modoComponente(0);
+    }
+    else if (this.router.url === '/albumesArtista'){
+      this.modoComponente(1);
+    }
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(popUp2);
+  modoComponente(mode){
+    if(mode == 0){
+      this.modoVisualizacion = "albumes";
+      this.obtenerTodosAlbumes();
+    }
+    else if (mode == 1){
+      this.modoVisualizacion = "misAlbumsArtista";
+      this.obtenerMisPlaylists();
+    }
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
-  obtenerAlbumes(){
-    this.service.lsitarAlbumes().subscribe(data => {
+  obtenerMisAlbumesArtista(){
+    this.service.listarMisAlbumes().subscribe(data => {
       this.albumesBD = data;
       console.log(data);
       error: error => alert("Se ha producido un error");
     })
   }
-}
 
-
-@Component({
-  selector: 'popUp2',
-  templateUrl: 'popUp2.html',
-})
-export class popUp2 {
-
-  constructor(private router:Router ,private service:ServiceService,public dialog: MatDialog) { }
-
-  album : Album = new Album();
-  idAlbum : String;
-
-  crearAlbum(){
-    if (this.album.nombre != null){
-      this.service.obtenerIdPlaylist(this.album).subscribe(data =>{
-        this.idAlbum = data["id"];
-        this.crearAlbumAux(this.idAlbum);
-      });;
-    }
-    else{
-      alert("El nombre de la playlist no puede ser vacío");
-    }
-  }
-
-  crearAlbumAux(idAlbum){
-    this.service.crearPlaylist(idAlbum).subscribe(data => {
+  obtenerTodosAlbumes(){
+    this.service.listarTodosAlbums().subscribe(data => {
+      this.albumesBD = data;
       error: error => alert("Se ha producido un error");
     })
   }
 
+  obtenerMisPlaylists(){
+    this.service.misPlaylists().subscribe(data => {
+      this.albumesBD = data;
+      error: error => alert("Se ha producido un error");
+    })
+  }
+
+  listarCancionesPlaylist(album : Album){
+    this.idPlaylistActual.emit(album.id);
+    this.nombrePlaylistActual.emit(album.nombre);
+  }
+
+  eliminarPlaylist(idAlbum){
+    var r = confirm("¿Estás seguro de que quieres eliminar esta playlist?");
+    if (r == true) {
+      this.service.borrarPlaylist(idAlbum).subscribe(data => {
+        error: error => alert("Se ha producido un error");
+        var mensaje = "La playlist se ha eliminado";
+        this.openSnackBar(mensaje, "OK");
+      })
+    } 
+  }
+
+  /*
+  obtenerAutorPlaylist(idPlaylist){
+    var autor;
+    this.service.infoPlaylist(idPlaylist).subscribe(data => {
+      var aux = data["creador"];
+      console.log(data);
+      error: error => alert("Se ha producido un error");
+    })
+  }
+  */
 }

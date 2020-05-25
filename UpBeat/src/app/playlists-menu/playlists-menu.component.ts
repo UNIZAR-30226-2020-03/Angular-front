@@ -15,7 +15,7 @@ export class PlaylistsMenuComponent implements OnInit {
 
   usuario : Usuario = new Usuario();
 
-  modoVisualizacion: String = "playlists";
+  modoVisualizacion: String = "albumes";
   idPlaylist: number;
   nombrePlaylist: string;
 
@@ -36,11 +36,11 @@ export class PlaylistsMenuComponent implements OnInit {
   }
 
   cambiarVisualizacion(){
-    if(this.modoVisualizacion == "playlists"){
+    if(this.modoVisualizacion == "albumes"){
       this.modoVisualizacion = "canciones";
     }
     else{
-      this.modoVisualizacion = "playlists";
+      this.modoVisualizacion = "albumes";
     }
   }
 

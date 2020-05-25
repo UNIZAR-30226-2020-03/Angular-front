@@ -145,7 +145,7 @@ export class ServiceService {
   ////////////////////////
   /////// ÁLBUMES ///////
   ///////////////////////
-  lsitarAlbumes(){
+  listarMisAlbumes(){
     this.usserLogged = this.getUserLoggedIn();
     console.log(this.usserLogged);
     var UrlLog="https://upbeatproyect.herokuapp.com/artista/myAlbums/"+this.usserLogged.correo;
@@ -162,6 +162,11 @@ export class ServiceService {
     var UrlLog = "https://upbeatproyect.herokuapp.com/artista/createAlbum/";
     this.usserLogged = this.getUserLoggedIn();
     return this.http.put(UrlLog+this.usserLogged.correo+"/"+idAlbum,httpOptions);
+  }
+
+  listarTodosAlbums(){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/album/allAlbums";
+    return this.http.get<Album[]>(UrlLog,httpOptions);
   }
 
 }

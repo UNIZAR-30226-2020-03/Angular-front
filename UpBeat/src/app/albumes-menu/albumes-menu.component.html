@@ -1,1 +1,17 @@
-<p>albumes-menu works!</p>
+<div *ngIf="modoVisualizacion=='albumes'">
+    <mat-card>
+      <mat-card-title class="cabecera">Álbumes de {{usuario.nombre}}
+        <button mat-raised-button class = "crear" (click)="openDialog()">Crear un álbum</button>
+      </mat-card-title>
+    </mat-card>
+    <app-playlists (idPlaylistActual)="setIdPlaylist($event)" (nombrePlaylistActual)="setNombrePlaylist($event);cambiarVisualizacion();"></app-playlists>
+    <br/><br/><br/><br/>
+  </div>
+  <div *ngIf="modoVisualizacion=='canciones'">
+    <app-canciones [idPlaylist]="idPlaylist" [nombrePlaylist]="nombrePlaylist" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
+    <div class="example-button-container">
+        <button mat-fab color="primary" (click)=cambiarVisualizacion()>
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+</div>

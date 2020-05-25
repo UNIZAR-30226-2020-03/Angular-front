@@ -47,9 +47,9 @@ import { AmigosComponent } from './amigos/amigos.component';
 import {MatDialogModule } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import {MatMenuModule} from '@angular/material/menu';
-import { AlbumesComponent, popUp2 } from './albumes/albumes.component';
+import { AlbumesComponent } from './albumes/albumes.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { AlbumesMenuComponent } from './albumes-menu/albumes-menu.component';
+import { AlbumesMenuComponent, popUp2 } from './albumes-menu/albumes-menu.component';
 
 @NgModule({
   declarations: [

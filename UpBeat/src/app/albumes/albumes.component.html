@@ -1,24 +1,49 @@
-<mat-card>
-    <mat-card-title class="cabecera">Albumes de {{getNombreUsuario()}}
-      <button mat-raised-button (click)="openDialog()" class = "crear">Crear un álbum</button>
-    </mat-card-title>
-    <mat-divider></mat-divider>
-    <mat-card  *ngFor="let album of albumesBD" style="margin-top:10px;" class="card">
-      <mat-card-header>
-        <mat-card-title>{{album.nombre}}</mat-card-title>
-        <mat-card-subtitle></mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image class="imagen" >
-      <mat-card-content class="descripcion">
-        <p>
-   
-        </p>
-      </mat-card-content>
-      <mat-card-actions class="acciones">
-        <button mat-icon-button>
-          <mat-icon>delete</mat-icon>
-        </button>
-        <button mat-button>VER</button>
-      </mat-card-actions>
-    </mat-card>
+<mat-card *ngIf="modoVisualizacion=='albumes'">
+  <mat-card-title>Álbumes</mat-card-title>
+  <mat-card-subtitle>O puedes empezar con estos álbumes</mat-card-subtitle>
+  <mat-card *ngFor="let album of albumesBD" style="margin-top:10px;" class="card">
+    <mat-card-header>
+      <mat-card-title>{{album.nombre}}</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
+    <mat-card-content class="descripcion">
+      <p>
+        {{album.descripcion}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="acciones">
+      <button mat-icon-button>
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon (click)="eliminarPlaylist(album.id)">delete</mat-icon>
+      </button>
+      <button mat-button (click)="listarCancionesPlaylist(album)">ESCUCHAR</button>
+    </mat-card-actions>
+  </mat-card>
 </mat-card>
+
+<div *ngIf="modoVisualizacion=='misAlbumesArtista'">
+  <mat-card *ngFor="let album of albumesBD" style="margin-top:10px;" class="card">
+    <mat-card-header>
+      <mat-card-title>{{album.nombre}}</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
+    <mat-card-content class="descripcion">
+      <p>
+        {{album.descripcion}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="acciones">
+      <button mat-icon-button>
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon (click)="eliminarPlaylist(album.id)">delete</mat-icon>
+      </button>
+      <button mat-button (click)="listarCancionesPlaylist(album)">ESCUCHAR</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
