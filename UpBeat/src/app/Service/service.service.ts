@@ -127,9 +127,9 @@ export class ServiceService {
     return this.http.delete(UrlLog,httpOptions);
   }
 
-  infoPlaylist(idPlaylist){
-    var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/get/"+idPlaylist;
-    return this.http.get(UrlLog,httpOptions);
+  autorPlaylist(idPlaylist){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/playlist/getCreador/"+idPlaylist;
+    return this.http.get<Usuario>(UrlLog,httpOptions);
   }
 
   anyadirCancionPlaylist(idPlaylist, idSong){

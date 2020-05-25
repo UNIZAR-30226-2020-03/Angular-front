@@ -17,7 +17,6 @@ export class PlaylistsComponent implements OnInit {
 
   usuario : Usuario = new Usuario();
   playlistsBD: Playlist[];
-  allAutores : Usuario[];
 
   modoVisualizacion: String = "recientes";
   
@@ -53,6 +52,11 @@ export class PlaylistsComponent implements OnInit {
     this.service.listarTodasPlaylists().subscribe(data => {
       this.playlistsBD = data;
       error: error => alert("Se ha producido un error");
+      var i = 0;
+      while(this.playlistsBD[i]!=null){
+        this.obtenerAutorPlaylist(this.playlistsBD[i].id,i);
+        i++;
+      }
     })
   }
 
@@ -60,6 +64,11 @@ export class PlaylistsComponent implements OnInit {
     this.service.misPlaylists().subscribe(data => {
       this.playlistsBD = data;
       error: error => alert("Se ha producido un error");
+      var i = 0;
+      while(this.playlistsBD[i]!=null){
+        this.obtenerAutorPlaylist(this.playlistsBD[i].id,i);
+        i++;
+      }
     })
   }
 
@@ -79,15 +88,11 @@ export class PlaylistsComponent implements OnInit {
     } 
   }
 
-  /*
-  obtenerAutorPlaylist(idPlaylist){
-    var autor;
-    this.service.infoPlaylist(idPlaylist).subscribe(data => {
-      var aux = data["creador"];
-      console.log(data);
+  obtenerAutorPlaylist(idPlaylist,i){
+    this.service.autorPlaylist(idPlaylist).subscribe(data => {
+      this.playlistsBD[i].creador = data.nombre + " " + data.apellidos;
       error: error => alert("Se ha producido un error");
     })
   }
-  */
 
 }

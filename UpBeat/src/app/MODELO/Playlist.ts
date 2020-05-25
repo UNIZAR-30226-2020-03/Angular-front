@@ -4,4 +4,5 @@ export class Playlist{
     descripcion : string;
     numCamciones: number;
     pathImg: string;
+    creador: string;
 }

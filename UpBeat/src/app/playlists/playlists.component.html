@@ -1,10 +1,10 @@
 <mat-card *ngIf="modoVisualizacion=='inicio'">
   <mat-card-title>Playlists</mat-card-title>
   <mat-card-subtitle>Puedes empezar por estas playlists creadas por otros usuarios</mat-card-subtitle>
-  <mat-card *ngFor="let playlist of playlistsBD" style="margin-top:10px;" class="card">
+  <mat-card *ngFor="let playlist of playlistsBD; let indice=index" style="margin-top:10px;" class="card">
     <mat-card-header>
       <mat-card-title>{{playlist.nombre}}</mat-card-title>
-      <mat-card-subtitle></mat-card-subtitle>
+      <mat-card-subtitle>{{playlist.creador}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
     <mat-card-content class="descripcion">
@@ -22,10 +22,10 @@
 </mat-card>
 
 <div *ngIf="modoVisualizacion=='misPlaylists'">
-  <mat-card *ngFor="let playlist of playlistsBD" style="margin-top:10px;" class="card">
+  <mat-card *ngFor="let playlist of playlistsBD; let indice=index" style="margin-top:10px;" class="card">
     <mat-card-header>
       <mat-card-title>{{playlist.nombre}}</mat-card-title>
-      <mat-card-subtitle></mat-card-subtitle>
+      <mat-card-subtitle>{{playlist.creador}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
     <mat-card-content class="descripcion">
