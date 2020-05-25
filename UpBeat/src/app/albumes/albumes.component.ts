@@ -40,7 +40,7 @@ export class AlbumesComponent implements OnInit {
       this.obtenerTodosAlbumes();
     }
     else if (mode == 1){
-      this.modoVisualizacion = "misAlbumsArtista";
+      this.modoVisualizacion = "misAlbumesArtista";
       this.obtenerMisAlbumesArtista();
     }
   }
