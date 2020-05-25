@@ -16,8 +16,8 @@ export class AlbumesMenuComponent implements OnInit {
   usuario : Artista = new Artista();
 
   modoVisualizacion: String = "albumes";
-  idPlaylist: number;
-  nombrePlaylist: string;
+  idAlbum: number;
+  nombreAlbum: string;
 
   @Output() cancionActual = new EventEmitter<string>();
   @Output() URL = new EventEmitter<string>();
@@ -44,12 +44,12 @@ export class AlbumesMenuComponent implements OnInit {
     }
   }
 
-  setIdPlaylist(id : number){
-    this.idPlaylist = id;
+  setIdAlbum(id : number){
+    this.idAlbum = id;
   }
 
-  setNombrePlaylist(name : string){
-    this.nombrePlaylist = name;
+  setNombreAlbum(name : string){
+    this.nombreAlbum = name;
   }
 
   actualizarCancionActual(nombre: string){

@@ -11,30 +11,17 @@
     margin-bottom: 10px;
     background-color: #00bcd4;
     max-height: 40px;
-
-
-}
-
-.card{
-    max-height: 300px;
-    max-width: 210px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    margin-top: 20px;
-    display: inline-block;
-
-}
-
-.descripcion{
-    min-height: 20px;
-}
-
-
-.imagen{
-    background-size: cover;
 }
 
 .fondo{
     margin-bottom: 120px;
     margin-top: 20px;
+}
+
+.example-button-container {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    bottom: 95px;
+    right: 40px;
 }
