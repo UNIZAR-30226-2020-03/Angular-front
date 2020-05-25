@@ -29,7 +29,7 @@ export class ReproductorComponent implements OnInit {
     this.audio.load();
     this.audio.play();
     this.audio.addEventListener('ended', () => {
-      this.service.next(URL);
+      this.playURL(URL);
     });
   }
 
