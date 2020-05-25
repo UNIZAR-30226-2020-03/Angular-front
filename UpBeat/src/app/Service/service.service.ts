@@ -179,4 +179,9 @@ export class ServiceService {
     return this.http.put(UrlLog,null,httpOptions);
   }
 
+  borrarAlbum(idAlbum){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/album/delete/"+idAlbum;
+    return this.http.delete(UrlLog,httpOptions);
+  }
+
 }
