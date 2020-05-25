@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FirebaseStorageService } from '../firebase-storage.service';
 import { finalize } from 'rxjs/operators';
@@ -8,18 +8,20 @@ import { Cancion } from '../MODELO/Cancion';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from '../MODELO/Usuario';
 import { ServiceService } from '../Service/service.service';
+import { Album } from '../MODELO/Album';
 
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss','../../../node_modules/bulma/css/bulma.min.css']
 })
-export class UploadComponent{
+export class UploadComponent implements OnInit {
 
   nombre: string;
   usuario: Usuario = new Usuario();
 
   archivo: Cancion = new Cancion();
+  albumesBD : Album[];
 
   @Output() cancion = new EventEmitter<string>();
   @Output() URL = new EventEmitter<string>();
@@ -41,6 +43,10 @@ export class UploadComponent{
     private _snackBar: MatSnackBar,
     private serviceUsuario:ServiceService
   ) {}
+
+  ngOnInit(): void {
+    this.obtenerTodosAlbumes();
+  }
 
   //Evento que se gatilla cuando el input de tipo archivo cambia
   public cambioArchivo(event) {
@@ -115,6 +121,13 @@ export class UploadComponent{
     this._snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+
+  obtenerTodosAlbumes(){
+    this.serviceUsuario.listarTodosAlbums().subscribe(data => {
+      this.albumesBD = data;
+      error: error => alert("Se ha producido un error");
+    })
   }
 
 }
