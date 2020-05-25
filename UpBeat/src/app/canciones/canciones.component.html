@@ -72,4 +72,32 @@
       </mat-list>
     </div>
   </div>
+
+  <div *ngIf="modoVisualizacion=='playlists'">
+    <mat-card-title>Canciones de {{nombrePlaylist}}</mat-card-title>
+    <mat-card-subtitle>Lista de canciones de la playlist</mat-card-subtitle>
+    <div class="cancion">
+      <mat-list>
+        <mat-action-list *ngFor="let cancion of cancionesBD; let indice=index">
+          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="add_playlist">
+            <mat-icon>playlist_add</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+          </mat-menu>
+          <div class="favorito">
+            <button mat-list-item (click)="play(indice)">
+              {{cancion.nombre}}
+            </button>
+          </div>
+        </mat-action-list>
+      </mat-list>
+    </div>
+  </div>
 </mat-card>

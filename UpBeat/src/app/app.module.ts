@@ -49,6 +49,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import {MatMenuModule} from '@angular/material/menu';
 import { AlbumesComponent, popUp2 } from './albumes/albumes.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AlbumesMenuComponent } from './albumes-menu/albumes-menu.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AmigosComponent,
     popUp,
     AlbumesComponent,
-    popUp2
+    popUp2,
+    AlbumesMenuComponent
   ],
   imports: [
     BrowserModule,

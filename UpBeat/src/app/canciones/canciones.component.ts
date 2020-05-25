@@ -24,6 +24,8 @@ export class CancionesComponent implements OnInit {
   cancionesBD: Cancion[];
 
   @Input() cadenaBusqueda: string;
+  @Input() idPlaylist: string;
+  @Input() nombrePlaylist: string;
 
   usuarioActual: Usuario;
 
@@ -36,17 +38,27 @@ export class CancionesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      //Esperamos por seguridad
+    }, 500);
     this.usuarioActual = this.serviceUser.getUserLoggedIn();
     this.obtenerPlaylists();
-    this.listarCanciones();
     if(this.router.url === '/inicio'){
-      this.modoComponente(0);
+      if(this.idPlaylist != null){
+        this.modoComponente(3);
+      }
+      else{
+        this.modoComponente(0);
+      }
     }
     else if (this.router.url === '/favoritos'){
       this.modoComponente(1);
     }
     else if (this.router.url === '/buscar'){
       this.modoComponente(2);
+    }
+    else if (this.router.url === '/playlists'){
+      this.modoComponente(3);
     }
   }
 
@@ -62,6 +74,12 @@ export class CancionesComponent implements OnInit {
     else if (mode == 2){
       this.modoVisualizacion = "buscar";
       this.listarCanciones();
+    }
+    else if (mode == 3){
+      this.modoVisualizacion = "playlists";
+      setTimeout(() => {
+        this.listarCancionesPlaylist();
+      }, 500);
     }
   }
 
@@ -96,6 +114,18 @@ export class CancionesComponent implements OnInit {
         i++;
       }
   })
+  }
+
+  listarCancionesPlaylist(){
+    this.serviceUser.listarCancionesPlaylist(this.idPlaylist).subscribe(data => {
+      this.cancionesBD = data;
+      error: error => alert("Se ha producido un error");
+      var i = 0;
+      while(this.cancionesBD[i]!=null){
+        this.esFavorito(i,this.usuarioActual.correo,this.cancionesBD[i].id);
+        i++;
+      }
+    })
   }
 
   esFavorito(i,miCorreo,id){
@@ -161,8 +191,9 @@ export class CancionesComponent implements OnInit {
   anyadirCancionAPlaylist(idPlaylist, idSong){
     this.serviceUser.anyadirCancionPlaylist(idPlaylist,idSong).subscribe(data => {
       error: error => alert("Se ha producido un error");
+      var mensaje = "La cancion se ha añadido a tu playlist";
+      this.openSnackBar(mensaje, "OK");
     })
   }
-
 
 }

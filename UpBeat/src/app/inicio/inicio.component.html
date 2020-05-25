@@ -1,3 +1,14 @@
-<app-canciones (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
-<mat-divider></mat-divider>
-<app-playlists></app-playlists>
+<div *ngIf="modoVisualizacion=='inicio'">
+    <app-canciones (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
+    <mat-divider></mat-divider>
+    <app-playlists (idPlaylistActual)="setIdPlaylist($event)" (nombrePlaylistActual)="setNombrePlaylist($event);cambiarVisualizacion();"></app-playlists>
+    <br/><br/><br/><br/>
+</div>
+<div *ngIf="modoVisualizacion=='canciones'">
+    <app-canciones [idPlaylist]="idPlaylist" [nombrePlaylist]="nombrePlaylist" [nombrePlaylist]="nombrePlaylist" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
+    <div class="example-button-container">
+        <button mat-fab color="primary" (click)=cambiarVisualizacion()>
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+</div>

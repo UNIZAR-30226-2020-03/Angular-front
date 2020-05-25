@@ -7,8 +7,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
+  idPlaylist: number;
+  nombrePlaylist: string;
+
   @Output() cancionActual = new EventEmitter<string>();
   @Output() URL = new EventEmitter<string>();
+
+  modoVisualizacion: String = "inicio";
 
   constructor() { }
 
@@ -21,6 +26,23 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  cambiarVisualizacion(){
+    if(this.modoVisualizacion == "inicio"){
+      this.modoVisualizacion = "canciones";
+    }
+    else{
+      this.modoVisualizacion = "inicio";
+    }
+  }
+
+  setIdPlaylist(id : number){
+    this.idPlaylist = id;
+  }
+
+  setNombrePlaylist(name : string){
+    this.nombrePlaylist = name;
   }
 
 }

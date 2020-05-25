@@ -1,42 +1,17 @@
-<mat-card>
-    <mat-card-title class="cabecera">Playlists de {{getNombreUsuario()}}
+<div *ngIf="modoVisualizacion=='playlists'">
+  <mat-card>
+    <mat-card-title class="cabecera">Playlists de {{usuario.nombre}}
       <button mat-raised-button class = "crear" (click)="openDialog()">Crear una playlist</button>
     </mat-card-title>
-    <mat-divider></mat-divider>
-    <mat-card *ngFor="let playlist of playlistsBD" style="margin-top:10px;" class="card">
-      <mat-card-header>
-        <mat-card-title>{{playlist.nombre}}</mat-card-title>
-        <mat-card-subtitle></mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
-      <mat-card-content class="descripcion">
-        <p>
-          {{playlist.descripcion}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions class="acciones">
-        <button mat-button>
-          <mat-icon>favorite</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon (click)="eliminarPlaylist(playlist.id)">delete</mat-icon>
-        </button>
-        <button mat-button (click)="listarCancionesPlaylist(playlist)">ESCUCHAR</button>
-      </mat-card-actions>
-    </mat-card>
-</mat-card>
-<mat-card>
-
-    <mat-action-list *ngFor="let cancion of cancionesPL">
-      <button mat-list-item (click)="play(cancion.id)">
-        {{cancion.nombre}}
+  </mat-card>
+  <app-playlists (idPlaylistActual)="setIdPlaylist($event)" (nombrePlaylistActual)="setNombrePlaylist($event);cambiarVisualizacion();"></app-playlists>
+  <br/><br/><br/><br/>
+</div>
+<div *ngIf="modoVisualizacion=='canciones'">
+  <app-canciones [idPlaylist]="idPlaylist" [nombrePlaylist]="nombrePlaylist" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
+  <div class="example-button-container">
+      <button mat-fab color="primary" (click)=cambiarVisualizacion()>
+        <mat-icon>arrow_back</mat-icon>
       </button>
-    </mat-action-list>
-
-</mat-card>
-
-    <mat-divider></mat-divider>
-    <mat-card class="fondo"></mat-card>
-
-
-    
+  </div>
+</div>

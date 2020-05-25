@@ -1,13 +1,10 @@
-import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Usuario } from '../MODELO/Usuario';
 import { ServiceService } from '../Service/service.service';
 import { Router } from '@angular/router';
-import { Cancion } from '../MODELO/Cancion';
-import { StreamingService } from '../Service/streaming.service';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Playlist } from '../MODELO/Playlist';
-import { CancionesComponent } from '../canciones/canciones.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-playlists-menu',
@@ -16,80 +13,51 @@ import { CancionesComponent } from '../canciones/canciones.component';
 })
 export class PlaylistsMenuComponent implements OnInit {
 
-  @Output() cancion = new EventEmitter<string>();
-  @Output() URL = new EventEmitter<string>();
-
   usuario : Usuario = new Usuario();
-  playlistsBD: Playlist[];
-  allPlaylistsBD: Playlist[];
-  allAutores : Usuario[];
-  cancionesPL : Cancion [];
-  playEnRepro : Playlist;
+
+  modoVisualizacion: String = "playlists";
+  idPlaylist: number;
+  nombrePlaylist: string;
+
+  @Output() cancionActual = new EventEmitter<string>();
+  @Output() URL = new EventEmitter<string>();
   
   constructor(private router:Router, private service:ServiceService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.obtenerPlaylists();
-  }
-
-  play(idSong){
-
-  }
-
-  getNombreUsuario(){
     this.usuario = this.service.getUserLoggedIn();
-    return this.usuario.nombre;
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(popUp);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
-  obtenerPlaylists(){
-
-    this.service.misPlaylists().subscribe(data => {
-      this.playlistsBD = data;
-      error: error => alert("Se ha producido un error");
-    })
+  cambiarVisualizacion(){
+    if(this.modoVisualizacion == "playlists"){
+      this.modoVisualizacion = "canciones";
+    }
+    else{
+      this.modoVisualizacion = "playlists";
+    }
   }
 
-  obtenerTodasPlaylists(){
-
-    this.service.listarTodasPlaylists().subscribe(data => {
-      this.allPlaylistsBD = data;
-      error: error => alert("Se ha producido un error");
-    })
+  setIdPlaylist(id : number){
+    this.idPlaylist = id;
   }
 
-  eliminarPlaylist(idPlaylist){
-    var r = confirm("¿Estás seguro de que quieres eliminar esta playlist?");
-    if (r == true) {
-      this.service.borrarPlaylist(idPlaylist).subscribe(data => {
-        error: error => alert("Se ha producido un error");
-      })
-    } 
+  setNombrePlaylist(name : string){
+    this.nombrePlaylist = name;
   }
 
-  obtenerAutorPlaylist(idPlaylist){
-    var autor;
-    this.service.infoPlaylist(idPlaylist).subscribe(data => {
-      var aux = data["creador"];
-      console.log(data);
-      error: error => alert("Se ha producido un error");
-    })
+  actualizarCancionActual(nombre: string){
+    this.cancionActual.emit(nombre);
   }
 
-  listarCancionesPlaylist(playlist : Playlist){
-    this.playEnRepro = playlist;
-    this.service.listarCancionesPlaylist(playlist.id).subscribe(data => {
-      this.cancionesPL = data;
-
-      error: error => alert("Se ha producido un error");
-    })
+  play(URL: string){
+    this.URL.emit(URL);
   }
 
 }
@@ -101,7 +69,7 @@ export class PlaylistsMenuComponent implements OnInit {
 })
 export class popUp {
 
-  constructor(private router:Router ,private service:ServiceService,public dialog: MatDialog) { }
+  constructor(private router:Router ,private service:ServiceService,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
 
   playlist : Playlist = new Playlist();
   idPlaylist : String;
@@ -114,13 +82,22 @@ export class popUp {
       });;
     }
     else{
-      alert("El nombre de la playlist no puede ser vacío");
+      var mensaje = "El nombre de la playlist no puede ser vacío";
+      this.openSnackBar(mensaje, "OK");
     }
   }
 
   crearPlaylistAux(idPlaylist){
     this.service.crearPlaylist(idPlaylist).subscribe(data => {
       error: error => alert("Se ha producido un error");
+      var mensaje = "La playlist '"+this.playlist.nombre+"' se ha creado";
+      this.openSnackBar(mensaje, "OK");
     })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

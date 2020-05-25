@@ -1,26 +1,49 @@
-<mat-card>
-  <mat-card-title class="cabecera">Playlists</mat-card-title>
+<mat-card *ngIf="modoVisualizacion=='inicio'">
+  <mat-card-title>Playlists</mat-card-title>
   <mat-card-subtitle>Puedes empezar por estas playlists creadas por otros usuarios</mat-card-subtitle>
-  <div class="cdk-virtual-scroll-data-source-example">
-    <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
-      <mat-card *cdkVirtualFor="let playlist of allPlaylistsBD" class="cardScroll">
-        <mat-card-header>
-          <mat-card-title>{{playlist.nombre}}</mat-card-title>
-          <mat-card-subtitle>Autor</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
-        <mat-card-content class="descripcion">
-          <p>
-            {{playlist.descripcion}}
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>
-            <mat-icon>favorite</mat-icon>
-          </button>
-         </mat-card-actions>
-      </mat-card>
-    </cdk-virtual-scroll-viewport>
-  </div>
+  <mat-card *ngFor="let playlist of playlistsBD" style="margin-top:10px;" class="card">
+    <mat-card-header>
+      <mat-card-title>{{playlist.nombre}}</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
+    <mat-card-content class="descripcion">
+      <p>
+        {{playlist.descripcion}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="acciones">
+      <button mat-icon-button>
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon (click)="eliminarPlaylist(playlist.id)">delete</mat-icon>
+      </button>
+      <button mat-button (click)="listarCancionesPlaylist(playlist)">ESCUCHAR</button>
+    </mat-card-actions>
   </mat-card>
-  <mat-divider></mat-divider>
+</mat-card>
+
+<div *ngIf="modoVisualizacion=='misPlaylists'">
+  <mat-card *ngFor="let playlist of playlistsBD" style="margin-top:10px;" class="card">
+    <mat-card-header>
+      <mat-card-title>{{playlist.nombre}}</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
+    <mat-card-content class="descripcion">
+      <p>
+        {{playlist.descripcion}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="acciones">
+      <button mat-icon-button>
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon (click)="eliminarPlaylist(playlist.id)">delete</mat-icon>
+      </button>
+      <button mat-button (click)="listarCancionesPlaylist(playlist)">ESCUCHAR</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
