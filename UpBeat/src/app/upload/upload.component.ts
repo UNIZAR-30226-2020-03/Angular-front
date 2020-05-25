@@ -22,6 +22,7 @@ export class UploadComponent implements OnInit {
 
   archivo: Cancion = new Cancion();
   albumesBD : Album[];
+  idAlbumSeleccionado = "Selecciona el álbum";
 
   @Output() cancion = new EventEmitter<string>();
   @Output() URL = new EventEmitter<string>();
@@ -45,6 +46,7 @@ export class UploadComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.usuario = this.serviceUsuario.getUserLoggedIn();
     this.obtenerTodosAlbumes();
   }
 
@@ -109,11 +111,15 @@ export class UploadComponent implements OnInit {
   }
 
   subirAutorBD(archivo: Cancion): void{
-    this.usuario = this.serviceUsuario.getUserLoggedIn();
     this.serviceStreaming.subirAutor(this.usuario.correo,archivo.id).subscribe(data => {
       error: error => alert("Se ha producido un error");
-      var mensaje = "El archivo ha sido subido correctamente";
-      this.openSnackBar(mensaje, "OK");
+      if(this.idAlbumSeleccionado != "Selecciona el álbum"){
+        this.anyadirCancionAlbum(archivo.id);
+      }
+      else{
+        var mensaje = "El archivo ha sido subido correctamente";
+        this.openSnackBar(mensaje, "OK");
+      }
   })
   }
 
@@ -127,6 +133,14 @@ export class UploadComponent implements OnInit {
     this.serviceUsuario.listarTodosAlbums().subscribe(data => {
       this.albumesBD = data;
       error: error => alert("Se ha producido un error");
+    })
+  }
+
+  anyadirCancionAlbum(idSong){
+    this.serviceUsuario.anyadirCancionAlbum(this.idAlbumSeleccionado,idSong).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      var mensaje = "El archivo ha sido subido correctamente";
+      this.openSnackBar(mensaje, "OK");
     })
   }
 

@@ -22,16 +22,18 @@
           </label>
         </div>
         <br/>
-        <div class="control">
-          <div class="select">
-            <select>
-              <option>Selecciona el álbum</option>
-              <option *ngFor="let album of albumesBD">
-                {{album.nombre}}
-              </option>
-            </select>
+        <form>
+          <div class="control">
+            <div class="select">
+              <select name="idAlbumSeleccionado" [(ngModel)]="idAlbumSeleccionado">
+                <option>Selecciona el álbum</option>
+                <option *ngFor="let album of albumesBD">
+                  {{album.nombre}}
+                </option>
+              </select>
+            </div>
           </div>
-        </div>
+        </form>
         <hr>
         <progress *ngIf="porcentaje > 0 && porcentaje < 100" class="progress is-large is-success" value="{{porcentaje}}" max="100">{{porcentaje}}%</progress>
         <button class="boton" [ngClass]="{'button': true, 'is-success': true, 'is-large': true, 'is-loading': porcentaje > 0 && porcentaje < 100}" [disabled]="!archivoForm.valid && (porcentaje > 0 && porcentaje < 100)">Subir archivo</button>
