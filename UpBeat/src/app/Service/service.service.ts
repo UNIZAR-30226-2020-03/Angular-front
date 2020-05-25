@@ -174,4 +174,9 @@ export class ServiceService {
     return this.http.get<Cancion[]>(UrlLog,httpOptions);
   }
 
+  anyadirCancionAlbum(idAlbum, idSong){
+    var UrlLog="https://upbeatproyect.herokuapp.com/album/addSong/"+idAlbum+"/"+idSong;
+    return this.http.put(UrlLog,null,httpOptions);
+  }
+
 }
