@@ -27,7 +27,7 @@
             <div class="select">
               <select name="idAlbumSeleccionado" [(ngModel)]="idAlbumSeleccionado">
                 <option>Selecciona el álbum</option>
-                <option *ngFor="let album of albumesBD">
+                <option *ngFor="let album of albumesBD" [value]="album.id">
                   {{album.nombre}}
                 </option>
               </select>
