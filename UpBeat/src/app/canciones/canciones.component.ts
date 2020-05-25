@@ -32,13 +32,25 @@ export class CancionesComponent implements OnInit {
   @Input() nombreAlbum: string;
 
   usuarioActual: Usuario;
+  primero : Boolean = true;
 
   constructor(private router:Router, private service:StreamingService, private serviceUser:ServiceService, private _snackBar: MatSnackBar) { }
 
   play(i: number){
-    this.reproducirCanconId(this.cancionesBD[i].id)
+    if(this.primero){
+      this.primero = false;
+      this.service.play(this.cancionesBD[i].id);
+    }
     this.URL.emit(this.cancionesBD[i].pathMp3);
     this.cancion.emit(this.cancionesBD[i].nombre);
+  }
+
+  anyadirSongCola(i: number){
+    this.service.anyadirCancionCola(this.usuarioActual.correo, this.cancionesBD[i].id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      var mensaje = "La cancion se ha añadido a la cola de reproducción";
+      this.openSnackBar(mensaje, "OK");
+    })
   }
 
   ngOnInit(): void {

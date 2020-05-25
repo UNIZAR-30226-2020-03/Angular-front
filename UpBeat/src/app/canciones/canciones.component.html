@@ -14,6 +14,9 @@
           <button mat-icon-button [matMenuTriggerFor]="menu" class="add_playlist">
             <mat-icon>playlist_add</mat-icon>
           </button>
+          <button mat-icon-button (click)="anyadirSongCola(indice)">
+            <mat-icon>queue</mat-icon>
+          </button>
           <mat-menu #menu="matMenu">
             <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
           </mat-menu>

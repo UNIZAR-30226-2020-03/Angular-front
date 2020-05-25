@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { StreamingService } from '../Service/streaming.service';
 
 @Component({
   selector: 'app-reproductor',
@@ -10,7 +11,7 @@ export class ReproductorComponent implements OnInit {
   @Output() tiempoCancionRelativa = new EventEmitter();
   @Output() tiempoCancionAbsoluta = new EventEmitter();
 
-  constructor() { }
+  constructor(public service : StreamingService) { }
 
   ngOnInit(): void {
     this.audio.volume = 0.5;
@@ -28,7 +29,7 @@ export class ReproductorComponent implements OnInit {
     this.audio.load();
     this.audio.play();
     this.audio.addEventListener('ended', () => {
-      this.playURL(URL);
+      this.service.next(URL);
     });
   }
 
