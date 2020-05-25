@@ -3,7 +3,7 @@
     <mat-divider></mat-divider>
     <app-playlists (idPlaylistActual)="setIdPlaylist($event)" (nombrePlaylistActual)="setNombrePlaylist($event);cambiarVisualizacion();"></app-playlists>
     <mat-divider></mat-divider>
-    <app-albumes></app-albumes>
+    <app-albumes (idAlbumActual)="setIdPlaylist($event)" (nombreAlbumActual)="setNombrePlaylist($event);cambiarVisualizacion();"></app-albumes>
     <br/><br/><br/><br/>
 </div>
 <div *ngIf="modoVisualizacion=='canciones'">

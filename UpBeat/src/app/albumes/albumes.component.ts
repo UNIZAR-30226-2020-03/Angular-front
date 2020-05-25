@@ -14,8 +14,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AlbumesComponent implements OnInit {
 
-  @Output() idPlaylistActual = new EventEmitter<number>();
-  @Output() nombrePlaylistActual = new EventEmitter<string>();
+  @Output() idAlbumActual = new EventEmitter<number>();
+  @Output() nombreAlbumActual = new EventEmitter<string>();
 
   modoVisualizacion: String = "albumes";
 
@@ -74,9 +74,9 @@ export class AlbumesComponent implements OnInit {
     })
   }
 
-  listarCancionesPlaylist(album : Album){
-    this.idPlaylistActual.emit(album.id);
-    this.nombrePlaylistActual.emit(album.nombre);
+  listarCancionesAlbum(album : Album){
+    this.idAlbumActual.emit(album.id);
+    this.nombreAlbumActual.emit(album.nombre);
   }
 
   eliminarPlaylist(idAlbum){
