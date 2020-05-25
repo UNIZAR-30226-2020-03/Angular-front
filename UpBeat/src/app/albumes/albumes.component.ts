@@ -26,7 +26,6 @@ export class AlbumesComponent implements OnInit {
 
   ngOnInit(): void {
     this.artista = this.service.getUserLoggedIn();
-    this.obtenerMisAlbumesArtista();
     if(this.router.url === '/inicio'){
       this.modoComponente(0);
     }
@@ -42,7 +41,7 @@ export class AlbumesComponent implements OnInit {
     }
     else if (mode == 1){
       this.modoVisualizacion = "misAlbumsArtista";
-      this.obtenerMisPlaylists();
+      this.obtenerMisAlbumesArtista();
     }
   }
 
@@ -62,13 +61,6 @@ export class AlbumesComponent implements OnInit {
 
   obtenerTodosAlbumes(){
     this.service.listarTodosAlbums().subscribe(data => {
-      this.albumesBD = data;
-      error: error => alert("Se ha producido un error");
-    })
-  }
-
-  obtenerMisPlaylists(){
-    this.service.misPlaylists().subscribe(data => {
       this.albumesBD = data;
       error: error => alert("Se ha producido un error");
     })

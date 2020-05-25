@@ -24,8 +24,12 @@ export class CancionesComponent implements OnInit {
   cancionesBD: Cancion[];
 
   @Input() cadenaBusqueda: string;
+
   @Input() idPlaylist: string;
   @Input() nombrePlaylist: string;
+
+  @Input() idAlbum: string;
+  @Input() nombreAlbum: string;
 
   usuarioActual: Usuario;
 
@@ -46,6 +50,9 @@ export class CancionesComponent implements OnInit {
     if(this.router.url === '/inicio'){
       if(this.idPlaylist != null){
         this.modoComponente(3);
+      }
+      else if(this.idAlbum != null){
+        this.modoComponente(4);
       }
       else{
         this.modoComponente(0);
@@ -77,9 +84,11 @@ export class CancionesComponent implements OnInit {
     }
     else if (mode == 3){
       this.modoVisualizacion = "playlists";
-      setTimeout(() => {
-        this.listarCancionesPlaylist();
-      }, 500);
+      this.listarCancionesPlaylist();
+    }
+    else if (mode == 4){
+      this.modoVisualizacion = "albumes";
+      this.listarCancionesAlbum();
     }
   }
 
@@ -118,6 +127,18 @@ export class CancionesComponent implements OnInit {
 
   listarCancionesPlaylist(){
     this.serviceUser.listarCancionesPlaylist(this.idPlaylist).subscribe(data => {
+      this.cancionesBD = data;
+      error: error => alert("Se ha producido un error");
+      var i = 0;
+      while(this.cancionesBD[i]!=null){
+        this.esFavorito(i,this.usuarioActual.correo,this.cancionesBD[i].id);
+        i++;
+      }
+    })
+  }
+
+  listarCancionesAlbum(){
+    this.serviceUser.listarCancionesAlbum(this.idAlbum).subscribe(data => {
       this.cancionesBD = data;
       error: error => alert("Se ha producido un error");
       var i = 0;

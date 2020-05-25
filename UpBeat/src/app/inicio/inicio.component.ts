@@ -9,6 +9,8 @@ export class InicioComponent implements OnInit {
 
   idPlaylist: number;
   nombrePlaylist: string;
+  idAlbum: number;
+  nombreAlbum: string;
 
   @Output() cancionActual = new EventEmitter<string>();
   @Output() URL = new EventEmitter<string>();
@@ -28,12 +30,22 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cambiarVisualizacion(){
-    if(this.modoVisualizacion == "inicio"){
-      this.modoVisualizacion = "canciones";
+  cambiarVisualizacion(tipo: string){
+    if(tipo == "album"){
+      if(this.modoVisualizacion == "inicio"){
+        this.modoVisualizacion = "canciones-album";
+      }
+      else{
+        this.modoVisualizacion = "inicio";
+      }
     }
-    else{
-      this.modoVisualizacion = "inicio";
+    else{   //tipo == "playlist"
+      if(this.modoVisualizacion == "inicio"){
+        this.modoVisualizacion = "canciones-playlist";
+      }
+      else{
+        this.modoVisualizacion = "inicio";
+      }
     }
   }
 
@@ -43,6 +55,14 @@ export class InicioComponent implements OnInit {
 
   setNombrePlaylist(name : string){
     this.nombrePlaylist = name;
+  }
+
+  setIdAlbum(id : number){
+    this.idAlbum = id;
+  }
+
+  setNombreAlbum(name : string){
+    this.nombreAlbum = name;
   }
 
 }

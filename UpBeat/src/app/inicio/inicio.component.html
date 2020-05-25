@@ -1,15 +1,23 @@
 <div *ngIf="modoVisualizacion=='inicio'">
     <app-canciones (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
     <mat-divider></mat-divider>
-    <app-playlists (idPlaylistActual)="setIdPlaylist($event)" (nombrePlaylistActual)="setNombrePlaylist($event);cambiarVisualizacion();"></app-playlists>
+    <app-playlists (idPlaylistActual)="setIdPlaylist($event)" (nombrePlaylistActual)="setNombrePlaylist($event);cambiarVisualizacion('playlist');"></app-playlists>
     <mat-divider></mat-divider>
-    <app-albumes (idAlbumActual)="setIdPlaylist($event)" (nombreAlbumActual)="setNombrePlaylist($event);cambiarVisualizacion();"></app-albumes>
+    <app-albumes (idAlbumActual)="setIdAlbum($event)" (nombreAlbumActual)="setNombreAlbum($event);cambiarVisualizacion('album');"></app-albumes>
     <br/><br/><br/><br/>
 </div>
-<div *ngIf="modoVisualizacion=='canciones'">
-    <app-canciones [idPlaylist]="idPlaylist" [nombrePlaylist]="nombrePlaylist" [nombrePlaylist]="nombrePlaylist" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
+<div *ngIf="modoVisualizacion=='canciones-playlist'">
+    <app-canciones [idPlaylist]="idPlaylist" [nombrePlaylist]="nombrePlaylist" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
     <div class="example-button-container">
-        <button mat-fab color="primary" (click)=cambiarVisualizacion()>
+        <button mat-fab color="primary" (click)="cambiarVisualizacion('playlist')">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+</div>
+<div *ngIf="modoVisualizacion=='canciones-album'">
+    <app-canciones [idAlbum]="idAlbum" [nombreAlbum]="nombreAlbum" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
+    <div class="example-button-container">
+        <button mat-fab color="primary" (click)="cambiarVisualizacion('album')">
           <mat-icon>arrow_back</mat-icon>
         </button>
     </div>

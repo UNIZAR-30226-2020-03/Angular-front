@@ -169,4 +169,9 @@ export class ServiceService {
     return this.http.get<Album[]>(UrlLog,httpOptions);
   }
 
+  listarCancionesAlbum(idAlbum){
+    var UrlLog="https://upbeatproyect.herokuapp.com/album/songList/"+idAlbum;
+    return this.http.get<Cancion[]>(UrlLog,httpOptions);
+  }
+
 }
