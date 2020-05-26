@@ -27,6 +27,7 @@ export class ServiceService {
   UrlRegArtista='https://upbeatproyect.herokuapp.com/artista/save';
 
   registrarUsuario(usuario: Usuario):Observable<any>{
+    usuario.pathImg = "assets/84025-foto_de_perfil_por_defecto.png";
     var myString = JSON.stringify(usuario);
     return this.http.post<any>(this.UrlReg,myString,httpOptions);
   }
@@ -73,15 +74,25 @@ export class ServiceService {
   }
 
   actualizarUsuario(user: Usuario){
-    var UrlLog = "https://upbeatproyect.herokuapp.com/usuario/updateUser/"+user.correo;
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/update/"+user.correo;
     var myString = JSON.stringify(user);
     this.setUserLoggedIn(user);
+    return this.http.put(UrlLog,myString,httpOptions);
+  }
+
+  actualizarImg(user: Usuario){
+    var UrlLog = "http://upbeatproyect.herokuapp.com/cliente/update/"+user.correo;
+    var myString = JSON.stringify(user);
+    this.setUserLoggedIn(user);
+    console.log(myString);
     return this.http.put(UrlLog,myString,httpOptions);
   }
 
   getUserLoggedIn() {
   	return JSON.parse(localStorage.getItem('currentUser'));
   }
+
+
 
   ////////////////////////
   ///// RED SOCIAL //////

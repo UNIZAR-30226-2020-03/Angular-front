@@ -1,5 +1,6 @@
 export class Artista{
     nombre: string;
+    pathImg: string;
     apellidos: string;
     contrasenya: string;
     correo: string;

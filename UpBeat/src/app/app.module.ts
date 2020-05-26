@@ -23,7 +23,7 @@ import { BarraInferiorComponent } from './barra-inferior/barra-inferior.componen
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { PlaylistsMenuComponent, popUp } from './playlists-menu/playlists-menu.component';
 import { BuscarComponent, popUpSearch } from './buscar/buscar.component';
-import { CuentaComponent } from './cuenta/cuenta.component';
+import { CuentaComponent, popUp3 } from './cuenta/cuenta.component';
 import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { RegistroComponent } from './registro/registro.component';
@@ -79,7 +79,8 @@ import { MatSelectModule } from '@angular/material/select';
     AlbumesComponent,
     popUp2,
     AlbumesMenuComponent,
-    popUpSearch
+    popUpSearch,
+    popUp3
   ],
   imports: [
     BrowserModule,

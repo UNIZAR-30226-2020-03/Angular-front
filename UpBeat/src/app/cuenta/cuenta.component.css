@@ -19,7 +19,16 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
     color: firebrick;
+}
+
+.editarFoto{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
 }
 
 .formulario {
