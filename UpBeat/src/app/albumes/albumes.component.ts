@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Album } from '../MODELO/Album';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { StreamingService } from '../Service/streaming.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class AlbumesComponent implements OnInit {
   artista : Artista = new Artista();
   albumesBD : Album[];
 
-  constructor(private router:Router, private service:ServiceService,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
+  constructor(private router:Router, private service:ServiceService,private serviceStream:StreamingService,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.artista = this.service.getUserLoggedIn();
@@ -95,6 +96,17 @@ export class AlbumesComponent implements OnInit {
     this.service.autorPlaylist(idAlbum).subscribe(data => {
       this.albumesBD[i].creador = data.nombre + " " + data.apellidos;
       error: error => alert("Se ha producido un error");
+    })
+  }
+
+  anyadirAlbumCola(i: number){
+    this.serviceStream.anyadirAlbumCola(this.artista.correo, this.albumesBD[i].id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      var mensaje = "El álbum se ha añadido a la cola de reproducción";
+      this.openSnackBar(mensaje, "OK");
+      this.serviceStream.verCola(this.artista.correo).subscribe(data => {
+        console.log(data);
+      })
     })
   }
 

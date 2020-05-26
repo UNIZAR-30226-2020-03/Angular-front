@@ -1,14 +1,14 @@
 <mat-card *ngIf="modoVisualizacion=='albumes'">
   <mat-card-title>Álbumes</mat-card-title>
   <mat-card-subtitle>O puedes empezar con estos álbumes</mat-card-subtitle>
-  <mat-card *ngFor="let album of albumesBD" style="margin-top:10px;" class="card">
+  <mat-card *ngFor="let album of albumesBD; let indice=index" style="margin-top:10px;" class="card">
     <mat-card-header>
       <mat-card-title>{{album.nombre}}</mat-card-title>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Añadir a la cola</button>
+        <button mat-menu-item (click)="anyadirAlbumCola(indice)">Añadir a la cola</button>
       </mat-menu>
       <mat-card-subtitle>{{album.creador}}</mat-card-subtitle>
     </mat-card-header>
@@ -28,14 +28,14 @@
 </mat-card>
 
 <div *ngIf="modoVisualizacion=='misAlbumesArtista'">
-  <mat-card *ngFor="let album of albumesBD" style="margin-top:10px;" class="card">
+  <mat-card *ngFor="let album of albumesBD; let indice=index" style="margin-top:10px;" class="card">
     <mat-card-header>
       <mat-card-title>{{album.nombre}}</mat-card-title>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Añadir a la cola</button>
+        <button mat-menu-item (click)="anyadirAlbumCola(indice)">Añadir a la cola</button>
       </mat-menu>
       <mat-card-subtitle>{{album.creador}}</mat-card-subtitle>
     </mat-card-header>

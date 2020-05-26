@@ -64,9 +64,9 @@ export class StreamingService {
     var url = "https://upbeatproyect.herokuapp.com/cancion/getStreamUrlMp3byId/"+idCancion;
     return this.http.get(url,httpOptions2);
   }
- ////////////////////
- ////// COLA ///////
- //////////////////
+ /////////////////////////////
+ ////// COLA CANCIONES ///////
+ /////////////////////////////
   play(correo: string){
     var url = "https://upbeatproyect.herokuapp.com/cliente/play/"+correo;
     return this.http.get(url,httpOptions);
@@ -98,5 +98,17 @@ export class StreamingService {
     return this.http.get<Cancion[]>(url,httpOptions);
   }
 
+ ////////////////////////////////////////
+ ////// COLA ALBUMES Y PLAYLIST /////////
+ ////////////////////////////////////////
+ anyadirAlbumCola(correo: string,idAlbum: number){
+  var url = "https://upbeatproyect.herokuapp.com/cliente/addAlbumCola/"+correo+"/"+idAlbum;
+  return this.http.put(url,httpOptions);
+ }
+
+ anyadirPlaylistCola(correo: string,idPlaylist: number){
+  var url = "https://upbeatproyect.herokuapp.com/cliente/addPlaylistCola/"+correo+"/"+idPlaylist;
+  return this.http.put(url,httpOptions);
+ }
 
 }

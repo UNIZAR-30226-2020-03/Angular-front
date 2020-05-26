@@ -8,7 +8,7 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Añadir a la cola</button>
+        <button mat-menu-item (click)="anyadirPlaylistCola(indice)">Añadir a la cola</button>
       </mat-menu>
       <mat-card-subtitle>{{playlist.creador}}</mat-card-subtitle>
     </mat-card-header>
@@ -35,7 +35,7 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Añadir a la cola</button>
+        <button mat-menu-item (click)="anyadirPlaylistCola(indice)">Añadir a la cola</button>
       </mat-menu>
       <mat-card-subtitle>{{playlist.creador}}</mat-card-subtitle>
     </mat-card-header>

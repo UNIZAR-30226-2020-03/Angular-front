@@ -4,6 +4,7 @@ import { ServiceService } from '../Service/service.service';
 import { Router } from '@angular/router';
 import { Playlist } from '../MODELO/Playlist';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { StreamingService } from '../Service/streaming.service';
 
 @Component({
   selector: 'app-playlists',
@@ -19,10 +20,12 @@ export class PlaylistsComponent implements OnInit {
   playlistsBD: Playlist[];
 
   modoVisualizacion: String = "recientes";
+  usuarioActual: Usuario;
   
-  constructor(private router:Router, private service:ServiceService, private _snackBar: MatSnackBar) { }
+  constructor(private router:Router, private service:ServiceService,private serviceStream:StreamingService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.usuarioActual = this.service.getUserLoggedIn();
     if(this.router.url === '/inicio'){
       this.modoComponente(0);
     }
@@ -92,6 +95,17 @@ export class PlaylistsComponent implements OnInit {
     this.service.autorPlaylist(idPlaylist).subscribe(data => {
       this.playlistsBD[i].creador = data.nombre + " " + data.apellidos;
       error: error => alert("Se ha producido un error");
+    })
+  }
+
+  anyadirPlaylistCola(i: number){
+    this.serviceStream.anyadirPlaylistCola(this.usuarioActual.correo, this.playlistsBD[i].id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      var mensaje = "La playlist se ha añadido a la cola de reproducción";
+      this.openSnackBar(mensaje, "OK");
+      this.serviceStream.verCola(this.usuarioActual.correo).subscribe(data => {
+        console.log(data);
+      })
     })
   }
 
