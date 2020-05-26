@@ -49,7 +49,7 @@
 }
 
 .boton1{
-    margin-left: 10px;
+    margin-left: 20px;
     background-color: #00bcd4;
 }
 
@@ -73,8 +73,8 @@
 }
 
 .boton2{
-    margin-left: 320px;
-    display: block;
+    margin-left: 20px;
+    display: inline-block;
     background: #00bcd4;
 }
 

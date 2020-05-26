@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FirebaseStorageService } from '../firebase-storage.service'
 import { finalize } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-cuenta',
@@ -20,7 +22,7 @@ export class CuentaComponent implements OnInit {
   contrasenya: string;
   repContrasenya: string;
   usuario: Usuario = new Usuario();
-  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private service:ServiceService) { }
+  constructor(private router:Router,private _snackBar: MatSnackBar, public dialog: MatDialog, private service:ServiceService) { }
 
   ngOnInit(): void {
     this.getNombreUsuario();
@@ -29,7 +31,7 @@ export class CuentaComponent implements OnInit {
   cerrarSesion(){
     var r = confirm("¿Estás seguro de que quieres cerrar sesión?");
     if (r == true) {
-      location.href="http://localhost:4200/" //Aquí habrá que poner la web definitiva
+      this.router.navigate(['/']); //Aquí habrá que poner la web definitiva
       localStorage.clear();
     } 
   }
