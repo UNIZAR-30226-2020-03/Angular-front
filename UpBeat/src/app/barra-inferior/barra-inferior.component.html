@@ -14,7 +14,7 @@
         <span class="cancionActual">Reproduciendo: {{cancionActual}}</span>
         <div class="barraVolumen">
             <mat-slider barraVolumen [(ngModel)]="tiempoRelativoSong" (change)="modificarTiempo()" min="0" max="100" step="1" color="primary"></mat-slider>
-            <font size=3>{{tiempoActual}}s</font>
+            <font size=3>{{tiempoActual}}</font>
         </div>
         <div class="next">
             <button *ngIf="reproduciendo" mat-raised-button color="primary" (click)="pause()"><mat-icon>pause</mat-icon></button>
