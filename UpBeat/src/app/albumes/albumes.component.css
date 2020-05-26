@@ -1,40 +1,17 @@
-.cabecera {
-    display: block;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-top: 20px;
-}
-
-.crear {
-    display: inline-block;
-    margin-left: 20px;
-    margin-bottom: 10px;
-    background-color: #00bcd4;
-    max-height: 40px;
-
-
-}
-
 .card{
-    max-height: 300px;
-    max-width: 210px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    margin-top: 20px;
+    max-width: 200px;
     display: inline-block;
-
 }
-
-.descripcion{
-    min-height: 20px;
-}
-
 
 .imagen{
     background-size: cover;
 }
 
-.fondo{
-    margin-bottom: 120px;
-    margin-top: 20px;
+.acciones{
+    width: 100%;
+}
+
+.menuTresPuntos{
+    right: 10px;
+    position: absolute;
 }

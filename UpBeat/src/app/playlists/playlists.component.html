@@ -4,12 +4,6 @@
   <mat-card *ngFor="let playlist of playlistsBD; let indice=index" style="margin-top:10px;" class="card">
     <mat-card-header>
       <mat-card-title>{{playlist.nombre}}</mat-card-title>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="anyadirPlaylistCola(indice)">Añadir a la cola</button>
-      </mat-menu>
       <mat-card-subtitle>{{playlist.creador}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
@@ -28,6 +22,12 @@
       <button mat-icon-button matTooltip="Ver playlist">
         <mat-icon (click)="listarCancionesPlaylist(playlist)">remove_red_eyes</mat-icon>
       </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="menuTresPuntos">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="anyadirPlaylistCola(indice)">Añadir a la cola</button>
+      </mat-menu>
     </mat-card-actions>
   </mat-card>
 </mat-card>
@@ -36,12 +36,6 @@
   <mat-card *ngFor="let playlist of playlistsBD; let indice=index" style="margin-top:10px;" class="card">
     <mat-card-header>
       <mat-card-title>{{playlist.nombre}}</mat-card-title>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="anyadirPlaylistCola(indice)">Añadir a la cola</button>
-      </mat-menu>
       <mat-card-subtitle>{{playlist.creador}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
@@ -63,6 +57,12 @@
       <button mat-icon-button matTooltip="Ver playlist">
         <mat-icon (click)="listarCancionesPlaylist(playlist)">remove_red_eyes</mat-icon>
       </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="menuTresPuntos">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="anyadirPlaylistCola(indice)">Añadir a la cola</button>
+      </mat-menu>
     </mat-card-actions>
   </mat-card>
 </div>
