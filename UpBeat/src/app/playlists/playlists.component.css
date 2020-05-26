@@ -21,6 +21,10 @@
     margin-top: 20px;
 }
 
+.header{
+    width: 100%;
+}
+
 .opciones{
-    left: 45px;
+    right: 0;
 }

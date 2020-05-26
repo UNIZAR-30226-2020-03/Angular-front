@@ -93,6 +93,9 @@ export class CancionesComponent implements OnInit {
   play(i: number){
     if(this.primero){
       this.primero = false;
+      this.service.reproducirCancion(this.usuarioActual.correo, this.cancionesBD[i].id).subscribe(data => {
+        error: error => alert("Se ha producido un error");
+        console.log(data);
         this.service.play(this.usuarioActual.correo).subscribe(data => {
           error: error => alert("Se ha producido un error");
           console.log(data);
@@ -100,11 +103,15 @@ export class CancionesComponent implements OnInit {
             console.log(data);
           })
         })
+      })
     }
     else{
-      this.service.reproducirCancion(this.usuarioActual.correo, this.cancionesBD[i].id);
-      this.service.verCola(this.usuarioActual.correo).subscribe(data => {
+      this.service.reproducirCancion(this.usuarioActual.correo, this.cancionesBD[i].id).subscribe(data => {
+        error: error => alert("Se ha producido un error");
         console.log(data);
+        this.service.verCola(this.usuarioActual.correo).subscribe(data => {
+          console.log(data);
+        })
       })
     }
     this.URL.emit(this.cancionesBD[i].pathMp3);
