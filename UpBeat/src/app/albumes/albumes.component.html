@@ -25,7 +25,9 @@
       <button mat-icon-button>
         <mat-icon>favorite</mat-icon>
       </button>
-      <button mat-button (click)="listarCancionesAlbum(album)">ESCUCHAR</button>
+      <button mat-icon-button>
+        <mat-icon (click)="listarCancionesAlbum(album)">remove_red_eyes</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </mat-card>
@@ -58,7 +60,9 @@
       <button mat-icon-button>
         <mat-icon (click)="eliminarAlbum(album.id)">delete</mat-icon>
       </button>
-      <button mat-button (click)="listarCancionesAlbum(album)">ESCUCHAR</button>
+      <button mat-icon-button>
+        <mat-icon (click)="listarCancionesAlbum(album)">remove_red_eyes</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

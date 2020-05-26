@@ -25,7 +25,9 @@
       <button mat-icon-button>
         <mat-icon>favorite</mat-icon>
       </button>
-      <button mat-button (click)="listarCancionesPlaylist(playlist)">VER</button>
+      <button mat-icon-button>
+        <mat-icon (click)="listarCancionesPlaylist(playlist)">remove_red_eyes</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </mat-card>
@@ -58,7 +60,9 @@
       <button mat-icon-button>
         <mat-icon (click)="eliminarPlaylist(playlist.id)">delete</mat-icon>
       </button>
-      <button mat-button (click)="listarCancionesPlaylist(playlist)">VER</button>
+      <button mat-icon-button>
+        <mat-icon (click)="listarCancionesPlaylist(playlist)">remove_red_eyes</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>
