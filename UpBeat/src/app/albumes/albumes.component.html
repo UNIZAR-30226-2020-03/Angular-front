@@ -19,13 +19,13 @@
       </p>
     </mat-card-content>
     <mat-card-actions class="acciones">
-      <button mat-icon-button>
+      <button mat-icon-button matTooltip="Escuchar">
         <mat-icon (click)="playAlbumCola(indice)">play_arrow</mat-icon>
       </button>
-      <button mat-icon-button>
+      <button mat-icon-button matTooltip="Añadir a favoritos">
         <mat-icon>favorite</mat-icon>
       </button>
-      <button mat-icon-button>
+      <button mat-icon-button matTooltip="Ver álbum">
         <mat-icon (click)="listarCancionesAlbum(album)">remove_red_eyes</mat-icon>
       </button>
     </mat-card-actions>
@@ -51,16 +51,16 @@
       </p>
     </mat-card-content>
     <mat-card-actions class="acciones">
-      <button mat-icon-button>
+      <button mat-icon-button matTooltip="Escuchar">
         <mat-icon (click)="playAlbumCola(indice)">play_arrow</mat-icon>
       </button>
-      <button mat-icon-button>
+      <button mat-icon-button matTooltip="Añadir a favoritos">
         <mat-icon>favorite</mat-icon>
       </button>
-      <button mat-icon-button>
+      <button mat-icon-button matTooltip="Eliminar álbum">
         <mat-icon (click)="eliminarAlbum(album.id)">delete</mat-icon>
       </button>
-      <button mat-icon-button>
+      <button mat-icon-button matTooltip="Ver álbum">
         <mat-icon (click)="listarCancionesAlbum(album)">remove_red_eyes</mat-icon>
       </button>
     </mat-card-actions>

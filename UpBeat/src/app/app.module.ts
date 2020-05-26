@@ -50,6 +50,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { AlbumesComponent } from './albumes/albumes.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AlbumesMenuComponent, popUp2 } from './albumes-menu/albumes-menu.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { AlbumesMenuComponent, popUp2 } from './albumes-menu/albumes-menu.compon
     ScrollingModule,
     MatMenuModule,
     MatFormFieldModule,
+    MatTooltipModule
   ],
   providers: [ServiceService,MessageService],
   bootstrap: [AppComponent]
