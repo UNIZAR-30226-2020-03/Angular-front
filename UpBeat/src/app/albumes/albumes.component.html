@@ -20,6 +20,9 @@
     </mat-card-content>
     <mat-card-actions class="acciones">
       <button mat-icon-button>
+        <mat-icon (click)="playAlbumCola(indice)">play_arrow</mat-icon>
+      </button>
+      <button mat-icon-button>
         <mat-icon>favorite</mat-icon>
       </button>
       <button mat-button (click)="listarCancionesAlbum(album)">ESCUCHAR</button>
@@ -46,6 +49,9 @@
       </p>
     </mat-card-content>
     <mat-card-actions class="acciones">
+      <button mat-icon-button>
+        <mat-icon (click)="playAlbumCola(indice)">play_arrow</mat-icon>
+      </button>
       <button mat-icon-button>
         <mat-icon>favorite</mat-icon>
       </button>

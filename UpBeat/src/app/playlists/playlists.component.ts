@@ -16,8 +16,12 @@ export class PlaylistsComponent implements OnInit {
   @Output() idPlaylistActual = new EventEmitter<number>();
   @Output() nombrePlaylistActual = new EventEmitter<string>();
 
+  @Output() cancion = new EventEmitter<string>();
+  @Output() URL = new EventEmitter<string>();
+
   usuario : Usuario = new Usuario();
   playlistsBD: Playlist[];
+  primero : Boolean = true;
 
   modoVisualizacion: String = "recientes";
   usuarioActual: Usuario;
@@ -107,6 +111,42 @@ export class PlaylistsComponent implements OnInit {
         console.log(data);
       })
     })
+  }
+
+  playPlaylistCola(i: number){
+    if(this.primero){
+      this.primero = false;
+      this.serviceStream.reproducirPlaylist(this.usuarioActual.correo, this.playlistsBD[i].id).subscribe(data => {
+        error: error => alert("Se ha producido un error");
+        console.log(data);
+        var aux = data["cancion"];
+        var src = aux["pathMp3"];
+        var nombre = aux["nombre"].toString();
+        this.cancion.emit(nombre);
+        this.URL.emit(src);
+        this.serviceStream.play(this.usuarioActual.correo).subscribe(data => {
+          error: error => alert("Se ha producido un error");
+          console.log(data);
+          this.serviceStream.verCola(this.usuarioActual.correo).subscribe(data => {
+            console.log(data);
+          })
+        })
+      })
+    }
+    else{
+      this.serviceStream.reproducirPlaylist(this.usuarioActual.correo, this.playlistsBD[i].id).subscribe(data => {
+        error: error => alert("Se ha producido un error");
+        console.log(data);
+        var aux = data["cancion"];
+        var src = aux["pathMp3"];
+        var nombre = aux["nombre"].toString();
+        this.cancion.emit(nombre);
+        this.URL.emit(src);
+        this.serviceStream.verCola(this.usuarioActual.correo).subscribe(data => {
+          console.log(data);
+        })
+      })
+    }
   }
 
 }

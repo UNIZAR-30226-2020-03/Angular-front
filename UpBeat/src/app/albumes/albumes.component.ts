@@ -18,10 +18,14 @@ export class AlbumesComponent implements OnInit {
   @Output() idAlbumActual = new EventEmitter<number>();
   @Output() nombreAlbumActual = new EventEmitter<string>();
 
+  @Output() cancion = new EventEmitter<string>();
+  @Output() URL = new EventEmitter<string>();
+
   modoVisualizacion: String = "albumes";
 
   artista : Artista = new Artista();
   albumesBD : Album[];
+  primero : Boolean = true;
 
   constructor(private router:Router, private service:ServiceService,private serviceStream:StreamingService,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
 
@@ -108,6 +112,42 @@ export class AlbumesComponent implements OnInit {
         console.log(data);
       })
     })
+  }
+
+  playAlbumCola(i: number){
+    if(this.primero){
+      this.primero = false;
+      this.serviceStream.reproducirAlbum(this.artista.correo, this.albumesBD[i].id).subscribe(data => {
+        error: error => alert("Se ha producido un error");
+        console.log(data);
+        var aux = data["cancion"];
+        var src = aux["pathMp3"];
+        var nombre = aux["nombre"].toString();
+        this.cancion.emit(nombre);
+        this.URL.emit(src);
+        this.serviceStream.play(this.artista.correo).subscribe(data => {
+          error: error => alert("Se ha producido un error");
+          console.log(data);
+          this.serviceStream.verCola(this.artista.correo).subscribe(data => {
+            console.log(data);
+          })
+        })
+      })
+    }
+    else{
+      this.serviceStream.reproducirAlbum(this.artista.correo, this.albumesBD[i].id).subscribe(data => {
+        error: error => alert("Se ha producido un error");
+        console.log(data);
+        var aux = data["cancion"];
+        var src = aux["pathMp3"];
+        var nombre = aux["nombre"].toString();
+        this.cancion.emit(nombre);
+        this.URL.emit(src);
+        this.serviceStream.verCola(this.artista.correo).subscribe(data => {
+          console.log(data);
+        })
+      })
+    }
   }
 
 }

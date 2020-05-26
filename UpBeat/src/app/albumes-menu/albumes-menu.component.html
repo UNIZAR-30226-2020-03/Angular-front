@@ -4,7 +4,7 @@
         <button mat-raised-button class = "crear" (click)="openDialog()">Crear un álbum</button>
       </mat-card-title>
     </mat-card>
-    <app-albumes (idAlbumActual)="setIdAlbum($event)" (nombreAlbumActual)="setNombreAlbum($event);cambiarVisualizacion();"></app-albumes>
+    <app-albumes (idAlbumActual)="setIdAlbum($event)" (nombreAlbumActual)="setNombreAlbum($event);cambiarVisualizacion()" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-albumes>
     <br/><br/><br/><br/>
   </div>
   <div *ngIf="modoVisualizacion=='canciones'">

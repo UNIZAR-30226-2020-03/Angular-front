@@ -85,7 +85,7 @@ export class StreamingService {
   next(correo: string){
     console.log("next");
     var url = "https://upbeatproyect.herokuapp.com/cliente/next/"+correo;
-    return this.http.put<Cancion>(url,httpOptions);
+    return this.http.put(url,httpOptions);
   }
 
   anyadirCancionCola(correo,idSong){
@@ -95,7 +95,7 @@ export class StreamingService {
 
   verCola(correo){
     var url = "https://upbeatproyect.herokuapp.com/cliente/getCancionesCola/"+correo;
-    return this.http.get<Cancion[]>(url,httpOptions);
+    return this.http.get(url,httpOptions);
   }
 
  ////////////////////////////////////////
@@ -106,8 +106,18 @@ export class StreamingService {
   return this.http.put(url,httpOptions);
  }
 
+ reproducirAlbum(correo: string,idAlbum: number){
+  var url = "https://upbeatproyect.herokuapp.com/cliente/reproducirAlbum/"+correo+"/"+idAlbum;
+  return this.http.put(url,httpOptions);
+ }
+
  anyadirPlaylistCola(correo: string,idPlaylist: number){
   var url = "https://upbeatproyect.herokuapp.com/cliente/addPlaylistCola/"+correo+"/"+idPlaylist;
+  return this.http.put(url,httpOptions);
+ }
+
+ reproducirPlaylist(correo: string,idPlaylist: number){
+  var url = "https://upbeatproyect.herokuapp.com/cliente/reproducirPlaylist/"+correo+"/"+idPlaylist;
   return this.http.put(url,httpOptions);
  }
 

@@ -53,10 +53,12 @@ export class PlaylistsMenuComponent implements OnInit {
   }
 
   actualizarCancionActual(nombre: string){
+    console.log(nombre);
     this.cancionActual.emit(nombre);
   }
 
   play(URL: string){
+    console.log(URL);
     this.URL.emit(URL);
   }
 
