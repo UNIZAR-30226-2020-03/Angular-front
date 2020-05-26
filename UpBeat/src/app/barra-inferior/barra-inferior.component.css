@@ -6,7 +6,13 @@
   
 .play-pause{
     bottom: 15px;
-    right: 35px;
+    right: 30px;
+    position: fixed;
+}
+
+.next{
+    bottom: 15px;
+    right: 100px;
     position: fixed;
 }
   

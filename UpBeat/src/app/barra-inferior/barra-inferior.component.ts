@@ -10,6 +10,7 @@ export class BarraInferiorComponent implements OnInit {
   @Output() volumenBarra = new EventEmitter();
   @Output() cancionEnReproduccion = new EventEmitter();
   @Output() tiempoCancion = new EventEmitter();
+  @Output() siguienteCancion = new EventEmitter();
 
   constructor() { }
 
@@ -54,6 +55,10 @@ export class BarraInferiorComponent implements OnInit {
   reanudar(){
     this.cancionEnReproduccion.emit(true);
     this.reproduciendo = true;
+  }
+
+  next(){
+    this.siguienteCancion.emit();
   }
 
   actualizarCancionActual(nombre : string){

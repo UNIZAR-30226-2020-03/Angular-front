@@ -14,34 +14,31 @@ export class ReproductorComponent implements OnInit {
   @Output() tiempoCancionAbsoluta = new EventEmitter();
   @Output() cancionActual = new EventEmitter();
 
+  usuario: Usuario = new Usuario();
+  audio = new Audio();
+  reproduciendo: boolean = false;
+
   constructor(public service : StreamingService, public serviceUser: ServiceService) { }
 
   ngOnInit(): void {
     this.usuario = this.serviceUser.getUserLoggedIn();
     this.audio.volume = 0.5;
     setInterval(() => {
-      if(this.audio.ended){
-        this.service.next(this.usuario.correo).subscribe(data =>{
-          var aux = data["cancion"];
-          this.audio.src = aux["pathMp3"];
-          var nombre = aux["nombre"].toString();
-          this.cancionActual.emit(nombre);
-          this.playURL(this.audio.src);
-        })
-      }
       this.tiempoCancionRelativa.emit((this.audio.currentTime/this.audio.duration)*100);
       this.tiempoCancionAbsoluta.emit(Math.trunc(this.audio.currentTime));
     }, 1000);
   }
   
-  usuario: Usuario = new Usuario();
-  audio = new Audio();
   playURL(URL: string){
     console.log("play");
     this.audio.pause();
     this.audio.src = URL;
     this.audio.load();
     this.audio.play();
+    if(!this.reproduciendo){
+      this.reproduciendo = true;
+      this.nextAutomatico();
+    }
   }
 
   pauseplay(b: boolean){
@@ -51,6 +48,28 @@ export class ReproductorComponent implements OnInit {
     else{
       this.audio.pause();
     }
+  }
+
+  nextAutomatico(){
+    this.audio.addEventListener('ended', () => {
+      this.service.next(this.usuario.correo).subscribe(data =>{
+        var aux = data["cancion"];
+        var src = aux["pathMp3"];
+        var nombre = aux["nombre"].toString();
+        this.cancionActual.emit(nombre);
+        this.playURL(src);
+      })
+    });
+  }
+
+  nextUnico(){
+    this.service.next(this.usuario.correo).subscribe(data =>{
+      var aux = data["cancion"];
+      var src = aux["pathMp3"];
+      var nombre = aux["nombre"].toString();
+      this.cancionActual.emit(nombre);
+      this.playURL(src);
+    })
   }
 
   modificarVolumen(volumen){

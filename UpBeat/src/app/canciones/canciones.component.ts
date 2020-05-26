@@ -37,30 +37,6 @@ export class CancionesComponent implements OnInit {
 
   constructor(private router:Router, private service:StreamingService, private serviceUser:ServiceService, private _snackBar: MatSnackBar) { }
 
-  play(i: number){
-    if(this.primero){
-      this.primero = false;
-      this.service.play(this.cancionesBD[i].id);
-    }
-    else{
-      this.service.reproducirCancion(this.usuarioActual.correo, this.cancionesBD[i].id);
-    }
-    this.URL.emit(this.cancionesBD[i].pathMp3);
-    this.cancion.emit(this.cancionesBD[i].nombre);
-  }
-
-  anyadirSongCola(i: number){
-    this.service.anyadirCancionCola(this.usuarioActual.correo, this.cancionesBD[i].id).subscribe(data => {
-      error: error => alert("Se ha producido un error");
-      var mensaje = "La cancion se ha añadido a la cola de reproducción";
-      this.openSnackBar(mensaje, "OK");
-      this.service.verCola(this.usuarioActual.correo).subscribe(data => {
-        console.log(data);
-        this.cola = data;
-      })
-    })
-  }
-
   ngOnInit(): void {
     setTimeout(() => {
       //Esperamos por seguridad
@@ -113,6 +89,41 @@ export class CancionesComponent implements OnInit {
       this.modoVisualizacion = "albumes";
       this.listarCancionesAlbum();
     }
+  }
+
+  play(i: number){
+    if(this.primero){
+      this.primero = false;
+        this.service.play(this.usuarioActual.correo).subscribe(data => {
+          error: error => alert("Se ha producido un error");
+          console.log(data);
+          this.service.verCola(this.usuarioActual.correo).subscribe(data => {
+            console.log(data);
+            this.cola = data;
+          })
+        })
+    }
+    else{
+      this.service.reproducirCancion(this.usuarioActual.correo, this.cancionesBD[i].id);
+      this.service.verCola(this.usuarioActual.correo).subscribe(data => {
+        console.log(data);
+        this.cola = data;
+      })
+    }
+    this.URL.emit(this.cancionesBD[i].pathMp3);
+    this.cancion.emit(this.cancionesBD[i].nombre);
+  }
+
+  anyadirSongCola(i: number){
+    this.service.anyadirCancionCola(this.usuarioActual.correo, this.cancionesBD[i].id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      var mensaje = "La cancion se ha añadido a la cola de reproducción";
+      this.openSnackBar(mensaje, "OK");
+      this.service.verCola(this.usuarioActual.correo).subscribe(data => {
+        console.log(data);
+        this.cola = data;
+      })
+    })
   }
 
   reproducirCanconId(id: number): void{

@@ -67,7 +67,7 @@ export class StreamingService {
  ////////////////////
  ////// COLA ///////
  //////////////////
-  play(correo){
+  play(correo: string){
     var url = "https://upbeatproyect.herokuapp.com/cliente/play/"+correo;
     return this.http.get(url,httpOptions);
   }
@@ -77,15 +77,15 @@ export class StreamingService {
     this.http.put(url,httpOptions);
   }
 
-  reproducirCancion(correo,idSong){
+  reproducirCancion(correo: string,idSong: number){
     var url = "https://upbeatproyect.herokuapp.com/cliente/reproducirCancion/"+correo+"/"+idSong;
     return this.http.put(url,httpOptions);
   }
   
-  next(correo){
+  next(correo: string){
     console.log("next");
     var url = "https://upbeatproyect.herokuapp.com/cliente/next/"+correo;
-    return this.http.put(url,httpOptions);
+    return this.http.put<Cancion>(url,httpOptions);
   }
 
   anyadirCancionCola(correo,idSong){
