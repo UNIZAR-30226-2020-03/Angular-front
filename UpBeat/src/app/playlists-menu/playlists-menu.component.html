@@ -1,7 +1,7 @@
-<div *ngIf="modoVisualizacion=='albumes'">
+<div *ngIf="modoVisualizacion=='playlists'">
   <mat-card>
     <mat-card-title class="cabecera">Playlists de {{usuario.nombre}}
-      <button mat-raised-button class = "crear" (click)="openDialog()">Crear una playlist</button>
+      <button mat-raised-button class="crear" (click)="openDialog()">Crear una playlist</button>
     </mat-card-title>
   </mat-card>
   <app-playlists (idPlaylistActual)="setIdPlaylist($event)" (nombrePlaylistActual)="setNombrePlaylist($event);cambiarVisualizacion()" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-playlists>
