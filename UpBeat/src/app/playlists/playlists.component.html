@@ -41,7 +41,7 @@
       <mat-card-title>{{playlist.nombre}}</mat-card-title>
       <mat-card-subtitle>{{playlist.creador}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
+    <img mat-card-image src={{playlist.pathImg}} class="imagen" >
     <mat-card-content class="descripcion">
       <p>
         {{playlist.descripcion}}
