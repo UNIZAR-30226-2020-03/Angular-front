@@ -194,4 +194,24 @@ export class ServiceService {
     return this.http.get<Usuario>(UrlLog,httpOptions);
   }
 
+  listarAlbumesFavoritos(correo: string):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/songsFavAlbum/"+correo;
+    return this.http.get(url,httpOptions);
+  }
+
+  esAlbumFavorito(autor: string, idAlbum: number):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/markFavAlbum/"+autor+"/"+idAlbum;
+    return this.http.get(url,httpOptions);
+  }
+
+  marcarAlbumFavorito(autor: string, idAlbum: number):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/favAlbum/"+autor+"/"+idAlbum;
+    return this.http.put<any>(url,httpOptions);
+  }
+
+  desmarcarAlbumFavorito(autor: string, idAlbum: number):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/eliminateFavAlbum/"+autor+"/"+idAlbum;
+    return this.http.put<any>(url,httpOptions);
+  }
+
 }

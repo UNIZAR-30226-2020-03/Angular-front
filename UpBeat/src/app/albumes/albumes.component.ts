@@ -21,6 +21,7 @@ export class AlbumesComponent implements OnInit {
   @Output() cancion = new EventEmitter<string>();
   @Output() URL = new EventEmitter<string>();
 
+  favoritos: boolean[] = [false];
   modoVisualizacion: String = "albumes";
 
   artista : Artista = new Artista();
@@ -37,6 +38,9 @@ export class AlbumesComponent implements OnInit {
     else if (this.router.url === '/albumesArtista'){
       this.modoComponente(1);
     }
+    else if (this.router.url === '/favoritos'){
+      this.modoComponente(2);
+    }
   }
 
   modoComponente(mode){
@@ -47,6 +51,10 @@ export class AlbumesComponent implements OnInit {
     else if (mode == 1){
       this.modoVisualizacion = "misAlbumesArtista";
       this.obtenerMisAlbumesArtista();
+    }
+    else if (mode == 2){
+      this.modoVisualizacion = "misAlbumesFavoritos";
+      this.listarAlbumesFavoritos();
     }
   }
 
@@ -63,6 +71,7 @@ export class AlbumesComponent implements OnInit {
       var i = 0;
       while(this.albumesBD[i]!=null){
         this.obtenerAutorAlbum(this.albumesBD[i].id,i);
+        this.esFavorito(i,this.artista.correo,this.albumesBD[i].id);
         i++;
       }
     })
@@ -75,7 +84,54 @@ export class AlbumesComponent implements OnInit {
       var i = 0;
       while(this.albumesBD[i]!=null){
         this.obtenerAutorAlbum(this.albumesBD[i].id,i);
+        this.esFavorito(i,this.artista.correo,this.albumesBD[i].id);
         i++;
+      }
+    })
+  }
+
+  listarAlbumesFavoritos(): void{
+    this.service.listarAlbumesFavoritos(this.artista.correo).subscribe(data => {
+      this.albumesBD = data;
+      error: error => alert("Se ha producido un error");
+      var i = 0;
+      while(this.albumesBD[i]!=null){
+        this.favoritos[i] = true;
+        i++;
+      }
+  })
+  }
+
+  esFavorito(i,miCorreo,id){
+    this.service.esAlbumFavorito(miCorreo,id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      if(data == 0){
+        this.favoritos[i] = true;
+      }
+      else{   //data == 1 OR 2
+        this.favoritos[i] = false;
+      }
+    })
+  }
+
+  marcarAlbumFavorito(i,id){
+    this.service.marcarAlbumFavorito(this.artista.correo,id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      if(data == 0){
+        this.favoritos[i] = true;
+        var mensaje = "Ahora '"+this.albumesBD[i].nombre+"' está en tus favoritos";
+        this.openSnackBar(mensaje, "OK");
+      }
+    })
+  }
+
+  desmarcarAlbumFavorito(i,id){
+    this.service.desmarcarAlbumFavorito(this.artista.correo,id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      if(data == 0){
+        this.favoritos[i] = false;
+        var mensaje = "'"+this.albumesBD[i].nombre+"' ya no está en tus favoritos";
+        this.openSnackBar(mensaje, "OK");
       }
     })
   }
