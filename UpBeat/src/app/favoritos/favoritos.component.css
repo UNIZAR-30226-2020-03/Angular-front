@@ -1,0 +1,7 @@
+.example-button-container {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    bottom: 95px;
+    right: 40px;
+}

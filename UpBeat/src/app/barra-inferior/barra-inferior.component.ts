@@ -22,7 +22,7 @@ export class BarraInferiorComponent implements OnInit {
   cancionActual: string = "No hay nada reproduciendo";
   plus: number = 0;
   tiempoRelativoSong = 0;
-  tiempoActual = 0;
+  tiempoActual: string = "0:00";
 
   modificarVolumen(vol){
     this.volumen = vol;
@@ -44,7 +44,24 @@ export class BarraInferiorComponent implements OnInit {
   }
 
   actualizarTiempoCancionAbs(t){
-    this.tiempoActual = t;
+    if(t > 59){
+      var minuto = Math.trunc(t/60);
+      var segundo = t%60;
+      if(segundo < 10){
+        this.tiempoActual = minuto + ":0" + segundo;
+      }
+      else{
+        this.tiempoActual = minuto + ":" + segundo;
+      }
+    }
+    else{
+      if(t < 10){
+        this.tiempoActual = "0:0" + t;
+      }
+      else{
+        this.tiempoActual = "0:" + t;
+      }
+    }
   }
 
   pause(){
