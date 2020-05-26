@@ -27,16 +27,27 @@ export class RegistroVipComponent implements OnInit {
   }
 
   comprobarContrasenya(): void{
-    if(this.artista.contrasenya != null && this.repContrasenya ){
+    if(this.artista.contrasenya != null ){
       if((this.artista.contrasenya).length <6 || (this.artista.contrasenya).length > 30){
         alert("La contraseña debe tener entre 6 y 30 caracteres");
       }
       else if (this.artista.contrasenya != this.repContrasenya){
         alert("Las contraseñas introducidas no coinciden");
       }
-      else{
-        this.stepForm=4;
+    }
+    else{
+      alert("La contraseña no puede ser vacía");
+    }
+    if(this.artista.username != null){
+      if((this.artista.contrasenya).length <6 || (this.artista.contrasenya).length > 30){
+        alert("El nombre de usuario debe tener entre 6 y 30 caracteres");
       }
+      else{
+        this.stepForm = 4;
+      }
+    }
+    else{
+      alert("El usuario no pude ser vacío");
     }
   }
 
