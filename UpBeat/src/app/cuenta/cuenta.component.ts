@@ -52,6 +52,8 @@ export class CuentaComponent implements OnInit {
         console.log(this.usuario);
         this.service.actualizarUsuario(this.usuario).subscribe(data=>{
           error: error => alert("Se ha producido un error al actualizar datos"); 
+          var mensaje = "Contraseña actualizada";
+          this.openSnackBar(mensaje, "OK");
         })
       }
     }
@@ -79,6 +81,8 @@ export class CuentaComponent implements OnInit {
     console.log(this.usuario);
     this.service.actualizarUsuario(this.usuario).subscribe(data=>{
       error: error => alert("Se ha producido un error al actualizar datos"); 
+      var mensaje = "Datos actualizados correctamente";
+      this.openSnackBar(mensaje, "OK");
     })
   }
 
@@ -172,11 +176,19 @@ export class popUp3 {
       this.usuario.pathImg = this.URLPublica;
       console.log("pathImgg");
       console.log(this.usuario.pathImg);
+      console.log(this.usuario);
     });
   }
 
   actualizarImagen(){
-    this.service.actualizarImg(this.usuario);
+    if(this.usuario.pathImg == null){
+      this.usuario.pathImg = "assets/84025-foto_de_perfil_por_defecto.png";
+    }
+    this.service.actualizarUsuario(this.usuario).subscribe(data =>{
+      error: error => alert("Se ha producido un error");
+      var mensaje = "Foto de perfil actualizada";
+      this.openSnackBar(mensaje, "OK");
+    });
 
   }
 

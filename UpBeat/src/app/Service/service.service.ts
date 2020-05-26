@@ -80,14 +80,6 @@ export class ServiceService {
     return this.http.put(UrlLog,myString,httpOptions);
   }
 
-  actualizarImg(user: Usuario){
-    var UrlLog = "http://upbeatproyect.herokuapp.com/cliente/update/"+user.correo;
-    var myString = JSON.stringify(user);
-    this.setUserLoggedIn(user);
-    console.log(myString);
-    return this.http.put(UrlLog,myString,httpOptions);
-  }
-
   getUserLoggedIn() {
   	return JSON.parse(localStorage.getItem('currentUser'));
   }
