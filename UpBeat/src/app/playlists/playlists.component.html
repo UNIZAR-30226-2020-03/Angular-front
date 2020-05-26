@@ -16,7 +16,10 @@
       <button mat-icon-button matTooltip="Escuchar">
         <mat-icon (click)="playPlaylistCola(indice)">play_arrow</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="Añadir a favoritos">
+      <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarPlaylistFavorita(indice,playlist.id)" matTooltip="Eliminar de favoritos">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarPlaylistFavorita(indice,playlist.id)" matTooltip="Añadir a favoritos">
         <mat-icon>favorite</mat-icon>
       </button>
       <button mat-icon-button matTooltip="Ver playlist">
@@ -48,7 +51,10 @@
       <button mat-icon-button matTooltip="Escuchar">
         <mat-icon (click)="playPlaylistCola(indice)">play_arrow</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="Añadir a favoritos">
+      <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarPlaylistFavorita(indice,playlist.id)" matTooltip="Eliminar de favoritos">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarPlaylistFavorita(indice,playlist.id)" matTooltip="Añadir a favoritos">
         <mat-icon>favorite</mat-icon>
       </button>
       <button mat-icon-button matTooltip="Eliminar playlist">
@@ -66,3 +72,40 @@
     </mat-card-actions>
   </mat-card>
 </div>
+
+<mat-card *ngIf="modoVisualizacion=='favoritos'">
+  <mat-card-title>Playlists favoritas</mat-card-title>
+  <mat-card-subtitle>Lista de tus playlists favoritas</mat-card-subtitle>
+  <mat-card *ngFor="let playlist of playlistsBD; let indice=index" style="margin-top:10px;" class="card">
+    <mat-card-header>
+      <mat-card-title>{{playlist.nombre}}</mat-card-title>
+      <mat-card-subtitle>{{playlist.creador}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src={{playlist.pathImg}} class="imagen" >
+    <mat-card-content class="descripcion">
+      <p>
+        {{playlist.descripcion}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="acciones">
+      <button mat-icon-button matTooltip="Escuchar">
+        <mat-icon (click)="playPlaylistCola(indice)">play_arrow</mat-icon>
+      </button>
+      <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarPlaylistFavorita(indice,playlist.id)" matTooltip="Eliminar de favoritos">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarPlaylistFavorita(indice,playlist.id)" matTooltip="Añadir a favoritos">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Ver playlist">
+        <mat-icon (click)="listarCancionesPlaylist(playlist)">remove_red_eyes</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="menuTresPuntos">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="anyadirPlaylistCola(indice)">Añadir a la cola</button>
+      </mat-menu>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

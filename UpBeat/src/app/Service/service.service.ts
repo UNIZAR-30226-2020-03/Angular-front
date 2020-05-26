@@ -147,6 +147,26 @@ export class ServiceService {
     return this.http.get<Cancion[]>(UrlLog,httpOptions);
   }
 
+  listarPlaylistsFavoritas(correo: string):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/listFavPlaylist/"+correo;
+    return this.http.get(url,httpOptions);
+  }
+
+  esPlaylistFavorita(autor: string, idPlaylist: number):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/markFavPlaylist/"+autor+"/"+idPlaylist;
+    return this.http.get(url,httpOptions);
+  }
+
+  marcarPlaylistFavorita(autor: string, idPlaylist: number):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/favPlaylist/"+autor+"/"+idPlaylist;
+    return this.http.put<any>(url,httpOptions);
+  }
+
+  desmarcarPlaylistFavorita(autor: string, idPlaylist: number):Observable<any>{
+    var url = "https://upbeatproyect.herokuapp.com/cliente/eliminateFavPlaylist/"+autor+"/"+idPlaylist;
+    return this.http.put<any>(url,httpOptions);
+  }
+
   ////////////////////////
   /////// ÁLBUMES ///////
   ///////////////////////

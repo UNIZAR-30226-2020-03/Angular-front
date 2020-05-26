@@ -23,6 +23,7 @@ export class PlaylistsComponent implements OnInit {
   playlistsBD: Playlist[];
   primero : Boolean = true;
 
+  favoritos: boolean[] = [false];
   modoVisualizacion: String = "recientes";
   usuarioActual: Usuario;
   
@@ -36,6 +37,9 @@ export class PlaylistsComponent implements OnInit {
     else if (this.router.url === '/playlists'){
       this.modoComponente(1);
     }
+    else if (this.router.url === '/favoritos'){
+      this.modoComponente(2);
+    }
   }
 
   modoComponente(mode){
@@ -46,6 +50,10 @@ export class PlaylistsComponent implements OnInit {
     else if (mode == 1){
       this.modoVisualizacion = "misPlaylists";
       this.obtenerMisPlaylists();
+    }
+    else if (mode == 2){
+      this.modoVisualizacion = "favoritos";
+      this.listarPlaylistsFavoritas();
     }
   }
 
@@ -62,6 +70,7 @@ export class PlaylistsComponent implements OnInit {
       var i = 0;
       while(this.playlistsBD[i]!=null){
         this.obtenerAutorPlaylist(this.playlistsBD[i].id,i);
+        this.esFavorita(i,this.usuarioActual.correo,this.playlistsBD[i].id);
         i++;
       }
     })
@@ -74,7 +83,54 @@ export class PlaylistsComponent implements OnInit {
       var i = 0;
       while(this.playlistsBD[i]!=null){
         this.obtenerAutorPlaylist(this.playlistsBD[i].id,i);
+        this.esFavorita(i,this.usuarioActual.correo,this.playlistsBD[i].id);
         i++;
+      }
+    })
+  }
+
+  listarPlaylistsFavoritas(): void{
+    this.service.listarPlaylistsFavoritas(this.usuarioActual.correo).subscribe(data => {
+      this.playlistsBD = data;
+      error: error => alert("Se ha producido un error");
+      var i = 0;
+      while(this.playlistsBD[i]!=null){
+        this.favoritos[i] = true;
+        i++;
+      }
+  })
+  }
+
+  esFavorita(i,miCorreo,id){
+    this.service.esPlaylistFavorita(miCorreo,id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      if(data == 0){
+        this.favoritos[i] = true;
+      }
+      else{   //data == 1 OR 2
+        this.favoritos[i] = false;
+      }
+    })
+  }
+
+  marcarPlaylistFavorita(i,id){
+    this.service.marcarPlaylistFavorita(this.usuarioActual.correo,id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      if(data == 0){
+        this.favoritos[i] = true;
+        var mensaje = "Ahora '"+this.playlistsBD[i].nombre+"' está en tus favoritos";
+        this.openSnackBar(mensaje, "OK");
+      }
+    })
+  }
+
+  desmarcarPlaylistFavorita(i,id){
+    this.service.desmarcarPlaylistFavorita(this.usuarioActual.correo,id).subscribe(data => {
+      error: error => alert("Se ha producido un error");
+      if(data == 0){
+        this.favoritos[i] = false;
+        var mensaje = "'"+this.playlistsBD[i].nombre+"' ya no está en tus favoritos";
+        this.openSnackBar(mensaje, "OK");
       }
     })
   }
