@@ -13,6 +13,7 @@ export class RegistroComponent implements OnInit{
   
   stepForm = 1;
   usuario: Usuario = new Usuario();
+  repContrasenya : string;
 
   constructor(private router:Router, private service:ServiceService) {}
 
@@ -25,6 +26,28 @@ export class RegistroComponent implements OnInit{
       this.router.navigate(['/']);
       error: error => alert("Se ha producido un error en el registro");
   })
+  }
+
+  comprobarContrasenya(): void{
+    if(this.usuario.contrasenya != null && this.repContrasenya ){
+      if((this.usuario.contrasenya).length <6 || (this.usuario.contrasenya).length > 30){
+        alert("La contraseña debe tener entre 6 y 30 caracteres");
+      }
+      else if (this.usuario.contrasenya != this.repContrasenya){
+        alert("Las contraseñas introducidas no coinciden");
+      }
+      else{
+        this.stepForm=3;
+      }
+    }
+  }
+
+  
+  obtenerCliente(){
+    this.service.existeUsuario(this.usuario.correo).subscribe(
+      res => {alert('Este correo ya está registrado');},
+      err => this.stepForm=2
+      )
   }
 
 }

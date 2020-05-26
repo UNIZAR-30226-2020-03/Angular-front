@@ -41,6 +41,11 @@ export class ServiceService {
     return this.http.get(UrlLog,httpOptions);
   }
 
+  existeUsuario(correo){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/cliente/get/"+correo;
+    return this.http.get(UrlLog,httpOptions);
+  }
+
   esArtista(correo: string):Observable<any>{
     var UrlLog = "https://upbeatproyect.herokuapp.com/artista/get/"+correo;
     return this.http.get(UrlLog,httpOptions);
