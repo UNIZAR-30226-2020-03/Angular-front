@@ -1,0 +1,29 @@
+<div class="contenedor">
+  <div class="contenedor_formulario">
+    <p class="is-size-1">Subir foto de perfil</p>
+    <br/>
+    <p class="download" *ngIf="finalizado">Tu imagen está lista</p>
+    <form [formGroup]="archivoForm" (ngSubmit)="subirArchivo()">
+      <div class="file has-name is-boxed">
+        <label class="file-label">
+          <input class="file-input" type="file" formControlName="archivo" (change)="cambioArchivo($event)">
+          <span class="file-cta">
+            <span class="file-label">
+            </span>
+          </span>
+          <span class="file-name">
+          </span>
+        </label>
+      </div>
+      <br/>
+      <hr>
+      <progress *ngIf="porcentaje > 0 && porcentaje < 100" class="progress is-large is-success" value="{{porcentaje}}" max="100">{{porcentaje}}%</progress>
+      <button mat-raised-button class="boton" [ngClass]="{'button': true, 'is-success': true, 'is-large': true, 'is-loading': porcentaje > 0 && porcentaje < 100}" [disabled]="!archivoForm.valid && (porcentaje > 0 && porcentaje < 100)">Subir archivo</button>
+    </form>
+  </div>
+</div>
+
+<mat-dialog-actions class="actions" align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="actualizarImagen()">Aceptar</button>
+</mat-dialog-actions>

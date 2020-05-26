@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { Usuario } from '../MODELO/Usuario';
 import { ServiceService } from '../Service/service.service';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FirebaseStorageService } from '../firebase-storage.service'
+import { finalize } from 'rxjs/operators';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cuenta',
@@ -17,9 +20,10 @@ export class CuentaComponent implements OnInit {
   contrasenya: string;
   repContrasenya: string;
   usuario: Usuario = new Usuario();
-  constructor(private breakpointObserver: BreakpointObserver, private router:Router, private service:ServiceService) { }
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private service:ServiceService) { }
 
   ngOnInit(): void {
+    this.getNombreUsuario();
   }
 
   cerrarSesion(){
@@ -77,4 +81,106 @@ export class CuentaComponent implements OnInit {
       error: error => alert("Se ha producido un error al actualizar datos"); 
     })
   }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(popUp3);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 }
+
+
+@Component({
+  selector: 'popUp3',
+  templateUrl: 'popUp3.html',
+})
+export class popUp3 {
+
+  public mensajeArchivo = 'No hay un archivo seleccionado';
+  public datosFormulario = new FormData();
+  public nombreArchivo = '';
+  public URLPublica = '';
+  public porcentaje = 0;
+  public finalizado = false;
+
+  constructor(private firebaseStorage:FirebaseStorageService ,private service:ServiceService,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
+
+  usuario : Usuario = new Usuario();
+  idPlaylist : String;
+  pathImg : string;
+
+  public archivoForm = new FormGroup({
+    archivo: new FormControl(null, Validators.required),
+  });
+
+  ngOnInit(): void {
+    this.usuario = this.service.getUserLoggedIn();
+    console.log("ngoninit");
+    console.log(this.usuario);
+  }
+
+
+  public cambioArchivo(event) {
+    if (event.target.files.length > 0) {
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.mensajeArchivo = `Archivo preparado: ${event.target.files[i].name}`;
+        this.nombreArchivo = event.target.files[i].name;
+        this.datosFormulario.delete('archivo');
+        this.datosFormulario.append('archivo', event.target.files[i], event.target.files[i].name)
+      }
+    } else {
+      this.mensajeArchivo = 'No hay un archivo seleccionado';
+    }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  public subirArchivo() {
+    let archivo = this.datosFormulario.get('archivo');
+    let tarea = this.firebaseStorage.tareaCloudStorage(this.nombreArchivo, archivo);
+
+    //Cambia el porcentaje
+    tarea.percentageChanges().subscribe((porcentaje) => {
+      this.porcentaje = Math.round(porcentaje);
+      if (this.porcentaje == 100) {
+        this.finalizado = true;
+      }
+    });
+
+    tarea.snapshotChanges().pipe(
+      finalize(() => this.obtenerURL())
+    )
+    .subscribe()
+  }
+
+  obtenerURL(){
+    let referencia = this.firebaseStorage.referenciaCloudStorage(this.nombreArchivo);
+    referencia.getDownloadURL().subscribe((URL) => {
+      this.URLPublica = URL;
+      this.usuario.pathImg = this.URLPublica;
+      console.log("pathImgg");
+      console.log(this.usuario.pathImg);
+    });
+  }
+
+  actualizarImagen(){
+    this.service.actualizarImg(this.usuario);
+
+  }
+
+  
+
+}
+
