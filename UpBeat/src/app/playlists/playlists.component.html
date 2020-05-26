@@ -2,9 +2,9 @@
   <mat-card-title>Playlists</mat-card-title>
   <mat-card-subtitle>Puedes empezar por estas playlists creadas por otros usuarios</mat-card-subtitle>
   <mat-card *ngFor="let playlist of playlistsBD; let indice=index" style="margin-top:10px;" class="card">
-    <mat-card-header class="header">
+    <mat-card-header>
       <mat-card-title>{{playlist.nombre}}</mat-card-title>
-      <button mat-icon-button class="opciones" [matMenuTriggerFor]="menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
@@ -29,9 +29,9 @@
 
 <div *ngIf="modoVisualizacion=='misPlaylists'">
   <mat-card *ngFor="let playlist of playlistsBD; let indice=index" style="margin-top:10px;" class="card">
-    <mat-card-header class="header">
+    <mat-card-header>
       <mat-card-title>{{playlist.nombre}}</mat-card-title>
-      <button mat-icon-button class="opciones" [matMenuTriggerFor]="menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
