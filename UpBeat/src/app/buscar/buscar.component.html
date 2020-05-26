@@ -1,3 +1,10 @@
+<div *ngIf="modoVisualizacion==0" class="container">
+    <div class="example-button-container">
+        <button mat-fab color="primary" (click)=openDialog()>
+          <mat-icon>search</mat-icon>
+        </button>
+    </div>
+</div>
 <div *ngIf="modoVisualizacion==1" class="container">
     <div *ngIf="modoItemVisualizacion=='inicio'">
         <app-usuarios *ngIf="tipo==1" [cadenaBusqueda]="cadena"></app-usuarios>
