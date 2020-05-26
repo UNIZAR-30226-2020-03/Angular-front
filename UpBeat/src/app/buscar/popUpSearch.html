@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Buscar</h2>
+<div mat-dialog-content class="mat-typography">
+  <mat-form-field appearance="outline">
+    <mat-label>¿Qué quieres buscar?</mat-label>
+    <input matInput [(ngModel)]="data.cadena" placeholder="Mandanga Style" name="data.cadena">
+  </mat-form-field>
+  <div align="center">
+    <form>
+        <mat-form-field>
+          <mat-label>Tipo de búsqueda</mat-label>
+          <mat-select [(ngModel)]="data.tipo" name="data.tipo">
+            <mat-option value="1">
+              Usuarios
+            </mat-option>
+            <mat-option value="2">
+              Canciones
+            </mat-option>
+            <mat-option value="3">
+              Playlists
+            </mat-option>
+            <mat-option value="4">
+              Álbumes
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </form>
+  </div>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="0">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data.tipo" cdkFocusInitial>Buscar</button>
+</mat-dialog-actions>

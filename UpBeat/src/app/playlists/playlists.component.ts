@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject, Input } from '@angular/core';
 import { Usuario } from '../MODELO/Usuario';
 import { ServiceService } from '../Service/service.service';
 import { Router } from '@angular/router';
@@ -18,6 +18,8 @@ export class PlaylistsComponent implements OnInit {
 
   @Output() cancion = new EventEmitter<string>();
   @Output() URL = new EventEmitter<string>();
+
+  @Input() cadenaBusqueda: string;
 
   usuario : Usuario = new Usuario();
   playlistsBD: Playlist[];
@@ -40,6 +42,9 @@ export class PlaylistsComponent implements OnInit {
     else if (this.router.url === '/favoritos'){
       this.modoComponente(2);
     }
+    else if (this.router.url === '/buscar'){
+      this.modoComponente(3);
+    }
   }
 
   modoComponente(mode){
@@ -55,6 +60,10 @@ export class PlaylistsComponent implements OnInit {
       this.modoVisualizacion = "favoritos";
       this.listarPlaylistsFavoritas();
     }
+    else if (mode == 3){
+      this.modoVisualizacion = "buscar";
+      this.obtenerTodasPlaylists();
+    }
   }
 
   openSnackBar(message: string, action: string) {
@@ -66,6 +75,9 @@ export class PlaylistsComponent implements OnInit {
   obtenerTodasPlaylists(){
     this.service.listarTodasPlaylists().subscribe(data => {
       this.playlistsBD = data;
+      if(this.modoVisualizacion == "buscar"){
+        this.buscar();
+      }
       error: error => alert("Se ha producido un error");
       var i = 0;
       while(this.playlistsBD[i]!=null){
@@ -156,6 +168,19 @@ export class PlaylistsComponent implements OnInit {
       this.playlistsBD[i].creador = data.nombre + " " + data.apellidos;
       error: error => alert("Se ha producido un error");
     })
+  }
+
+  buscar(){
+    var cadenaBusqueda = this.cadenaBusqueda.toLowerCase();
+    var i = 0;
+    while(this.playlistsBD[i]!=null){
+      var cancionTitulo = this.playlistsBD[i].nombre;
+      var cancionComprobacion = cancionTitulo.toLowerCase();
+      if (!cancionComprobacion.includes(cadenaBusqueda)){
+        this.playlistsBD.splice(i, 1);
+      }
+      else i++;
+    }
   }
 
   anyadirPlaylistCola(i: number){

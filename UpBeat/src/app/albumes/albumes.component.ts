@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Artista } from '../MODELO/Artista';
 import { ServiceService } from '../Service/service.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,6 +21,8 @@ export class AlbumesComponent implements OnInit {
   @Output() cancion = new EventEmitter<string>();
   @Output() URL = new EventEmitter<string>();
 
+  @Input() cadenaBusqueda: string;
+
   favoritos: boolean[] = [false];
   modoVisualizacion: String = "albumes";
 
@@ -41,6 +43,9 @@ export class AlbumesComponent implements OnInit {
     else if (this.router.url === '/favoritos'){
       this.modoComponente(2);
     }
+    else if (this.router.url === '/buscar'){
+      this.modoComponente(3);
+    }
   }
 
   modoComponente(mode){
@@ -55,6 +60,10 @@ export class AlbumesComponent implements OnInit {
     else if (mode == 2){
       this.modoVisualizacion = "misAlbumesFavoritos";
       this.listarAlbumesFavoritos();
+    }
+    else if (mode == 3){
+      this.modoVisualizacion = "buscar";
+      this.obtenerTodosAlbumes();
     }
   }
 
@@ -80,6 +89,9 @@ export class AlbumesComponent implements OnInit {
   obtenerTodosAlbumes(){
     this.service.listarTodosAlbums().subscribe(data => {
       this.albumesBD = data;
+      if(this.modoVisualizacion == "buscar"){
+        this.buscar();
+      }
       error: error => alert("Se ha producido un error");
       var i = 0;
       while(this.albumesBD[i]!=null){
@@ -157,6 +169,19 @@ export class AlbumesComponent implements OnInit {
       this.albumesBD[i].creador = data.nombre + " " + data.apellidos;
       error: error => alert("Se ha producido un error");
     })
+  }
+
+  buscar(){
+    var cadenaBusqueda = this.cadenaBusqueda.toLowerCase();
+    var i = 0;
+    while(this.albumesBD[i]!=null){
+      var cancionTitulo = this.albumesBD[i].nombre;
+      var cancionComprobacion = cancionTitulo.toLowerCase();
+      if (!cancionComprobacion.includes(cadenaBusqueda)){
+        this.albumesBD.splice(i, 1);
+      }
+      else i++;
+    }
   }
 
   anyadirAlbumCola(i: number){

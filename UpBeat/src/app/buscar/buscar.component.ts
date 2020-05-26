@@ -1,4 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+export interface DialogData {
+  tipo: number;
+  cadena: String;
+}
 
 @Component({
   selector: 'app-buscar',
@@ -13,9 +19,25 @@ export class BuscarComponent implements OnInit {
   @Output() URL = new EventEmitter<string>();
   cadena: String = "";
 
-  constructor() { }
+  modoItemVisualizacion: String = "inicio";
+  idPlaylist: number;
+  nombrePlaylist: string;
+  idAlbum: number;
+  nombreAlbum: string;
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.openDialog();
+  }
+
+  cambiarVisualizacion(){
+    if(this.modoItemVisualizacion == "inicio"){
+      this.modoItemVisualizacion = "canciones";
+    }
+    else{
+      this.modoItemVisualizacion = "inicio";
+    }
   }
 
   cambiarModo(modo){
@@ -27,6 +49,20 @@ export class BuscarComponent implements OnInit {
     }
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(popUpSearch, {
+      data: {tipo: this.tipo, cadena: this.cadena}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if(result > 0){
+        this.cambiarModo(1);
+        this.tipo = result;
+      }
+    });
+  }
+
   actualizarCancionActual(nombre: string){
     this.cancionActual.emit(nombre);
   }
@@ -34,5 +70,33 @@ export class BuscarComponent implements OnInit {
   play(URL: string){
     this.URL.emit(URL);
   }
+
+  setIdPlaylist(id : number){
+    this.idPlaylist = id;
+  }
+
+  setNombrePlaylist(name : string){
+    this.nombrePlaylist = name;
+  }
+
+  setIdAlbum(id : number){
+    this.idAlbum = id;
+  }
+
+  setNombreAlbum(name : string){
+    this.nombreAlbum = name;
+  }
+
+}
+
+
+@Component({
+  selector: 'popUpSeacrh',
+  templateUrl: 'popUpSearch.html',
+})
+export class popUpSearch {
+
+  constructor(public dialogRef: MatDialogRef<popUpSearch>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
 }

@@ -1,33 +1,7 @@
 .example-button-container {
     display: flex;
-    position: absolute;
+    position: fixed;
     justify-content: center;
     bottom: 95px;
     right: 40px;
-}
-
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 80%;
-}
-
-.buscar{
-    display: table-cell;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-}
-
-.boton{
-    left: 20px;
-    bottom: 4px;
-}
-
-.mat-radio-button ~ .mat-radio-button {
-    margin-left: 16px;
 }

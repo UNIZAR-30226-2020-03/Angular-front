@@ -22,7 +22,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { BarraInferiorComponent } from './barra-inferior/barra-inferior.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { PlaylistsMenuComponent, popUp } from './playlists-menu/playlists-menu.component';
-import { BuscarComponent } from './buscar/buscar.component';
+import { BuscarComponent, popUpSearch } from './buscar/buscar.component';
 import { CuentaComponent } from './cuenta/cuenta.component';
 import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
@@ -44,13 +44,15 @@ import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AmigosComponent } from './amigos/amigos.component';
-import {MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule} from '@angular/material/menu';
 import { AlbumesComponent } from './albumes/albumes.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AlbumesMenuComponent, popUp2 } from './albumes-menu/albumes-menu.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { StreamingService } from './Service/streaming.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     popUp,
     AlbumesComponent,
     popUp2,
-    AlbumesMenuComponent
+    AlbumesMenuComponent,
+    popUpSearch
   ],
   imports: [
     BrowserModule,
@@ -106,9 +109,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ScrollingModule,
     MatMenuModule,
     MatFormFieldModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule
   ],
-  providers: [ServiceService,MessageService],
+  providers: [ServiceService,MessageService,StreamingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

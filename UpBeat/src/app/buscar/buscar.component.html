@@ -1,29 +1,22 @@
-<div *ngIf="modoVisualizacion==0" class="container">
-    <div class="buscar">
-        <mat-form-field appearance="outline">
-            <mat-label>¿Qué quieres buscar?</mat-label>
-            <input matInput [(ngModel)]="cadena" placeholder="Mandanga Style" name="cadena">
-        </mat-form-field>
-        <button class="boton" mat-flat-button color="primary" (click)=cambiarModo(1)>Buscar</button>
-        <div>
-            <form>
-                <mat-radio-group [(ngModel)]="tipo" name="tipo">
-                    <mat-radio-button value="1">Usuarios</mat-radio-button>
-                    <mat-radio-button value="2">Canciones</mat-radio-button>
-                </mat-radio-group>
-            </form>
+<div *ngIf="modoVisualizacion==1" class="container">
+    <div *ngIf="modoItemVisualizacion=='inicio'">
+        <app-usuarios *ngIf="tipo==1" [cadenaBusqueda]="cadena"></app-usuarios>
+        <app-canciones *ngIf="tipo==2" [cadenaBusqueda]="cadena" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
+        <app-playlists *ngIf="tipo==3" [cadenaBusqueda]="cadena" (idPlaylistActual)="setIdPlaylist($event)" (nombrePlaylistActual)="setNombrePlaylist($event);cambiarVisualizacion()" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-playlists>
+        <app-albumes *ngIf="tipo==4" [cadenaBusqueda]="cadena" (idAlbumActual)="setIdAlbum($event)" (nombreAlbumActual)="setNombreAlbum($event);cambiarVisualizacion()" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-albumes>
+        <br/><br/><br/><br/>
+
+        <div class="example-button-container">
+            <button mat-fab color="primary" (click)=openDialog()>
+              <mat-icon>search</mat-icon>
+            </button>
         </div>
     </div>
-</div>
-
-<div *ngIf="modoVisualizacion==1" class="container">
-    <app-usuarios *ngIf="tipo==1" [cadenaBusqueda]="cadena"></app-usuarios>
-    <app-canciones *ngIf="tipo==2" [cadenaBusqueda]="cadena" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
-
-    <div class="example-button-container">
-        <button mat-fab color="primary" (click)=cambiarModo(0)>
-          <mat-icon>search</mat-icon>
+    <div *ngIf="modoItemVisualizacion=='canciones'">
+        <app-canciones [idPlaylist]="idPlaylist" [nombrePlaylist]="nombrePlaylist" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
+        <div class="example-button-container">
+        <button mat-fab color="primary" (click)=cambiarVisualizacion()>
+            <mat-icon>arrow_back</mat-icon>
         </button>
     </div>
 </div>
-
