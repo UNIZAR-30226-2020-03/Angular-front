@@ -33,6 +33,7 @@ export class ServiceService {
   }
 
   registrarArtista(usuario: Usuario):Observable<any>{
+    usuario.pathImg = "assets/84025-foto_de_perfil_por_defecto.png";
     var myString = JSON.stringify(usuario);
     return this.http.post<any>(this.UrlRegArtista,myString,httpOptions);
   }

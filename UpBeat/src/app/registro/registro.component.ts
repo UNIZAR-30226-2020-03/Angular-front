@@ -29,17 +29,29 @@ export class RegistroComponent implements OnInit{
   }
 
   comprobarContrasenya(): void{
-    if(this.usuario.contrasenya != null && this.repContrasenya ){
+    if(this.usuario.contrasenya != null ){
       if((this.usuario.contrasenya).length <6 || (this.usuario.contrasenya).length > 30){
         alert("La contraseña debe tener entre 6 y 30 caracteres");
       }
       else if (this.usuario.contrasenya != this.repContrasenya){
         alert("Las contraseñas introducidas no coinciden");
       }
+    }
+    else{
+      alert("La contraseña no puede ser vacía");
+    }
+    if(this.usuario.username != null){
+      if((this.usuario.contrasenya).length <6 || (this.usuario.contrasenya).length > 30){
+        alert("El nombre de usuario debe tener entre 6 y 30 caracteres");
+      }
       else{
-        this.stepForm=3;
+        this.stepForm = 3;
       }
     }
+    else{
+      alert("El usuario no pude ser vacío");
+    }
+
   }
 
   
