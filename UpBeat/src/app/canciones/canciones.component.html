@@ -5,21 +5,26 @@
     <div class="cancion">
       <mat-list>
         <mat-action-list *ngFor="let cancion of cancionesBD; let indice=index">
-          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)">
-            <mat-icon>favorite</mat-icon>
+          <button mat-icon-button [matMenuTriggerFor]="menuPrincipal">
+            <mat-icon>more_vert</mat-icon>
           </button>
-          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)">
-            <mat-icon>favorite</mat-icon>
-          </button>
-          <button mat-icon-button [matMenuTriggerFor]="menu" class="add_playlist">
-            <mat-icon>playlist_add</mat-icon>
-          </button>
-          <button mat-icon-button (click)="anyadirSongCola(indice)">
-            <mat-icon>queue</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+          <mat-menu #menuPrincipal="matMenu">
+            <button (click)="anyadirSongCola(indice)" mat-menu-item>
+              Añadir a la cola
+            </button>
+            <button mat-menu-item [matMenuTriggerFor]="menu" class="add_playlist">
+              Añadir a playlist
+            </button>
+            <mat-menu #menu="matMenu">
+              <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+            </mat-menu>
           </mat-menu>
+          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)" matTooltip="Eliminar de favoritos">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)" matTooltip="Añadir a favoritos">
+            <mat-icon>favorite</mat-icon>
+          </button>
           <div class="favorito">
             <button mat-list-item (click)="play(indice)">
               {{cancion.nombre}}
@@ -37,18 +42,26 @@
       <mat-list>
         <div *ngFor="let cancion of cancionesBD; let indice=index">
           <mat-action-list>
-            <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)">
-              <mat-icon>favorite</mat-icon>
+            <button mat-icon-button [matMenuTriggerFor]="menuPrincipal">
+              <mat-icon>more_vert</mat-icon>
             </button>
-            <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)">
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button mat-icon-button [matMenuTriggerFor]="menu" class="add_playlist">
-              <mat-icon>playlist_add</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+            <mat-menu #menuPrincipal="matMenu">
+              <button (click)="anyadirSongCola(indice)" mat-menu-item>
+                Añadir a la cola
+              </button>
+              <button mat-menu-item [matMenuTriggerFor]="menu" class="add_playlist">
+                Añadir a playlist
+              </button>
+              <mat-menu #menu="matMenu">
+                <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+              </mat-menu>
             </mat-menu>
+            <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)" matTooltip="Eliminar de favoritos">
+              <mat-icon>favorite</mat-icon>
+            </button>
+            <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)" matTooltip="Añadir a favoritos">
+              <mat-icon>favorite</mat-icon>
+            </button>
             <div class="favorito">
               <button mat-list-item (click)="play(indice)">
                 {{cancion.nombre}}
@@ -66,18 +79,26 @@
     <div class="cancion">
       <mat-list>
         <mat-action-list *ngFor="let cancion of cancionesBD; let indice=index">
-          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)">
-            <mat-icon>favorite</mat-icon>
+          <button mat-icon-button [matMenuTriggerFor]="menuPrincipal">
+            <mat-icon>more_vert</mat-icon>
           </button>
-          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)">
-            <mat-icon>favorite</mat-icon>
-          </button>
-          <button mat-icon-button [matMenuTriggerFor]="menu" class="add_playlist">
-            <mat-icon>playlist_add</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+          <mat-menu #menuPrincipal="matMenu">
+            <button (click)="anyadirSongCola(indice)" mat-menu-item>
+              Añadir a la cola
+            </button>
+            <button mat-menu-item [matMenuTriggerFor]="menu" class="add_playlist">
+              Añadir a playlist
+            </button>
+            <mat-menu #menu="matMenu">
+              <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+            </mat-menu>
           </mat-menu>
+          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)" matTooltip="Eliminar de favoritos">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)" matTooltip="Añadir a favoritos">
+            <mat-icon>favorite</mat-icon>
+          </button>
           <div class="favorito">
             <button mat-list-item (click)="play(indice)">
               {{cancion.nombre}}
@@ -94,18 +115,26 @@
     <div class="cancion">
       <mat-list>
         <mat-action-list *ngFor="let cancion of cancionesBD; let indice=index">
-          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)">
-            <mat-icon>favorite</mat-icon>
+          <button mat-icon-button [matMenuTriggerFor]="menuPrincipal">
+            <mat-icon>more_vert</mat-icon>
           </button>
-          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)">
-            <mat-icon>favorite</mat-icon>
-          </button>
-          <button mat-icon-button [matMenuTriggerFor]="menu" class="add_playlist">
-            <mat-icon>playlist_add</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+          <mat-menu #menuPrincipal="matMenu">
+            <button (click)="anyadirSongCola(indice)" mat-menu-item>
+              Añadir a la cola
+            </button>
+            <button mat-menu-item [matMenuTriggerFor]="menu" class="add_playlist">
+              Añadir a playlist
+            </button>
+            <mat-menu #menu="matMenu">
+              <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+            </mat-menu>
           </mat-menu>
+          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)" matTooltip="Eliminar de favoritos">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)" matTooltip="Añadir a favoritos">
+            <mat-icon>favorite</mat-icon>
+          </button>
           <div class="favorito">
             <button mat-list-item (click)="play(indice)">
               {{cancion.nombre}}
@@ -121,18 +150,26 @@
     <div class="cancion">
       <mat-list>
         <mat-action-list *ngFor="let cancion of cancionesBD; let indice=index">
-          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)">
-            <mat-icon>favorite</mat-icon>
+          <button mat-icon-button [matMenuTriggerFor]="menuPrincipal">
+            <mat-icon>more_vert</mat-icon>
           </button>
-          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)">
-            <mat-icon>favorite</mat-icon>
-          </button>
-          <button mat-icon-button [matMenuTriggerFor]="menu" class="add_playlist">
-            <mat-icon>playlist_add</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+          <mat-menu #menuPrincipal="matMenu">
+            <button (click)="anyadirSongCola(indice)" mat-menu-item>
+              Añadir a la cola
+            </button>
+            <button mat-menu-item [matMenuTriggerFor]="menu" class="add_playlist">
+              Añadir a playlist
+            </button>
+            <mat-menu #menu="matMenu">
+              <button *ngFor="let playlist of misPlaylists" (click)="anyadirCancionAPlaylist(playlist.id, cancion.id)" mat-menu-item>{{playlist.nombre}}</button>
+            </mat-menu>
           </mat-menu>
+          <button *ngIf="favoritos[indice]" mat-icon-button color="warn" (click)="desmarcarFavorito(indice,cancion.id)" matTooltip="Eliminar de favoritos">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button *ngIf="!favoritos[indice]" mat-icon-button color="black" (click)="marcarFavorito(indice,cancion.id)" matTooltip="Añadir a favoritos">
+            <mat-icon>favorite</mat-icon>
+          </button>
           <div class="favorito">
             <button mat-list-item (click)="play(indice)">
               {{cancion.nombre}}
