@@ -98,7 +98,6 @@ export class CancionesComponent implements OnInit {
           console.log(data);
           this.service.verCola(this.usuarioActual.correo).subscribe(data => {
             console.log(data);
-            this.cola = data;
           })
         })
     }
