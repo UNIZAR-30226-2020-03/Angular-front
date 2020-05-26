@@ -4,7 +4,7 @@
   <mat-card *ngFor="let album of albumesBD" style="margin-top:10px;" class="card">
     <mat-card-header>
       <mat-card-title>{{album.nombre}}</mat-card-title>
-      <mat-card-subtitle></mat-card-subtitle>
+      <mat-card-subtitle>{{album.creador}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
     <mat-card-content class="descripcion">
@@ -25,7 +25,7 @@
   <mat-card *ngFor="let album of albumesBD" style="margin-top:10px;" class="card">
     <mat-card-header>
       <mat-card-title>{{album.nombre}}</mat-card-title>
-      <mat-card-subtitle></mat-card-subtitle>
+      <mat-card-subtitle>{{album.creador}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="../../assets/PlaylistDefecto.jpeg" class="imagen" >
     <mat-card-content class="descripcion">

@@ -54,8 +54,12 @@ export class AlbumesComponent implements OnInit {
   obtenerMisAlbumesArtista(){
     this.service.listarMisAlbumes().subscribe(data => {
       this.albumesBD = data;
-      console.log(data);
       error: error => alert("Se ha producido un error");
+      var i = 0;
+      while(this.albumesBD[i]!=null){
+        this.obtenerAutorAlbum(this.albumesBD[i].id,i);
+        i++;
+      }
     })
   }
 
@@ -63,6 +67,11 @@ export class AlbumesComponent implements OnInit {
     this.service.listarTodosAlbums().subscribe(data => {
       this.albumesBD = data;
       error: error => alert("Se ha producido un error");
+      var i = 0;
+      while(this.albumesBD[i]!=null){
+        this.obtenerAutorAlbum(this.albumesBD[i].id,i);
+        i++;
+      }
     })
   }
 
@@ -82,14 +91,11 @@ export class AlbumesComponent implements OnInit {
     } 
   }
 
-  /*
-  obtenerAutorPlaylist(idPlaylist){
-    var autor;
-    this.service.infoPlaylist(idPlaylist).subscribe(data => {
-      var aux = data["creador"];
-      console.log(data);
+  obtenerAutorAlbum(idAlbum,i){
+    this.service.autorPlaylist(idAlbum).subscribe(data => {
+      this.albumesBD[i].creador = data.nombre + " " + data.apellidos;
       error: error => alert("Se ha producido un error");
     })
   }
-  */
+
 }

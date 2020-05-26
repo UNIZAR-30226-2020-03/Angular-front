@@ -4,4 +4,5 @@ export class Album{
     descripcion : string;
     numCamciones: number;
     pathImg: string;
+    creador: string;
 }

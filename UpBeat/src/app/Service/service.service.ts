@@ -189,4 +189,9 @@ export class ServiceService {
     return this.http.delete(UrlLog,httpOptions);
   }
 
+  autorAlbum(idAlbum: number){
+    var UrlLog="https://upbeatproyect.herokuapp.com/album/getAutor/"+idAlbum;
+    return this.http.get<Usuario>(UrlLog,httpOptions);
+  }
+
 }
