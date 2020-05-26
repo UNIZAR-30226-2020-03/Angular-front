@@ -20,7 +20,6 @@ export class CancionesComponent implements OnInit {
   favoritos: boolean[] = [false];
   modoVisualizacion: String = "recientes";
   misPlaylists : Playlist[];
-  cola : Cancion[];
   
   cancionesBD: Cancion[];
 
@@ -121,7 +120,6 @@ export class CancionesComponent implements OnInit {
       this.openSnackBar(mensaje, "OK");
       this.service.verCola(this.usuarioActual.correo).subscribe(data => {
         console.log(data);
-        this.cola = data;
       })
     })
   }
