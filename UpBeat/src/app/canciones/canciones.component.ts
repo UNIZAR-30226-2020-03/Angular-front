@@ -106,7 +106,6 @@ export class CancionesComponent implements OnInit {
       this.service.reproducirCancion(this.usuarioActual.correo, this.cancionesBD[i].id);
       this.service.verCola(this.usuarioActual.correo).subscribe(data => {
         console.log(data);
-        this.cola = data;
       })
     }
     this.URL.emit(this.cancionesBD[i].pathMp3);
