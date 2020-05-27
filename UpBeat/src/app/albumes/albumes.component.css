@@ -1,17 +1,29 @@
-.card{
-    max-width: 200px;
-    display: inline-block;
-}
 
 .imagen{
-    background-size: cover;
+    background: cover;
 }
 
 .acciones{
-    width: 100%;
+   bottom: 10px;
+    
 }
 
 .menuTresPuntos{
     right: 10px;
     position: absolute;
+}
+
+
+.card{
+    max-height: 400px;
+    max-width: 200px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-top: 20px;
+    display: inline-block;
+
+}
+
+.descripcion{
+    min-height: 20px;
 }
