@@ -187,10 +187,9 @@ export class ServiceService {
     return this.http.post(UrlLog,myString,httpOptions); 
   }
 
-  crearAlbum(idAlbum){
-    var UrlLog = "https://upbeatproyect.herokuapp.com/artista/createAlbum/";
-    this.usserLogged = this.getUserLoggedIn();
-    return this.http.put(UrlLog+this.usserLogged.correo+"/"+idAlbum,httpOptions);
+  crearAlbum(autor: string, idAlbum: number){
+    var UrlLog = "https://upbeatproyect.herokuapp.com/artista/createAlbum/"+autor+"/"+idAlbum;
+    return this.http.put(UrlLog,httpOptions);
   }
 
   listarTodosAlbums(){

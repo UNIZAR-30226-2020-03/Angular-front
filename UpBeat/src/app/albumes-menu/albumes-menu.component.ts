@@ -83,11 +83,13 @@ export class popUp2 {
 
   album : Album = new Album();
   idAlbum : String;
+  artista : Artista = new Artista();
   public archivoForm = new FormGroup({
     archivo: new FormControl(null, Validators.required),
   });
 
   crearAlbum(){
+    this.artista = this.service.getUserLoggedIn();
     if (this.album.nombre != null){
       if(this.album.pathImg == null){
         this.album.pathImg="assets/PlaylistDefecto.jpeg"
@@ -104,7 +106,7 @@ export class popUp2 {
   }
 
   crearAlbumAux(idAlbum){
-    this.service.crearAlbum(idAlbum).subscribe(data => {
+    this.service.crearAlbum(this.artista.correo,idAlbum).subscribe(data => {
       error: error => alert("Se ha producido un error");
       var mensaje = "El álbum '"+this.album.nombre+"' se ha creado";
       this.openSnackBar(mensaje, "OK");

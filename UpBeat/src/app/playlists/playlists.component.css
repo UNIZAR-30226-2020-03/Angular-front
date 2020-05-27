@@ -1,10 +1,10 @@
 .imagen{
-    object-fit: cover;
+    background: cover;
+    max-height: 150px;
 }
 
 .acciones{
    bottom: 10px;
-    
 }
 
 .menuTresPuntos{
@@ -16,11 +16,11 @@
 .card{
     max-height: 400px;
     max-width: 200px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
     display: inline-block;
-
 }
 
 .descripcion{
