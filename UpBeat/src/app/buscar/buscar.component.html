@@ -1,3 +1,7 @@
+<div class="publi" align="center">
+    
+</div>
+<br/>
 <div *ngIf="modoVisualizacion==0" class="container">
     <div class="example-button-container">
         <button mat-fab color="primary" (click)=openDialog()>
@@ -20,7 +24,7 @@
         </div>
     </div>
     <div *ngIf="modoItemVisualizacion=='canciones'">
-        <app-canciones [idPlaylist]="idPlaylist" [nombrePlaylist]="nombrePlaylist" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
+        <app-canciones [idPlaylist]="idPlaylist" [nombrePlaylist]="nombrePlaylist" [idAlbum]="idAlbum" [nombreAlbum]="nombreAlbum" (cancion)="actualizarCancionActual($event)" (URL)="play($event)"></app-canciones>
         <div class="example-button-container">
         <button mat-fab color="primary" (click)=cambiarVisualizacion()>
             <mat-icon>arrow_back</mat-icon>

@@ -57,7 +57,15 @@ export class CancionesComponent implements OnInit {
       this.modoComponente(1);
     }
     else if (this.router.url === '/buscar'){
-      this.modoComponente(2);
+      if(this.idPlaylist != null){
+        this.modoComponente(3);
+      }
+      else if(this.idAlbum != null){
+        this.modoComponente(4);
+      }
+      else{
+        this.modoComponente(2);
+      }
     }
     else if (this.router.url === '/playlists'){
       this.modoComponente(3);

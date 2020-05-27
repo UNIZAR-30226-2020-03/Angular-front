@@ -56,9 +56,19 @@ export class BuscarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
-      if(result > 0){
-        this.cambiarModo(1);
-        this.tipo = result;
+      if(result[0] > 0){
+        this.cambiarModo(0);
+        setTimeout(() => {
+          this.cambiarModo(1);
+          this.tipo = result[0];
+          console.log(result[1]);
+          if(result[1] == null){
+            this.cadena = "";
+          }
+          else{
+            this.cadena = result[1].toString();
+          }
+        }, 100);
       }
     });
   }
@@ -73,18 +83,22 @@ export class BuscarComponent implements OnInit {
 
   setIdPlaylist(id : number){
     this.idPlaylist = id;
+    this.idAlbum = null;
   }
 
   setNombrePlaylist(name : string){
     this.nombrePlaylist = name;
+    this.nombreAlbum = null;
   }
 
   setIdAlbum(id : number){
     this.idAlbum = id;
+    this.idPlaylist = null;
   }
 
   setNombreAlbum(name : string){
     this.nombreAlbum = name;
+    this.nombrePlaylist = null;
   }
 
 }
@@ -95,6 +109,8 @@ export class BuscarComponent implements OnInit {
   templateUrl: 'popUpSearch.html',
 })
 export class popUpSearch {
+
+  datos = [];
 
   constructor(public dialogRef: MatDialogRef<popUpSearch>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }

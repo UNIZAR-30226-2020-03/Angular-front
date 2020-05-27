@@ -16,7 +16,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CancionesComponent } from './canciones/canciones.component';
 import { PlaylistsComponent } from './playlists/playlists.component';
 import { ReproductorComponent } from './reproductor/reproductor.component';
-import { CancionActualComponent } from './cancion-actual/cancion-actual.component';
 import { FormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
 import { BarraInferiorComponent } from './barra-inferior/barra-inferior.component';
@@ -61,7 +60,6 @@ import { MatSelectModule } from '@angular/material/select';
     CancionesComponent,
     PlaylistsComponent,
     ReproductorComponent,
-    CancionActualComponent,
     InicioComponent,
     BarraInferiorComponent,
     FavoritosComponent,

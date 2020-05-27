@@ -2,13 +2,13 @@
 <div mat-dialog-content class="mat-typography">
   <mat-form-field appearance="outline">
     <mat-label>¿Qué quieres buscar?</mat-label>
-    <input matInput [(ngModel)]="data.cadena" placeholder="Mandanga Style" name="data.cadena">
+    <input matInput [(ngModel)]="datos[1]" placeholder="Mandanga Style" name="cadena">
   </mat-form-field>
   <div align="center">
     <form>
         <mat-form-field>
           <mat-label>Tipo de búsqueda</mat-label>
-          <mat-select [(ngModel)]="data.tipo" name="data.tipo">
+          <mat-select [(ngModel)]="datos[0]" name="tipo">
             <mat-option value="1">
               Usuarios
             </mat-option>
@@ -29,5 +29,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button [mat-dialog-close]="0">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data.tipo" cdkFocusInitial>Buscar</button>
+  <button mat-button [mat-dialog-close]="datos" cdkFocusInitial>Buscar</button>
 </mat-dialog-actions>
